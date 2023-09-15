@@ -1,5 +1,4 @@
 ﻿
-
 USE TaiLieuSo
 GO
 
@@ -37,9 +36,9 @@ GO
 -- Tạo bảng UserAccess với các thay đổi
 CREATE TABLE UserAccess (
     id INT PRIMARY KEY,
-    policy_id INT,
-    document_id INT,
-    folder_id INT,
+    --policy_id INT,
+    --document_id INT,
+    --folder_id INT,
     display INT,
     read_limit INT,
     read_full INT,
@@ -47,8 +46,8 @@ CREATE TABLE UserAccess (
     page_read INT,
     page_download INT,
     user_type_id INT, -- Liên kết với bảng UserType
-    FOREIGN KEY (document_id) REFERENCES Document(id),
-    FOREIGN KEY (folder_id) REFERENCES Folder(id)
+    --FOREIGN KEY (document_id) REFERENCES Document(id),
+    --FOREIGN KEY (folder_id) REFERENCES Folder(id)
 );
 GO
 
