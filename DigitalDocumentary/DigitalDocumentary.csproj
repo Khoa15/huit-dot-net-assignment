@@ -46,8 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\AccessPolicyDTO.cs" />
+    <Compile Include="DTO\AuthorDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
+    <Compile Include="DTO\DocumentIndexDTO.cs" />
     <Compile Include="DTO\FolderDTO.cs" />
     <Compile Include="DTO\UserAccessDTO.cs" />
     <Compile Include="MainForm.cs">

@@ -6,30 +6,19 @@ using System.Threading.Tasks;
 
 namespace DigitalDocumentary.DTO
 {
-    internal class DocumentDTO
+    public class DocumentDTO
     {
-        private int _id;
-        private string _name;
-        private string _description;
-        private string _filePath;
-        private DateTime _created;
-        private DateTime _updated;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FilePath { get; set; }
+        public int FolderId { get; set; }
+        public DateTime Created { get; set; }
+        public int UserAccessId { get; set; }
+        public string Image { get; set; }
+        public string Type { get; set; }
+        public int Status { get; set; }
+        public int AuthorId { get; set; }
         public DocumentDTO() { }
-        public DocumentDTO(int id, string name, string description, string filePath, DateTime created, DateTime updated)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-            FilePath = filePath;
-            Created = created;
-            Updated = updated;
-        }
-
-        public int Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
-        public string Description { get => _description; set => _description = value; }
-        public string FilePath { get => _filePath; set => _filePath = value; }
-        public DateTime Created { get => _created; set => _created = value; }
-        public DateTime Updated { get => _updated; set => _updated = value; }
     }
 }
