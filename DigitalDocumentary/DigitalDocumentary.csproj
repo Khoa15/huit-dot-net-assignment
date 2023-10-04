@@ -46,10 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\AccessPolicyDTO.cs" />
-    <Compile Include="DTO\DocumentDTO.cs" />
-    <Compile Include="DTO\FolderDTO.cs" />
-    <Compile Include="DTO\UserAccessDTO.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +79,7 @@
   <ItemGroup>
     <Folder Include="BLL\" />
     <Folder Include="DLL\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
