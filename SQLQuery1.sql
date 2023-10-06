@@ -42,9 +42,6 @@ GO
 -- Tạo bảng UserAccess với các thay đổi
 CREATE TABLE UserAccess (
     id INT IDENTITY(1,1),
-    --policy_id INT,
-    --document_id INT,
-    --folder_id INT,
     display INT,
     read_limit INT,
     read_full INT,
@@ -53,8 +50,6 @@ CREATE TABLE UserAccess (
     page_download INT,
     user_type_id INT,
 	CONSTRAINT PK_USERACCESS PRIMARY KEY (id)-- Liên kết với bảng UserType
-    --FOREIGN KEY (document_id) REFERENCES Document(id),
-    --FOREIGN KEY (folder_id) REFERENCES Folder(id)
 );
 GO
 
@@ -69,15 +64,15 @@ GO
 
 -- Khôi phục lại bảng DocumentIndex
 CREATE TABLE DocumentIndex (
-    index_id INT IDENTITY(1,1),
+    id INT IDENTITY(1,1),
     title NVARCHAR(255),
     document_id INT,
     page_number INT,
-    parent_index_id INT, -- Thêm cột parent_index_id làm khóa ngoại
+    parent_id INT, -- Thêm cột parent_index_id làm khóa ngoại
     author_id INT, -- Thêm cột author_id làm khóa ngoại
-	CONSTRAINT PK_DOCUMENTINDEX PRIMARY KEY (index_id),
+	CONSTRAINT PK_DOCUMENTINDEX PRIMARY KEY (id),
     CONSTRAINT FK_DOCUMENTINDEX_DOCUMENT FOREIGN KEY (document_id) REFERENCES Document(id),
-    CONSTRAINT FK_DOCUMENTINDEX FOREIGN KEY (parent_index_id) REFERENCES DocumentIndex(index_id), -- Liên kết với chính nó
+    CONSTRAINT FK_DOCUMENTINDEX FOREIGN KEY (parent_id) REFERENCES DocumentIndex(id), -- Liên kết với chính nó
     CONSTRAINT FK_DOCUMENTINDEX_AUTHOR FOREIGN KEY (author_id) REFERENCES Author(id)
 );
 GO
