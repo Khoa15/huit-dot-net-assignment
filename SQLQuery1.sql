@@ -7,13 +7,21 @@ GO
 GO
 -- Tạo bảng Folder với liên kết đến chính nó
 CREATE TABLE Folder (
+<<<<<<< HEAD
+	id int IDENTITY(1,1),
+    name_id VARCHAR(10),
+    parent_id int, -- Thêm liên kết với chính nó
+=======
 	ID int IDENTITY(1,1),
     name_id VARCHAR(10),
+>>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
     name NVARCHAR(255),
-    description TEXT,
     created_date DATE,
     created_by NVARCHAR(255), -- foregin key?
+<<<<<<< HEAD
+=======
     parent_id int, -- Thêm liên kết với chính nó
+>>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
 	CONSTRAINT PK_FOLDER PRIMARY KEY (id),
     CONSTRAINT FK_FOLDER FOREIGN KEY (parent_id) REFERENCES Folder(id)
 );
@@ -50,6 +58,11 @@ CREATE TABLE UserAccess (
     page_download INT,
     user_type_id INT,
 	CONSTRAINT PK_USERACCESS PRIMARY KEY (id)-- Liên kết với bảng UserType
+<<<<<<< HEAD
+    --FOREIGN KEY (document_id) REFERENCES Document(id),
+    --FOREIGN KEY (folder_id) REFERENCES Folder(id)
+=======
+>>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
 );
 GO
 
@@ -70,9 +83,15 @@ CREATE TABLE DocumentIndex (
     page_number INT,
     parent_id INT, -- Thêm cột parent_index_id làm khóa ngoại
     author_id INT, -- Thêm cột author_id làm khóa ngoại
+<<<<<<< HEAD
+	CONSTRAINT PK_DOCUMENTINDEX PRIMARY KEY (index_id),
+    CONSTRAINT FK_DOCUMENTINDEX_DOCUMENT FOREIGN KEY (document_id) REFERENCES Document(id),
+    CONSTRAINT FK_DOCUMENTINDEX FOREIGN KEY (parent_index_id) REFERENCES DocumentIndex(index_id), -- Liên kết với chính nó
+=======
 	CONSTRAINT PK_DOCUMENTINDEX PRIMARY KEY (id),
     CONSTRAINT FK_DOCUMENTINDEX_DOCUMENT FOREIGN KEY (document_id) REFERENCES Document(id),
     CONSTRAINT FK_DOCUMENTINDEX FOREIGN KEY (parent_id) REFERENCES DocumentIndex(id), -- Liên kết với chính nó
+>>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
     CONSTRAINT FK_DOCUMENTINDEX_AUTHOR FOREIGN KEY (author_id) REFERENCES Author(id)
 );
 GO
@@ -80,9 +99,70 @@ GO
 ALTER TABLE Document ADD CONSTRAINT FK_DOCUMENT_USERACCESS FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(id)
 GO
 ALTER TABLE Document ADD CONSTRAINT FK_DOCUMENT_AUTHOR FOREIGN KEY (author_id) REFERENCES Author(id)
+<<<<<<< HEAD
 GO
 SET IDENTITY_INSERT Folder ON;
 
+
+--cài đặt trigger 
+CREATE TRIGGER trg_Folder_InsertUpdate
+ON Folder
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    -- Thêm mã logic của bạn ở đây
+    -- Ví dụ: LOG thay đổi hoặc kiểm tra ràng buộc
+
+    -- Ví dụ: LOG thay đổi vào bảng History
+    INSERT INTO FolderHistory (FolderID, ChangeDate, ChangeType)
+    SELECT i.id, GETDATE(), 'INSERT' FROM inserted i
+    UNION ALL
+    SELECT u.id, GETDATE(), 'UPDATE' FROM deleted d
+    INNER JOIN inserted i ON d.id = i.id;
+END;
+=======
+>>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
+GO
+SET IDENTITY_INSERT Folder ON;
+
+<<<<<<< HEAD
+CREATE TRIGGER trg_Document_InsertUpdate
+ON Document
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    -- Thêm mã logic của bạn ở đây
+    -- Ví dụ: LOG thay đổi hoặc kiểm tra ràng buộc
+
+    -- Ví dụ: LOG thay đổi vào bảng DocumentHistory
+    INSERT INTO DocumentHistory (DocumentID, ChangeDate, ChangeType)
+    SELECT i.id, GETDATE(), 'INSERT' FROM inserted i
+    UNION ALL
+    SELECT u.id, GETDATE(), 'UPDATE' FROM deleted d
+    INNER JOIN inserted i ON d.id = i.id;
+END;
+GO
+
+CREATE TRIGGER trg_UserAccess_InsertUpdate
+ON UserAccess
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    -- Thêm mã logic của bạn ở đây
+    -- Ví dụ: LOG thay đổi hoặc kiểm tra ràng buộc
+
+    -- Ví dụ: LOG thay đổi vào bảng UserAccessHistory
+    INSERT INTO UserAccessHistory (UserAccessID, ChangeDate, ChangeType)
+    SELECT i.id, GETDATE(), 'INSERT' FROM inserted i
+    UNION ALL
+    SELECT u.id, GETDATE(), 'UPDATE' FROM deleted d
+    INNER JOIN inserted i ON d.id = i.id;
+END;
+GO
+
+----
+=======
+>>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
 INSERT INTO Folder (ID, name_id, name, description, created_date, created_by, parent_id)
 VALUES
     (1, 'DBH', N'Đã ban hành', NULL, '2023-09-06', 'admin', NULL),
