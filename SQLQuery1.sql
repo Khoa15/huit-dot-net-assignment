@@ -1,181 +1,240 @@
-﻿use master
+﻿use master;
 go
-create database TaiLieuSo
+create database TaiLieuSo;
 go
-USE TaiLieuSo
+USE TaiLieuSo;
 GO
-GO
--- Tạo bảng Folder với liên kết đến chính nó
+
+-- Tạo bảng Folder với ràng buộc
 CREATE TABLE Folder (
-<<<<<<< HEAD
-	id int IDENTITY(1,1),
-    name_id VARCHAR(10),
-    parent_id int, -- Thêm liên kết với chính nó
-=======
-	ID int IDENTITY(1,1),
-    name_id VARCHAR(10),
->>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
-    name NVARCHAR(255),
+    folder_id INT IDENTITY(1,1) CONSTRAINT PK_Folder PRIMARY KEY,
+    name_id VARCHAR(10) NOT NULL,
+    name NVARCHAR(255) NOT NULL,
     created_date DATE,
-    created_by NVARCHAR(255), -- foregin key?
-<<<<<<< HEAD
-=======
-    parent_id int, -- Thêm liên kết với chính nó
->>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
-	CONSTRAINT PK_FOLDER PRIMARY KEY (id),
-    CONSTRAINT FK_FOLDER FOREIGN KEY (parent_id) REFERENCES Folder(id)
+    created_by NVARCHAR(255),
+    parent_id INT NULL,
+    CONSTRAINT FK_Folder_Parent FOREIGN KEY (parent_id) REFERENCES Folder(folder_id),
+    CONSTRAINT CHK_Folder_CreatedDate CHECK (created_date <= GETDATE())
 );
 GO
 
--- Tạo bảng Document với các thay đổi
+-- Create the UserType table
+CREATE TABLE UserType (
+    user_type_id INT IDENTITY(1,1) CONSTRAINT PK_UserType_UserTypeID PRIMARY KEY,
+    type_name NVARCHAR(255) NOT NULL,
+    description NVARCHAR(1000),
+    can_create_folder BIT NOT NULL,
+    can_upload_document BIT NOT NULL,
+    can_delete_document BIT NOT NULL,
+    can_edit_document BIT NOT NULL,
+    can_view_document BIT NOT NULL
+);
+GO
+
+-- Tạo bảng UserAccess với ràng buộc
+CREATE TABLE UserAccess (
+    user_access_id INT IDENTITY(1,1) CONSTRAINT PK_UserAccess PRIMARY KEY,
+    display INT NOT NULL,
+    read_limit INT NOT NULL,
+    read_full INT NOT NULL,
+    download INT NOT NULL,
+    page_read INT NOT NULL,
+    page_download INT NOT NULL,
+    user_type_id INT NOT NULL,
+    CONSTRAINT FK_UserAccess_UserType FOREIGN KEY (user_type_id) REFERENCES UserType(user_type_id)
+);
+GO
+
+-- Create the Author table
+CREATE TABLE Author (
+    author_id INT IDENTITY(1,1) CONSTRAINT PK_Author_AuthorID PRIMARY KEY,
+    author_name NVARCHAR(255) NOT NULL,
+    author_email NVARCHAR(255),  -- Add the author's email
+    author_phone NVARCHAR(20),  -- Add the author's phone number
+    author_description NVARCHAR(1000),
+    CONSTRAINT CHK_Author_Email CHECK (LEN(author_email) <= 255),
+    CONSTRAINT CHK_Author_Phone CHECK (LEN(author_phone) <= 20)
+);
+GO
+
+-- Tạo bảng Document với ràng buộc
 CREATE TABLE Document (
-    id INT IDENTITY(1,1),
-    name NVARCHAR(255),
+    document_id INT IDENTITY(1,1) CONSTRAINT PK_Document PRIMARY KEY,
+    name NVARCHAR(255) NOT NULL,
     description TEXT,
     file_path VARCHAR(255),
-    folder_id int,
+    folder_id INT NOT NULL,
     created_date DATE,
-    created_by_user_access_id INT, -- Khóa ngoại tới bảng UserAccess
-    link_to_image VARCHAR(255), -- Thêm cột Link ảnh (local hoặc URL)
-    document_type NVARCHAR(255), -- Loại tài liệu
-    document_status INT, -- Trạng thái tài liệu
-    author_id INT, -- Khóa ngoại tới bảng Author
-	CONSTRAINT PK_DOCUMENT PRIMARY KEY (id),
-    CONSTRAINT FK_DOCUMENT_FOLDER FOREIGN KEY (folder_id) REFERENCES Folder(id),
-    --FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(id), -- Khóa ngoại tới bảng UserAccess
-    --FOREIGN KEY (author_id) REFERENCES Author(id)
+    created_by_user_access_id INT NOT NULL,
+    link_to_image VARCHAR(255) NULL,
+    document_type NVARCHAR(255),
+    document_status INT,
+    author_id INT NULL,
+    CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
+    CONSTRAINT FK_Document_UserAccess FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(user_access_id),
+    CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(author_id),
+    CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE())
 );
 GO
-
--- Tạo bảng UserAccess với các thay đổi
-CREATE TABLE UserAccess (
-    id INT IDENTITY(1,1),
-    display INT,
-    read_limit INT,
-    read_full INT,
-    download INT,
-    page_read INT,
-    page_download INT,
-    user_type_id INT,
-	CONSTRAINT PK_USERACCESS PRIMARY KEY (id)-- Liên kết với bảng UserType
-<<<<<<< HEAD
-    --FOREIGN KEY (document_id) REFERENCES Document(id),
-    --FOREIGN KEY (folder_id) REFERENCES Folder(id)
-=======
->>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
-);
-GO
-
--- Tạo bảng Author
-CREATE TABLE Author (
-    id INT IDENTITY(1,1),
-    author_name NVARCHAR(255),
-    description TEXT,
-	CONSTRAINT PK_AUTHOR PRIMARY KEY (id)
-);
-GO
-
--- Khôi phục lại bảng DocumentIndex
+	
+-- Create the DocumentIndex table
 CREATE TABLE DocumentIndex (
-    id INT IDENTITY(1,1),
+    index_id INT IDENTITY(1,1) CONSTRAINT PK_DocumentIndex PRIMARY KEY,
     title NVARCHAR(255),
-    document_id INT,
+    document_id INT NOT NULL CONSTRAINT FK_DocumentIndex_DocumentID REFERENCES Document(document_id),
     page_number INT,
-    parent_id INT, -- Thêm cột parent_index_id làm khóa ngoại
-    author_id INT, -- Thêm cột author_id làm khóa ngoại
-<<<<<<< HEAD
-	CONSTRAINT PK_DOCUMENTINDEX PRIMARY KEY (index_id),
-    CONSTRAINT FK_DOCUMENTINDEX_DOCUMENT FOREIGN KEY (document_id) REFERENCES Document(id),
-    CONSTRAINT FK_DOCUMENTINDEX FOREIGN KEY (parent_index_id) REFERENCES DocumentIndex(index_id), -- Liên kết với chính nó
-=======
-	CONSTRAINT PK_DOCUMENTINDEX PRIMARY KEY (id),
-    CONSTRAINT FK_DOCUMENTINDEX_DOCUMENT FOREIGN KEY (document_id) REFERENCES Document(id),
-    CONSTRAINT FK_DOCUMENTINDEX FOREIGN KEY (parent_id) REFERENCES DocumentIndex(id), -- Liên kết với chính nó
->>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
-    CONSTRAINT FK_DOCUMENTINDEX_AUTHOR FOREIGN KEY (author_id) REFERENCES Author(id)
+    parent_index_id INT NULL CONSTRAINT FK_DocumentIndex_ParentIndexID REFERENCES DocumentIndex(index_id),
+    author_id INT NULL CONSTRAINT FK_DocumentIndex_AuthorID REFERENCES Author(author_id)
 );
 GO
 
-ALTER TABLE Document ADD CONSTRAINT FK_DOCUMENT_USERACCESS FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(id)
+-- Tạo trigger cho bảng UserType
+CREATE TRIGGER UserType_BI
+ON UserType
+AFTER INSERT
+AS
+BEGIN
+    -- Thêm defualt value cho các trường 
+    -- Nếu như các trường này không được cung cấp khi chèn bản ghi mới 
+    UPDATE UserType
+    SET description = '',
+        can_create_folder = 0,
+        can_upload_document = 0,
+        can_delete_document = 0,
+        can_edit_document = 0,
+        can_view_document = 0
+    WHERE user_type_id IN (SELECT user_type_id FROM inserted);
+END;
 GO
-ALTER TABLE Document ADD CONSTRAINT FK_DOCUMENT_AUTHOR FOREIGN KEY (author_id) REFERENCES Author(id)
-<<<<<<< HEAD
+
+-- Tạo trigger cho bảng UserAccess
+CREATE TRIGGER UserAccess_BI
+ON UserAccess
+AFTER INSERT
+AS
+BEGIN
+    -- Thêm default value cho trường display
+    -- Nếu như trường này không được cung cấp khi chèn bản ghi mới 
+    UPDATE UserAccess
+    SET display = 1
+    WHERE user_access_id IN (SELECT user_access_id FROM inserted);
+END;
 GO
-SET IDENTITY_INSERT Folder ON;
 
-
---cài đặt trigger 
-CREATE TRIGGER trg_Folder_InsertUpdate
+-- Tạo trigger cho bảng Folder
+CREATE TRIGGER Folder_BI
 ON Folder
-AFTER INSERT, UPDATE
+AFTER INSERT
 AS
 BEGIN
-    -- Thêm mã logic của bạn ở đây
-    -- Ví dụ: LOG thay đổi hoặc kiểm tra ràng buộc
-
-    -- Ví dụ: LOG thay đổi vào bảng History
-    INSERT INTO FolderHistory (FolderID, ChangeDate, ChangeType)
-    SELECT i.id, GETDATE(), 'INSERT' FROM inserted i
-    UNION ALL
-    SELECT u.id, GETDATE(), 'UPDATE' FROM deleted d
-    INNER JOIN inserted i ON d.id = i.id;
+    -- Thêm default value cho trường created_date và created_by
+    -- Sử dụng getdate() cho created_date và SUSER_NAME() cho created_by
+    UPDATE Folder
+    SET created_date = GETDATE(),
+        created_by = SUSER_NAME()
+    WHERE folder_id IN (SELECT folder_id FROM inserted);
 END;
-=======
->>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
 GO
-SET IDENTITY_INSERT Folder ON;
 
-<<<<<<< HEAD
-CREATE TRIGGER trg_Document_InsertUpdate
+-- Tạo trigger cho bảng Document
+CREATE TRIGGER Document_BI
 ON Document
-AFTER INSERT, UPDATE
+AFTER INSERT
 AS
 BEGIN
-    -- Thêm mã logic của bạn ở đây
-    -- Ví dụ: LOG thay đổi hoặc kiểm tra ràng buộc
-
-    -- Ví dụ: LOG thay đổi vào bảng DocumentHistory
-    INSERT INTO DocumentHistory (DocumentID, ChangeDate, ChangeType)
-    SELECT i.id, GETDATE(), 'INSERT' FROM inserted i
-    UNION ALL
-    SELECT u.id, GETDATE(), 'UPDATE' FROM deleted d
-    INNER JOIN inserted i ON d.id = i.id;
+    -- Thêm default value cho trường created_date và document_status
+    -- Sử dụng getdate() cho created_date và 0 cho document_status
+    UPDATE Document
+    SET created_date = GETDATE(),
+        document_status = 0
+    WHERE document_id IN (SELECT document_id FROM inserted);
 END;
 GO
 
-CREATE TRIGGER trg_UserAccess_InsertUpdate
+-- Tạo trigger cho bảng DocumentIndex
+CREATE TRIGGER DocumentIndex_BI
+ON DocumentIndex
+AFTER INSERT
+AS
+BEGIN
+    -- Thêm default value cho trường page_number
+    -- Nếu như trường này không được cung cấp khi chèn bản ghi mới 
+    UPDATE DocumentIndex
+    SET page_number = 0
+    WHERE index_id IN (SELECT index_id FROM inserted);
+END;
+GO
+
+-- Tạo trigger cho bảng UserAccess
+CREATE TRIGGER UserAccess_BIU
 ON UserAccess
 AFTER INSERT, UPDATE
 AS
 BEGIN
-    -- Thêm mã logic của bạn ở đây
-    -- Ví dụ: LOG thay đổi hoặc kiểm tra ràng buộc
-
-    -- Ví dụ: LOG thay đổi vào bảng UserAccessHistory
-    INSERT INTO UserAccessHistory (UserAccessID, ChangeDate, ChangeType)
-    SELECT i.id, GETDATE(), 'INSERT' FROM inserted i
-    UNION ALL
-    SELECT u.id, GETDATE(), 'UPDATE' FROM deleted d
-    INNER JOIN inserted i ON d.id = i.id;
+    -- Kiểm tra và cập nhật trường display sau khi chèn hoặc cập nhật
+    IF UPDATE(display)
+    BEGIN
+        UPDATE UserAccess
+        SET display = COALESCE(i.display, 1)
+        FROM UserAccess AS u
+        INNER JOIN inserted AS i ON u.user_access_id = i.user_access_id;
+    END;
 END;
 GO
 
-----
-=======
->>>>>>> 0d96181420f179b7fda2c1dc00011d82a24ebd54
-INSERT INTO Folder (ID, name_id, name, description, created_date, created_by, parent_id)
-VALUES
-    (1, 'DBH', N'Đã ban hành', NULL, '2023-09-06', 'admin', NULL),
-    (2, 'CBH', N'Chưa ban hành', NULL, '2023-09-06', 'admin', NULL),
-    (3, 'CBM', N'Chưa biên mục', NULL, '2023-09-06', 'admin', NULL),
-    (4, 'CN', N'Công nghiệp', NULL, '2023-09-06', 'admin', NULL),
-    (5, 'CN1', N'Công nghiệp', NULL, '2023-09-06', 'admin', 4),
-    (6, 'CN2', N'Công nghiệp hóa chất', NULL, '2023-09-06', 'admin', 4),
-    (7, 'CN3', N'Công nghiệp sx hàng tiêu dùng', NULL, '2023-09-06', 'admin', 4),
-    (8, 'CN4', N'Công nghiệp thực phẩm', NULL, '2023-09-06', 'admin', 4);
-
-SET IDENTITY_INSERT Folder OFF;
-
+-- Tạo trigger cho bảng Folder
+CREATE TRIGGER Folder_BIU
+ON Folder
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    -- Kiểm tra và cập nhật các trường mặc định sau khi chèn hoặc cập nhật
+    IF UPDATE(created_date) OR UPDATE(created_by)
+    BEGIN
+        UPDATE Folder
+        SET created_date = COALESCE(i.created_date, GETDATE()),
+            created_by = COALESCE(i.created_by, SUSER_NAME())
+        FROM Folder AS f
+        INNER JOIN inserted AS i ON f.folder_id = i.folder_id;
+    END;
+END;
 GO
 
---SELECT * FROM Folder
+-- Tạo trigger cho bảng Document
+CREATE TRIGGER Document_BIU
+ON Document
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    -- Kiểm tra và cập nhật các trường mặc định sau khi chèn hoặc cập nhật
+    IF UPDATE(created_date) OR UPDATE(document_status)
+    BEGIN
+        UPDATE Document
+        SET created_date = COALESCE(i.created_date, GETDATE()),
+            document_status = COALESCE(i.document_status, 0)
+        FROM Document AS d
+        INNER JOIN inserted AS i ON d.document_id = i.document_id;
+    END;
+END;
+GO
+
+-- Tạo trigger cho bảng DocumentIndex
+CREATE TRIGGER DocumentIndex_BIU
+ON DocumentIndex
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    -- Kiểm tra và cập nhật trường page_number sau khi chèn hoặc cập nhật
+    IF UPDATE(page_number)
+    BEGIN
+        UPDATE DocumentIndex
+        SET page_number = COALESCE(i.page_number, 0)
+        FROM DocumentIndex AS di
+        INNER JOIN inserted AS i ON di.index_id = i.index_id;
+    END;
+END;
+GO
+
+
+
+
