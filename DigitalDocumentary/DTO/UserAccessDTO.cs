@@ -16,10 +16,10 @@ namespace DigitalDocumentary.DTO
 
         private int numberPageRead;
         private int numberPageDownload;
-        private UserTypeDTO userType;
+        // UserType linked from User
         public UserAccessDTO() { }
 
-        public UserAccessDTO(int id, bool display, bool trialRead, bool canRead, bool canDownload, int numberPageRead, int numberPageDownload, UserTypeDTO userType)
+        public UserAccessDTO(int id, bool display, bool trialRead, bool canRead, bool canDownload, int numberPageRead, int numberPageDownload)
         {
             this.id = id;
             this.display = display;
@@ -28,7 +28,6 @@ namespace DigitalDocumentary.DTO
             this.canDownload = canDownload;
             this.numberPageRead = numberPageRead;
             this.numberPageDownload = numberPageDownload;
-            this.userType = userType;
         }
 
         public int Id { get => id; set => id = value; }
@@ -38,6 +37,5 @@ namespace DigitalDocumentary.DTO
         public bool CanDownload { get => canDownload; set => canDownload = value; }
         public int NumberPageRead { get => numberPageRead; set => numberPageRead = value; }
         public int NumberPageDownload { get => numberPageDownload; set => numberPageDownload = value; }
-        internal UserTypeDTO UserType { get => userType; set => userType = value; }
     }
 }
