@@ -1,0 +1,14 @@
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.AssemblyReference.cache
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.Properties.Resources.resources
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.GenerateResource.cache
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CoreCompileInputs.cache
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe.config
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.pdb
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\EntityFramework.dll
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\EntityFramework.xml
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CopyComplete
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb

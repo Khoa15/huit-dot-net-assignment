@@ -15,7 +15,7 @@ namespace DigitalDocumentary.DTO
         private DateTime created_date;
         private string link_to_image;
         private string type;
-        private bool status; // Change int from database to bool
+        private bool status;
 
         private AuthorDTO author;
         private UserAccessDTO userAccess;
