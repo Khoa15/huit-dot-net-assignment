@@ -19,29 +19,28 @@ CREATE TABLE Folder (
 GO
 
 -- Create the UserType table
-CREATE TABLE UserType (
-    user_type_id INT IDENTITY(1,1) CONSTRAINT PK_UserType_UserTypeID PRIMARY KEY,
-    type_name NVARCHAR(255) NOT NULL,
-    description NVARCHAR(1000),
-    can_create_folder BIT NOT NULL,
-    can_upload_document BIT NOT NULL,
-    can_delete_document BIT NOT NULL,
-    can_edit_document BIT NOT NULL,
-    can_view_document BIT NOT NULL
-);
-GO
+--CREATE TABLE UserType (
+--    user_type_id INT IDENTITY(1,1) CONSTRAINT PK_UserType_UserTypeID PRIMARY KEY,
+--    type_name NVARCHAR(255) NOT NULL,
+--    description NVARCHAR(1000),
+--    can_create_folder BIT NOT NULL,
+--    can_upload_document BIT NOT NULL,
+--    can_delete_document BIT NOT NULL,
+--    can_edit_document BIT NOT NULL,
+--    can_view_document BIT NOT NULL
+--);
+--GO
 
 -- Tạo bảng UserAccess với ràng buộc
 CREATE TABLE UserAccess (
     user_access_id INT IDENTITY(1,1) CONSTRAINT PK_UserAccess PRIMARY KEY,
-    display INT NOT NULL,
-    read_limit INT NOT NULL,
-    read_full INT NOT NULL,
-    download INT NOT NULL,
-    page_read INT NOT NULL,
+    display BIT NOT NULL,
+    read_limit BIT NOT NULL,
+    read_full BIT NOT NULL,
+    download BIT NOT NULL,
+    page_read BIT NOT NULL,
     page_download INT NOT NULL,
-    user_type_id INT NOT NULL,
-    CONSTRAINT FK_UserAccess_UserType FOREIGN KEY (user_type_id) REFERENCES UserType(user_type_id)
+    user_type_id INT NOT NULL
 );
 GO
 
@@ -68,7 +67,7 @@ CREATE TABLE Document (
     created_by_user_access_id INT NOT NULL,
     link_to_image VARCHAR(255) NULL,
     document_type NVARCHAR(255),
-    document_status INT,
+    document_status BIT,
     author_id INT NULL,
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
     CONSTRAINT FK_Document_UserAccess FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(user_access_id),
@@ -88,24 +87,24 @@ CREATE TABLE DocumentIndex (
 );
 GO
 
--- Tạo trigger cho bảng UserType
-CREATE TRIGGER UserType_BI
-ON UserType
-AFTER INSERT
-AS
-BEGIN
-    -- Thêm defualt value cho các trường 
-    -- Nếu như các trường này không được cung cấp khi chèn bản ghi mới 
-    UPDATE UserType
-    SET description = '',
-        can_create_folder = 0,
-        can_upload_document = 0,
-        can_delete_document = 0,
-        can_edit_document = 0,
-        can_view_document = 0
-    WHERE user_type_id IN (SELECT user_type_id FROM inserted);
-END;
-GO
+---- Tạo trigger cho bảng UserType
+--CREATE TRIGGER UserType_BI
+--ON UserType
+--AFTER INSERT
+--AS
+--BEGIN
+--    -- Thêm defualt value cho các trường 
+--    -- Nếu như các trường này không được cung cấp khi chèn bản ghi mới 
+--    UPDATE UserType
+--    SET description = '',
+--        can_create_folder = 0,
+--        can_upload_document = 0,
+--        can_delete_document = 0,
+--        can_edit_document = 0,
+--        can_view_document = 0
+--    WHERE user_type_id IN (SELECT user_type_id FROM inserted);
+--END;
+--GO
 
 -- Tạo trigger cho bảng UserAccess
 CREATE TRIGGER UserAccess_BI
