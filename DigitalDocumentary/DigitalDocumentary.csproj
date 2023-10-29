@@ -55,12 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLL\AuthorDLL.cs" />
     <Compile Include="DTO\AuthorDTO.cs" />
+    <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
     <Compile Include="DTO\DocumentIndexDTO.cs" />
     <Compile Include="DTO\FolderDTO.cs" />
     <Compile Include="DTO\UserAccessDTO.cs" />
-    <Compile Include="DTO\UserTypeDTO.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,7 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BLL\" />
-    <Folder Include="DLL\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
