@@ -69,7 +69,7 @@ CREATE TABLE Document (
     link_to_image VARCHAR(255) NULL,
     type NVARCHAR(255), -- foreign key QuanLyHT
     author_id INT NULL,
-    status BIT,
+    document_status BIT,
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
     CONSTRAINT FK_Document_UserAccess FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(user_access_id),
     CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(author_id),
