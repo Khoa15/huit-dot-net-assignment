@@ -9,7 +9,7 @@ CREATE TABLE Folder (
     folder_id INT IDENTITY(1,1) CONSTRAINT PK_Folder PRIMARY KEY,
     name_id VARCHAR(10) NULL UNIQUE,
     name NVARCHAR(255) NOT NULL,
-    created_date DATE,
+    created_date DATE DEFAULT(GETDATE()),
     created_by NVARCHAR(255),
     parent_id INT NULL,
 	status BIT DEFAULT(0),
@@ -19,19 +19,18 @@ CREATE TABLE Folder (
 GO
 
 CREATE TABLE UserAccess (
-    user_access_id INT IDENTITY(1,1) CONSTRAINT PK_UserAccess PRIMARY KEY,
-    user_type_id INT NOT NULL, -- foreign key QuanLyHT
-    display BIT NOT NULL,
-    read_limit BIT NOT NULL,
-    read_full BIT NOT NULL,
-    download BIT NOT NULL,
-    page_read INT NOT NULL,
-    page_download INT NOT NULL,
+    user_type_id INT NOT NULL CONSTRAINT PK_UserAccess PRIMARY KEY, -- foreign key QuanLyHT
+    display BIT NOT NULL DEFAULT(0),
+    read_limit BIT NOT NULL DEFAULT(0),
+    read_full BIT NOT NULL DEFAULT(0),
+    download BIT NOT NULL DEFAULT(0),
+    page_read INT NOT NULL DEFAULT(0),
+    page_download INT NOT NULL DEFAULT(0),
 );
 GO
 
 CREATE TABLE Author (
-    author_id INT IDENTITY(1,1) CONSTRAINT PK_Author_AuthorID PRIMARY KEY,
+    author_id INT IDENTITY(1,1) CONSTRAINT PK_Author PRIMARY KEY,
     author_name NVARCHAR(255) NOT NULL,
     author_email NVARCHAR(255),  -- Add the author's email
     author_phone NVARCHAR(20),  -- Add the author's phone number
@@ -49,13 +48,11 @@ CREATE TABLE Document (
     folder_id INT NOT NULL,
     created_date DATE,
 	updated_date DATE,
-    created_by_user_access_id INT NOT NULL,
     link_to_image VARCHAR(255) NULL,
     type NVARCHAR(255), -- foreign key QuanLyHT
     author_id INT NULL,
     document_status BIT,
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
-    CONSTRAINT FK_Document_UserAccess FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(user_access_id),
     CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(author_id),
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE())
 );
@@ -90,34 +87,7 @@ GO
 --END;
 --GO
 
--- Tạo trigger cho bảng UserAccess
-CREATE TRIGGER UserAccess_BI
-ON UserAccess
-AFTER INSERT
-AS
-BEGIN
-    -- Thêm default value cho trường display
-    -- Nếu như trường này không được cung cấp khi chèn bản ghi mới 
-    UPDATE UserAccess
-    SET display = 1
-    WHERE user_access_id IN (SELECT user_access_id FROM inserted);
-END;
-GO
 
--- Tạo trigger cho bảng Folder
-CREATE TRIGGER Folder_BI
-ON Folder
-AFTER INSERT
-AS
-BEGIN
-    -- Thêm default value cho trường created_date và created_by
-    -- Sử dụng getdate() cho created_date và SUSER_NAME() cho created_by
-    UPDATE Folder
-    SET created_date = GETDATE(),
-        created_by = SUSER_NAME()
-    WHERE folder_id IN (SELECT folder_id FROM inserted);
-END;
-GO
 
 -- Tạo trigger cho bảng Document
 CREATE TRIGGER Document_BI
