@@ -8,11 +8,12 @@ GO
 -- Tạo bảng Folder với ràng buộc
 CREATE TABLE Folder (
     folder_id INT IDENTITY(1,1) CONSTRAINT PK_Folder PRIMARY KEY,
-    name_id VARCHAR(10) NOT NULL,
+    name_id VARCHAR(10) NULL UNIQUE,
     name NVARCHAR(255) NOT NULL,
     created_date DATE,
     created_by NVARCHAR(255),
     parent_id INT NULL,
+	status BIT DEFAULT(0),
     CONSTRAINT FK_Folder_Parent FOREIGN KEY (parent_id) REFERENCES Folder(folder_id),
     CONSTRAINT CHK_Folder_CreatedDate CHECK (created_date <= GETDATE())
 );
@@ -59,16 +60,16 @@ GO
 -- Tạo bảng Document với ràng buộc
 CREATE TABLE Document (
     document_id INT IDENTITY(1,1) CONSTRAINT PK_Document PRIMARY KEY,
-    name NVARCHAR(255) NOT NULL,
+    title NVARCHAR(255) NOT NULL,
     description TEXT,
     file_path VARCHAR(255),
     folder_id INT NOT NULL,
     created_date DATE,
     created_by_user_access_id INT NOT NULL,
     link_to_image VARCHAR(255) NULL,
-    document_type NVARCHAR(255),
-    document_status BIT,
+    type NVARCHAR(255), -- foreign key QuanLyHT
     author_id INT NULL,
+    status BIT,
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
     CONSTRAINT FK_Document_UserAccess FOREIGN KEY (created_by_user_access_id) REFERENCES UserAccess(user_access_id),
     CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(author_id),
