@@ -17,6 +17,6 @@ namespace DigitalDocumentary.DTO
             this.strCon = sqlCon;
         }
 
-        public SqlConnection Sql { get => sqlCon; set => sqlCon = value; }
+        public SqlConnection Conn { get => sqlCon; set => sqlCon = value; }
     }
 }

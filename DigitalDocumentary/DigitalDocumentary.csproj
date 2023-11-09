@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DLL\AuthorDLL.cs" />
+    <Compile Include="DLL\DatabaseContextDLL.cs" />
     <Compile Include="DTO\AuthorDTO.cs" />
     <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />

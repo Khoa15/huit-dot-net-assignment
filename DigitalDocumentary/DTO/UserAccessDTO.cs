@@ -16,7 +16,7 @@ namespace DigitalDocumentary.DTO
 
         private int numberPageRead;
         private int numberPageDownload;
-        // UserType linked from User
+        // UserType linked from system management
         public UserAccessDTO() { }
 
         public UserAccessDTO(int id, bool display, bool trialRead, bool canRead, bool canDownload, int numberPageRead, int numberPageDownload)

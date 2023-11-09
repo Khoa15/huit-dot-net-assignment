@@ -16,12 +16,13 @@ namespace DigitalDocumentary.DTO
         private string link_to_image;
         private string type;
         private bool status;
+        // Type document linked from system management
+        // ...
 
         private AuthorDTO author;
-        private UserAccessDTO userAccess;
         public DocumentDTO() { }
 
-        public DocumentDTO(int id, string name, string description, string file_path, DateTime created_date, string link_to_image, string type, bool status, AuthorDTO author, UserAccessDTO userAccess)
+        public DocumentDTO(int id, string name, string description, string file_path, DateTime created_date, string link_to_image, string type, bool status, AuthorDTO author)
         {
             this.id = id;
             this.name = name;
@@ -32,7 +33,6 @@ namespace DigitalDocumentary.DTO
             this.type = type;
             this.status = status;
             this.author = author;
-            this.userAccess = userAccess;
         }
 
         public int Id { get => id; set => id = value; }
@@ -43,7 +43,6 @@ namespace DigitalDocumentary.DTO
         public string Link_to_image { get => link_to_image; set => link_to_image = value; }
         public string Type { get => type; set => type = value; }
         internal AuthorDTO Author { get => author; set => author = value; }
-        internal UserAccessDTO UserAccess { get => userAccess; set => userAccess = value; }
 
         public string Status()
         {
