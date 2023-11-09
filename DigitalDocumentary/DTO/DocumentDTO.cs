@@ -58,5 +58,19 @@ namespace DigitalDocumentary.DTO
             }
             return sts;
         }
+        public string Status(bool status)
+        {
+            this.status = status;
+            string sts = String.Empty;
+            if (status)
+            {
+                sts = "Đã ban hành";
+            }
+            else
+            {
+                sts = "Chưa ban hành";
+            }
+            return sts;
+        }
     }
 }
