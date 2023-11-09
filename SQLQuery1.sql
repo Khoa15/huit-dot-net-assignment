@@ -30,13 +30,13 @@ CREATE TABLE UserAccess (
 GO
 
 CREATE TABLE Author (
-    author_id INT IDENTITY(1,1) CONSTRAINT PK_Author PRIMARY KEY,
-    author_name NVARCHAR(255) NOT NULL,
-    author_email NVARCHAR(255),  -- Add the author's email
-    author_phone NVARCHAR(20),  -- Add the author's phone number
-    author_description NVARCHAR(1000),
-    CONSTRAINT CHK_Author_Email CHECK (LEN(author_email) <= 255),
-    CONSTRAINT CHK_Author_Phone CHECK (LEN(author_phone) <= 20)
+    id INT IDENTITY(1,1) CONSTRAINT PK_Author PRIMARY KEY,
+    name NVARCHAR(255) NOT NULL,
+    email NVARCHAR(255),  -- Add the author's email
+    phone VARCHAR(10),  -- Add the author's phone number
+    description NVARCHAR(1000),
+    CONSTRAINT CHK_Author_Email CHECK (LEN(email) <= 255),
+    CONSTRAINT CHK_Author_Phone CHECK (LEN(phone) = 10)
 );
 GO
 
@@ -53,7 +53,7 @@ CREATE TABLE Document (
     author_id INT NULL,
     document_status BIT,
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
-    CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(author_id),
+    CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(id),
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE())
 );
 GO
@@ -64,7 +64,7 @@ CREATE TABLE DocumentIndex (
     document_id INT NOT NULL CONSTRAINT FK_DocumentIndex_DocumentID REFERENCES Document(document_id),
     page_number INT,
     parent_index_id INT NULL CONSTRAINT FK_DocumentIndex_ParentIndexID REFERENCES DocumentIndex(index_id),
-    author_id INT NULL CONSTRAINT FK_DocumentIndex_AuthorID REFERENCES Author(author_id)
+    author_id INT NULL CONSTRAINT FK_DocumentIndex_AuthorID REFERENCES Author(id)
 );
 GO
 
@@ -119,21 +119,21 @@ END;
 GO
 
 -- Tạo trigger cho bảng UserAccess
-CREATE TRIGGER UserAccess_BIU
-ON UserAccess
-AFTER INSERT, UPDATE
-AS
-BEGIN
-    -- Kiểm tra và cập nhật trường display sau khi chèn hoặc cập nhật
-    IF UPDATE(display)
-    BEGIN
-        UPDATE UserAccess
-        SET display = COALESCE(i.display, 1)
-        FROM UserAccess AS u
-        INNER JOIN inserted AS i ON u.user_access_id = i.user_access_id;
-    END;
-END;
-GO
+--CREATE TRIGGER UserAccess_BIU
+--ON UserAccess
+--AFTER INSERT, UPDATE
+--AS
+--BEGIN
+--    -- Kiểm tra và cập nhật trường display sau khi chèn hoặc cập nhật
+--    IF UPDATE(display)
+--    BEGIN
+--        UPDATE UserAccess
+--        SET display = COALESCE(i.display, 1)
+--        FROM UserAccess AS u
+--        INNER JOIN inserted AS i ON u.user_access_id = i.user_access_id;
+--    END;
+--END;
+--GO
 
 -- Tạo trigger cho bảng Folder
 CREATE TRIGGER Folder_BIU
