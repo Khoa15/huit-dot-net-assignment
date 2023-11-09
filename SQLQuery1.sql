@@ -5,7 +5,6 @@ go
 USE TaiLieuSo;
 GO
 
--- Tạo bảng Folder với ràng buộc
 CREATE TABLE Folder (
     folder_id INT IDENTITY(1,1) CONSTRAINT PK_Folder PRIMARY KEY,
     name_id VARCHAR(10) NULL UNIQUE,
@@ -19,33 +18,18 @@ CREATE TABLE Folder (
 );
 GO
 
--- Create the UserType table
---CREATE TABLE UserType (
---    user_type_id INT IDENTITY(1,1) CONSTRAINT PK_UserType_UserTypeID PRIMARY KEY,
---    type_name NVARCHAR(255) NOT NULL,
---    description NVARCHAR(1000),
---    can_create_folder BIT NOT NULL,
---    can_upload_document BIT NOT NULL,
---    can_delete_document BIT NOT NULL,
---    can_edit_document BIT NOT NULL,
---    can_view_document BIT NOT NULL
---);
---GO
-
--- Tạo bảng UserAccess với ràng buộc
 CREATE TABLE UserAccess (
     user_access_id INT IDENTITY(1,1) CONSTRAINT PK_UserAccess PRIMARY KEY,
+    user_type_id INT NOT NULL, -- foreign key QuanLyHT
     display BIT NOT NULL,
     read_limit BIT NOT NULL,
     read_full BIT NOT NULL,
     download BIT NOT NULL,
-    page_read BIT NOT NULL,
+    page_read INT NOT NULL,
     page_download INT NOT NULL,
-    user_type_id INT NOT NULL
 );
 GO
 
--- Create the Author table
 CREATE TABLE Author (
     author_id INT IDENTITY(1,1) CONSTRAINT PK_Author_AuthorID PRIMARY KEY,
     author_name NVARCHAR(255) NOT NULL,
@@ -57,7 +41,6 @@ CREATE TABLE Author (
 );
 GO
 
--- Tạo bảng Document với ràng buộc
 CREATE TABLE Document (
     document_id INT IDENTITY(1,1) CONSTRAINT PK_Document PRIMARY KEY,
     title NVARCHAR(255) NOT NULL,
@@ -65,6 +48,7 @@ CREATE TABLE Document (
     file_path VARCHAR(255),
     folder_id INT NOT NULL,
     created_date DATE,
+	updated_date DATE,
     created_by_user_access_id INT NOT NULL,
     link_to_image VARCHAR(255) NULL,
     type NVARCHAR(255), -- foreign key QuanLyHT
@@ -77,7 +61,6 @@ CREATE TABLE Document (
 );
 GO
 	
--- Create the DocumentIndex table
 CREATE TABLE DocumentIndex (
     index_id INT IDENTITY(1,1) CONSTRAINT PK_DocumentIndex PRIMARY KEY,
     title NVARCHAR(255),
