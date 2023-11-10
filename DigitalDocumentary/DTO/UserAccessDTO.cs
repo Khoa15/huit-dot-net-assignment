@@ -8,6 +8,7 @@ namespace DigitalDocumentary.DTO
 {
     internal class UserAccessDTO
     {
+        private static string table = "UserAccess";
         private int id;
         private bool display;
         private bool trialRead;
@@ -30,6 +31,7 @@ namespace DigitalDocumentary.DTO
             this.numberPageDownload = numberPageDownload;
         }
 
+        public static string Table { get => table; set => table = value; }
         public int Id { get => id; set => id = value; }
         public bool Display { get => display; set => display = value; }
         public bool TrialRead { get => trialRead; set => trialRead = value; }

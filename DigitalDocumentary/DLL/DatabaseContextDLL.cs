@@ -11,6 +11,9 @@ namespace DigitalDocumentary.DLL
     internal class DatabaseContextDLL
     {
         DatabaseContextDTO db = new DatabaseContextDTO();
+
+        internal DatabaseContextDTO DbContext { get => db; set => db = value; }
+
         public DatabaseContextDLL() { }
         public SqlDataReader Reader(string query)
         {
@@ -29,7 +32,7 @@ namespace DigitalDocumentary.DLL
             return result;
         }
 
-        public SqlDataReader Select(string table, string where)
+        public SqlDataReader Select(string table, string where=null)
         {
             string sql = $"SELECT * FROM {table}";
 
@@ -45,6 +48,17 @@ namespace DigitalDocumentary.DLL
             string sql = "UPDATE [table] SET";
             db.Conn.Open();
             SqlCommand cmd = new SqlCommand(query, db.Conn);
+            int result = cmd.ExecuteNonQuery();
+            db.Conn.Close();
+            return result;
+        }
+        public int Update(string table, string fields, string where)
+        {
+            string sql = $"UPDATE {table} SET";
+            sql += " " + fields;
+            sql += " " + where;
+            db.Conn.Open();
+            SqlCommand cmd = new SqlCommand(sql, db.Conn);
             int result = cmd.ExecuteNonQuery();
             db.Conn.Close();
             return result;

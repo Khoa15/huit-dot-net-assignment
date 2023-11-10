@@ -8,41 +8,46 @@ namespace DigitalDocumentary.DTO
 {
     internal class DocumentDTO
     {
+        private static string table = "Document";
         private int id;
-        private string name;
+        private string title;
         private string description;
         private string file_path;
-        private DateTime created_date;
         private string link_to_image;
         private string type;
         private bool status;
+        private AuthorDTO author;
         // Type document linked from system management
         // ...
+        private DateTime created_at;
+        private DateTime updated_at;
 
-        private AuthorDTO author;
         public DocumentDTO() { }
 
-        public DocumentDTO(int id, string name, string description, string file_path, DateTime created_date, string link_to_image, string type, bool status, AuthorDTO author)
+        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, string type, bool status, AuthorDTO author, DateTime updated_at)
         {
             this.id = id;
-            this.name = name;
+            this.title = title;
             this.description = description;
             this.file_path = file_path;
-            this.created_date = created_date;
             this.link_to_image = link_to_image;
             this.type = type;
             this.status = status;
             this.author = author;
+            this.created_at = created_at;
+            this.updated_at = updated_at;
         }
 
+        public static string Table { get => table; set => table = value; }
         public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
+        public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
         public string File_path { get => file_path; set => file_path = value; }
-        public DateTime Created_date { get => created_date; set => created_date = value; }
         public string Link_to_image { get => link_to_image; set => link_to_image = value; }
         public string Type { get => type; set => type = value; }
         internal AuthorDTO Author { get => author; set => author = value; }
+        public DateTime Created_at { get => created_at; set => created_at = value; }
+        public DateTime Updated_at { get => updated_at; set => updated_at = value; }
 
         public string Status()
         {

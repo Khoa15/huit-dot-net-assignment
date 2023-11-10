@@ -8,6 +8,7 @@ namespace DigitalDocumentary.DTO
 {
     internal class DocumentIndexDTO
     {
+        private static string table = "DocumentIndex";
         private int id;
         private string name;
         private DocumentDTO document;
@@ -26,6 +27,7 @@ namespace DigitalDocumentary.DTO
             this.Author = author;
         }
 
+        public static string Table { get => table; set => table = value; }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int PageNumber { get => pageNumber; set => pageNumber = value; }

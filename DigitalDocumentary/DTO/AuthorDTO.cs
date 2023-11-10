@@ -8,6 +8,7 @@ namespace DigitalDocumentary.DTO
 {
     internal class AuthorDTO
     {
+        private static string table = "Author";
         private int id;
         private string name;
         private string email;
@@ -38,5 +39,6 @@ namespace DigitalDocumentary.DTO
         public string Email { get => email; set => email = value; }
         public string Phone { get => phone; set => phone = value; }
         public string Description { get => description; set => description = value; }
+        public static string Table { get => table; set => table = value; }
     }
 }

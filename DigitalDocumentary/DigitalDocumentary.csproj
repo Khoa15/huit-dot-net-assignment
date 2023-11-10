@@ -57,6 +57,10 @@
   <ItemGroup>
     <Compile Include="DLL\AuthorDLL.cs" />
     <Compile Include="DLL\DatabaseContextDLL.cs" />
+    <Compile Include="DLL\DocumentDLL.cs" />
+    <Compile Include="DLL\DocumentIndexDLL.cs" />
+    <Compile Include="DLL\FolderDLL.cs" />
+    <Compile Include="DLL\UserAccessDLL.cs" />
     <Compile Include="DTO\AuthorDTO.cs" />
     <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
