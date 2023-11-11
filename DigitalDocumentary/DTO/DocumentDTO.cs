@@ -17,6 +17,7 @@ namespace DigitalDocumentary.DTO
         private string type;
         private bool status;
         private AuthorDTO author;
+        private FolderDTO folder;
         // Type document linked from system management
         // ...
         private DateTime created_at;
@@ -24,7 +25,7 @@ namespace DigitalDocumentary.DTO
 
         public DocumentDTO() { }
 
-        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, string type, bool status, AuthorDTO author, DateTime updated_at)
+        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, string type, bool status, AuthorDTO author, DateTime updated_at, FolderDTO folder = null)
         {
             this.id = id;
             this.title = title;
@@ -32,10 +33,11 @@ namespace DigitalDocumentary.DTO
             this.file_path = file_path;
             this.link_to_image = link_to_image;
             this.type = type;
-            this.status = status;
+            this.Status = status;
             this.author = author;
             this.created_at = created_at;
             this.updated_at = updated_at;
+            this.Folder = folder;
         }
 
         public static string Table { get => table; set => table = value; }
@@ -48,23 +50,11 @@ namespace DigitalDocumentary.DTO
         internal AuthorDTO Author { get => author; set => author = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
+        internal FolderDTO Folder { get => folder; set => folder = value; }
+        public bool Status { get => status; set => status = value; }
 
-        public string Status()
+        public string GetStatus()
         {
-            string sts = String.Empty;
-            if(status)
-            {
-                sts = "Đã ban hành";
-            }
-            else
-            {
-                sts = "Chưa ban hành";
-            }
-            return sts;
-        }
-        public string Status(bool status)
-        {
-            this.status = status;
             string sts = String.Empty;
             if (status)
             {

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace DigitalDocumentary.DLL
 {
@@ -34,6 +35,31 @@ namespace DigitalDocumentary.DLL
                 folders.Add(f);
             }
             return folders;
+        }
+        public int Add(FolderDTO fol)
+        {
+            FolderDTO parent = null;
+            if(fol.Parent != null)
+            {
+                parent = fol.Parent;
+            }
+            string sql = $"INSERT INTO {FolderDTO.Table} (name_id, name, created_by, parent_id, status) VALUES ('{fol.NameId}', '{fol.Name}', '{fol.CreatedBy}', '{parent.Id}', {fol.Status})";
+            return db.NonQuery(sql);
+        }
+        public int Update(FolderDTO fol)
+        {
+            FolderDTO parent = null;
+            if (fol.Parent != null)
+            {
+                parent = fol.Parent;
+            }
+            string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = '{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = '{parent.Id}', status = {fol.Status} WHERE id = {fol.Id}";
+            return db.NonQuery(sql);
+        }
+        public int Delete(FolderDTO fol)
+        {
+            string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {fol.Id}";
+            return db.NonQuery(sql);
         }
     }
 }

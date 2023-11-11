@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\DocumentBLL.cs" />
+    <Compile Include="BLL\Helper.cs" />
     <Compile Include="DLL\AuthorDLL.cs" />
     <Compile Include="DLL\DatabaseContextDLL.cs" />
     <Compile Include="DLL\DocumentDLL.cs" />
@@ -98,9 +100,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

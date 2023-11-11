@@ -15,10 +15,11 @@ namespace DigitalDocumentary.DTO
         private string createdBy;
         private bool status;
         private FolderDTO parent;
+        private List<DocumentDTO> documents;
         private DateTime created_at;
         public FolderDTO() { }
 
-        public FolderDTO(int id, string nameId, string name, DateTime created_at, string createdBy, FolderDTO parent, bool status)
+        public FolderDTO(int id, string nameId, string name, DateTime created_at, string createdBy, FolderDTO parent, bool status, List<DocumentDTO> documents)
         {
             this.Id = id;
             this.NameId = nameId;
@@ -27,6 +28,7 @@ namespace DigitalDocumentary.DTO
             this.CreatedBy = createdBy;
             this.Parent = parent;
             this.status = status;
+            this.documents = documents;
         }
 
         public static string Table { get => table; set => table = value; }
