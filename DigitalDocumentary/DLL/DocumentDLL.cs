@@ -22,7 +22,9 @@ namespace DigitalDocumentary.DLL
         public List<DocumentDTO> Load(string where = null)
         {
             Documents.Clear();
-            SqlDataReader rd = db.Select(DocumentDTO.Table, where);
+            string[] tables = { DocumentDTO.Table, AuthorDTO.Table };
+            where += $" AND {DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id";
+            SqlDataReader rd = db.Select(tables, where);
             while (rd.Read())
             {
                 DocumentDTO document = new DocumentDTO();
@@ -40,6 +42,27 @@ namespace DigitalDocumentary.DLL
                 Documents.Add(document);
             }
             return Documents;
+        }
+        public DocumentDTO Get(int id)
+        {
+            SqlDataReader rd = db.Select(DocumentDTO.Table, $"id = {id}", 1);
+            DocumentDTO document = new DocumentDTO();
+            while (rd.Read())
+            {
+                document.Id = int.Parse(rd["document_id"].ToString());
+                document.Title = rd["title"].ToString();
+                document.Description = rd["description"].ToString();
+                document.File_path = rd["file_path"].ToString();
+                document.Link_to_image = rd["link_to_image"].ToString();
+                document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
+                document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
+
+                // Foreign Key .... waiting
+
+                //
+                break;
+            }
+            return document;
         }
         public int Add(DocumentDTO doc)
         {
@@ -59,24 +82,49 @@ namespace DigitalDocumentary.DLL
 
         public List<DocumentDTO> FindByTitle(string title)
         {
-            List<DocumentDTO> result = new List<DocumentDTO>();
-            SqlDataReader rd = db.Select(DocumentDTO.Table, $"title LIKE '%{title}%'");
-            while (rd.Read())
-            {
-                DocumentDTO document = new DocumentDTO();
-                document.Id = int.Parse(rd["document_id"].ToString());
-                document.Title = rd["title"].ToString();
-                document.Description = rd["description"].ToString();
-                document.File_path = rd["file_path"].ToString();
-                document.Link_to_image = rd["link_to_image"].ToString();
-                document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
-                document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
+            List<DocumentDTO> result = this.Load($"title LIKE '%{title}%'");
+                //new List<DocumentDTO>();
+            //SqlDataReader rd = db.Select(DocumentDTO.Table, $"title LIKE '%{title}%'");
+            //while (rd.Read())
+            //{
+            //    DocumentDTO document = new DocumentDTO();
+            //    document.Id = int.Parse(rd["document_id"].ToString());
+            //    document.Title = rd["title"].ToString();
+            //    document.Description = rd["description"].ToString();
+            //    document.File_path = rd["file_path"].ToString();
+            //    document.Link_to_image = rd["link_to_image"].ToString();
+            //    document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
+            //    document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
 
-                // Foreign Key .... waiting
+            //    // Foreign Key .... waiting
 
-                //
-                result.Add(document);
-            }
+            //    //
+            //    result.Add(document);
+            //}
+            return result;
+        }
+
+        public List<DocumentDTO> FindByAuthorName(string authorName)
+        {
+            
+                //new List<DocumentDTO>();
+            //SqlDataReader rd = db.Select(DocumentDTO.Table, $"author LIKE '%{authorName}%'");
+            //while (rd.Read())
+            //{
+            //    DocumentDTO document = new DocumentDTO();
+            //    document.Id = int.Parse(rd["document_id"].ToString());
+            //    document.Title = rd["title"].ToString();
+            //    document.Description = rd["description"].ToString();
+            //    document.File_path = rd["file_path"].ToString();
+            //    document.Link_to_image = rd["link_to_image"].ToString();
+            //    document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
+            //    document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
+
+            //    // Foreign Key .... waiting
+
+            //    //
+            //    result.Add(document);
+            //}
             return result;
         }
     }

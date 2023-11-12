@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DigitalDocumentary.DLL
 {
@@ -32,10 +33,28 @@ namespace DigitalDocumentary.DLL
             return result;
         }
 
-        public SqlDataReader Select(string table, string where=null)
+        public SqlDataReader Select(string table, string where=null, int limit=1000)
         {
-            string sql = $"SELECT * FROM {table}";
+            string sql = $"SELECT TOP({limit}) * FROM {table} ";
+            if (where != null)
+            {
+                sql += where;
+            }
+            db.Conn.Open();
+            SqlCommand cmd = new SqlCommand(sql, db.Conn);
+            SqlDataReader rd = cmd.ExecuteReader();
+            db.Conn.Close();
+            return rd;
+        }
 
+        public SqlDataReader Select(string[] tables, string where = null, int limit = 1000)
+        {
+            string sql = $"SELECT TOP({limit}) * FROM {string.Join(", ", tables)} ";
+            
+            if (where != null)
+            {
+                sql += where;
+            }
             db.Conn.Open();
             SqlCommand cmd = new SqlCommand(sql, db.Conn);
             SqlDataReader rd = cmd.ExecuteReader();
