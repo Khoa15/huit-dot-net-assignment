@@ -12,7 +12,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class DocumentBLL
     {
-        DocumentDLL docDll = new DocumentDLL();
+        static DocumentDLL docDll = new DocumentDLL();
         public DocumentBLL()
         {
         }
@@ -20,10 +20,14 @@ namespace DigitalDocumentary.BLL
         {
             return docDll.Load();
         }
-        public DocumentDTO GetById(int id)
+        public DocumentDTO Load(int id)
         {
             return docDll.Get(id);
         }
+        //public DocumentDTO GetById(int id)
+        //{
+        //    return docDll.Get(id);
+        //}
         public int Add(DocumentDTO document)
         {
             // Move file, image to this project's path
@@ -33,9 +37,72 @@ namespace DigitalDocumentary.BLL
         {
             return docDll.Update(document);
         }
+        public int Update(DocumentDTO[] documents)
+        {
+            int excuted = 0;
+            for(int i = 0; i < documents.Length; i++)
+            {
+                if(docDll.Update(documents[i]) == 1)
+                {
+                    excuted += 1;
+                }
+            }
+            return excuted;
+        }
+        public int UpdateStatus(DocumentDTO document)
+        {
+            return docDll.UpdateStatus(document);
+        }
+        public int UpdateStatus(DocumentDTO[] documents)
+        {
+            return docDll.UpdateStatus(documents);
+        }
+        public static int UpdateStatus(bool status, int[] ids)
+        {
+            return docDll.UpdateStatus(status, ids);
+        }
         public int Delete(int id)
         {
-            return docDll.Delete(id);
+            return DocumentDLL.Delete(id);
+        }
+        //public bool Delete(int[] id)
+        //{
+        //    try
+        //    {
+        //        for (int i = 0; i < id.Length; i++)
+        //        {
+        //            if (DocumentDLL.Delete(id[i]) == 0)
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
+        public int[] Delete(int[] id)
+        {
+            // Initialize default value's array is 0
+            int[] status = Enumerable.Repeat(0, id.Length).ToArray();            
+            try
+            {
+                for (int i = 0; i < id.Length; i++)
+                {
+                    if (DocumentDLL.Delete(id[i]) == 1)
+                    {
+                        status[i] = 1;
+                    }
+                }
+                return status;
+            }
+            catch(Exception ex)
+            {
+                var x = ex.Message;
+                return status;
+            }
         }
         #region Find
         public DocumentDTO Find(DocumentDTO doc)
@@ -109,5 +176,9 @@ namespace DigitalDocumentary.BLL
         #region Update
 
         #endregion Update
+        public bool MoveFile(string srcPath)
+        {
+            return Helper.MoveFile(srcPath);
+        }
     }
 }

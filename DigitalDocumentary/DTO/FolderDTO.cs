@@ -28,16 +28,17 @@ namespace DigitalDocumentary.DTO
             this.CreatedBy = createdBy;
             this.Parent = parent;
             this.status = status;
-            this.documents = documents;
+            this.Documents = documents;
         }
 
         public static string Table { get => table; set => table = value; }
         public int Id { get => id; set => id = value; }
         public string NameId { get => nameId; set => nameId = value; }
         public string Name { get => name; set => name = value; }
-        public DateTime Created_at { get => created_at; set => created_at = value; }
         public string CreatedBy { get => createdBy; set => createdBy = value; }
         public bool Status { get => status; set => status = value; }
         internal FolderDTO Parent { get => parent; set => parent = value; }
+        internal List<DocumentDTO> Documents { get => documents; set => documents = value; }
+        public DateTime Created_at { get => created_at; set => created_at = value; }
     }
 }

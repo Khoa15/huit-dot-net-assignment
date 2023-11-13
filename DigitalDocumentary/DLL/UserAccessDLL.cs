@@ -15,10 +15,10 @@ namespace DigitalDocumentary.DLL
         public UserAccessDLL()
         {
         }
-        public List<UserAccessDTO> Load()
+        public List<UserAccessDTO> Load(string where=null)
         {
             userAccesses.Clear();
-            SqlDataReader rd = db.Select(UserAccessDTO.Table);
+            SqlDataReader rd = db.Select(UserAccessDTO.Table, where);
             while (rd.Read())
             {
                 UserAccessDTO ua = new UserAccessDTO();
@@ -32,6 +32,10 @@ namespace DigitalDocumentary.DLL
                 userAccesses.Add(ua);
             }
             return userAccesses;
+        }
+        public UserAccessDTO Get(int id)
+        {
+            return this.Load($"id = {id}").First();
         }
         public int Add(UserAccessDTO ua)
         {
@@ -47,6 +51,11 @@ namespace DigitalDocumentary.DLL
         public int Delete(UserAccessDTO ua)
         {
             string sql = $"DELETE FROM {UserAccessDTO.Table} WHERE user_type_id = {ua.Id}";
+            return db.NonQuery(sql);
+        }
+        public int Delete(int id)
+        {
+            string sql = $"DELETE FROM {UserAccessDTO.Table} WHERE user_type_id = {id}";
             return db.NonQuery(sql);
         }
     }

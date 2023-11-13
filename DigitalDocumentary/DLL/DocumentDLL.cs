@@ -11,7 +11,7 @@ namespace DigitalDocumentary.DLL
     internal class DocumentDLL
     {
         private List<DocumentDTO> documents = new List<DocumentDTO>();
-        private DatabaseContextDLL db = new DatabaseContextDLL();
+        private static DatabaseContextDLL db = new DatabaseContextDLL();
 
         internal List<DocumentDTO> Documents { get => documents; set => documents = value; }
 
@@ -45,24 +45,7 @@ namespace DigitalDocumentary.DLL
         }
         public DocumentDTO Get(int id)
         {
-            SqlDataReader rd = db.Select(DocumentDTO.Table, $"id = {id}", 1);
-            DocumentDTO document = new DocumentDTO();
-            while (rd.Read())
-            {
-                document.Id = int.Parse(rd["document_id"].ToString());
-                document.Title = rd["title"].ToString();
-                document.Description = rd["description"].ToString();
-                document.File_path = rd["file_path"].ToString();
-                document.Link_to_image = rd["link_to_image"].ToString();
-                document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
-                document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
-
-                // Foreign Key .... waiting
-
-                //
-                break;
-            }
-            return document;
+            return this.Load($"id = {id}").First();
         }
         public int Add(DocumentDTO doc)
         {
@@ -74,12 +57,31 @@ namespace DigitalDocumentary.DLL
             string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.Status}  WHERE document_id = {doc.Id}";
             return db.NonQuery(sql);
         }
+        public int UpdateStatus(DocumentDTO doc)
+        {
+            string sql = $"UPDATE {DocumentDTO.Table} SET document_status = ${doc.Status} Where id = {doc.Id}";
+            return db.NonQuery(sql);
+        }
+        public int UpdateStatus(DocumentDTO[] docs)
+        {
+            string sql = string.Empty;
+            foreach(DocumentDTO doc in docs)
+            {
+                sql += $"UPDATE {DocumentDTO.Table} SET document_status = ${doc.Status} Where id = {doc.Id}";
+            }
+            return db.NonQuery(sql);
+        }
+        public int UpdateStatus(bool status, int[] ids)
+        {
+            string sql = $"UPDATE {DocumentDTO.Table} SET document_status = ${status} Where id IN ({string.Join(", ", ids)})";
+            return db.NonQuery(sql);
+        }
         //public int Delete(DocumentDTO doc)
         //{
         //    string sql = $"DELETE FROM {DocumentDTO.Table} WHERE document_id = {doc.Id}";
         //    return db.NonQuery(sql);
         //}
-        public int Delete(int id)
+        public static int Delete(int id)
         {
             string sql = $"DELETE FROM {DocumentDTO.Table} WHERE document_id = {id}";
             return db.NonQuery(sql);

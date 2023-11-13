@@ -12,7 +12,7 @@ namespace DigitalDocumentary.DLL
     internal class DocumentIndexDLL
     {
         private List<DocumentIndexDTO> documentIndices = new List<DocumentIndexDTO>();
-        private DatabaseContextDLL db = new DatabaseContextDLL();
+        private static DatabaseContextDLL db = new DatabaseContextDLL();
 
         public DocumentIndexDLL()
         {
@@ -56,9 +56,14 @@ namespace DigitalDocumentary.DLL
             string sql = $"UPDATE {DocumentIndexDTO.Table} SET document_id = {docI.Document.Id}, page_number = {docI.PageNumber}, parent_index_id = {parent.Id}, author_id = {docI.Author.Id}, title = '{docI.Title}' WHERE id = {docI.Id}";
             return db.NonQuery(sql);
         }
-        public int Delete(DocumentIndexDTO docI)
+        //public static int Delete(DocumentIndexDTO docI)
+        //{
+        //    string sql = $"DELETE FROM {DocumentIndexDTO.Table} WHERE id = {docI.Id}";
+        //    return db.NonQuery(sql);
+        //}
+        public static int Delete(int id)
         {
-            string sql = $"DELETE FROM {DocumentIndexDTO.Table} WHERE id = {docI.Id}";
+            string sql = $"DELETE FROM {DocumentIndexDTO.Table} WHERE id = {id}";
             return db.NonQuery(sql);
         }
     }

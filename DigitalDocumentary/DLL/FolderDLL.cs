@@ -60,7 +60,12 @@ namespace DigitalDocumentary.DLL
             {
                 parent = fol.Parent;
             }
-            string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = '{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = '{parent.Id}', status = {fol.Status} WHERE id = {fol.Id}";
+            string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = '{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = {parent.Id}, status = {fol.Status} WHERE id = {fol.Id}";
+            return db.NonQuery(sql);
+        }
+        public int UpdateParent(FolderDTO fol, int? pId)
+        {
+            string sql = $"UPDATE {FolderDTO.Table} SET parent_id = {pId} WHERE id = {fol.Id}";
             return db.NonQuery(sql);
         }
         //public int Delete(FolderDTO fol)
