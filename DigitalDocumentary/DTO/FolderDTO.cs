@@ -8,27 +8,37 @@ namespace DigitalDocumentary.DTO
 {
     internal class FolderDTO
     {
-        private int _id;
-        private string _name;
-        private string _description;
-        private DateTime _created;
-        private DateTime _createdBy;
-
+        private static string table = "Folder";
+        private int id;
+        private string nameId;
+        private string name;
+        private string createdBy;
+        private bool status;
+        private FolderDTO parent;
+        private List<DocumentDTO> documents;
+        private DateTime created_at;
         public FolderDTO() { }
 
-        public FolderDTO(int id, string name, string description, DateTime created, DateTime createdBy)
+        public FolderDTO(int id, string nameId, string name, DateTime created_at, string createdBy, FolderDTO parent, bool status, List<DocumentDTO> documents)
         {
-            Id = id;
-            Name = name;
-            Description = description;
-            Created = created;
-            CreatedBy = createdBy;
+            this.Id = id;
+            this.NameId = nameId;
+            this.Name = name;
+            this.Created_at = created_at;
+            this.CreatedBy = createdBy;
+            this.Parent = parent;
+            this.status = status;
+            this.Documents = documents;
         }
 
-        public int Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
-        public string Description { get => _description; set => _description = value; }
-        public DateTime Created { get => _created; set => _created = value; }
-        public DateTime CreatedBy { get => _createdBy; set => _createdBy = value; }
+        public static string Table { get => table; set => table = value; }
+        public int Id { get => id; set => id = value; }
+        public string NameId { get => nameId; set => nameId = value; }
+        public string Name { get => name; set => name = value; }
+        public string CreatedBy { get => createdBy; set => createdBy = value; }
+        public bool Status { get => status; set => status = value; }
+        internal FolderDTO Parent { get => parent; set => parent = value; }
+        internal List<DocumentDTO> Documents { get => documents; set => documents = value; }
+        public DateTime Created_at { get => created_at; set => created_at = value; }
     }
 }

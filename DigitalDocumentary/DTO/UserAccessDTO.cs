@@ -8,29 +8,36 @@ namespace DigitalDocumentary.DTO
 {
     internal class UserAccessDTO
     {
-        private int _id;
-        private int _userId;
-        DocumentDTO _document;
-        FolderDTO _folder;
-        AccessPolicyDTO _accessPolicy;
+        private static string table = "UserAccess";
+        private int id;
+        private bool display;
+        private bool trialRead;
+        private bool canRead;
+        private bool canDownload;
 
-        public UserAccessDTO()
+        private int numberPageRead;
+        private int numberPageDownload;
+        // UserType linked from system management
+        public UserAccessDTO() { }
+
+        public UserAccessDTO(int id, bool display, bool trialRead, bool canRead, bool canDownload, int numberPageRead, int numberPageDownload)
         {
+            this.id = id;
+            this.display = display;
+            this.trialRead = trialRead;
+            this.canRead = canRead;
+            this.canDownload = canDownload;
+            this.numberPageRead = numberPageRead;
+            this.numberPageDownload = numberPageDownload;
         }
 
-        public UserAccessDTO(int id, int userId, DocumentDTO document, FolderDTO folder, AccessPolicyDTO accessPolicy)
-        {
-            _id = id;
-            _userId = userId;
-            _document = document;
-            _folder = folder;
-            _accessPolicy = accessPolicy;
-        }
-
-        public int Id { get => _id; set => _id = value; }
-        public int UserId { get => _userId; set => _userId = value; }
-        internal DocumentDTO Document { get => _document; set => _document = value; }
-        internal FolderDTO Folder { get => _folder; set => _folder = value; }
-        internal AccessPolicyDTO AccessPolicy { get => _accessPolicy; set => _accessPolicy = value; }
+        public static string Table { get => table; set => table = value; }
+        public int Id { get => id; set => id = value; }
+        public bool Display { get => display; set => display = value; }
+        public bool TrialRead { get => trialRead; set => trialRead = value; }
+        public bool CanRead { get => canRead; set => canRead = value; }
+        public bool CanDownload { get => canDownload; set => canDownload = value; }
+        public int NumberPageRead { get => numberPageRead; set => numberPageRead = value; }
+        public int NumberPageDownload { get => numberPageDownload; set => numberPageDownload = value; }
     }
 }

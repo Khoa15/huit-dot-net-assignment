@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,8 +55,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\AccessPolicyDTO.cs" />
+    <Compile Include="BLL\AuthorBLL.cs" />
+    <Compile Include="BLL\DocumentBLL.cs" />
+    <Compile Include="BLL\FolderBLL.cs" />
+    <Compile Include="BLL\Helper.cs" />
+    <Compile Include="BLL\UserAccessBLL.cs" />
+    <Compile Include="DLL\AuthorDLL.cs" />
+    <Compile Include="DLL\DatabaseContextDLL.cs" />
+    <Compile Include="DLL\DocumentDLL.cs" />
+    <Compile Include="DLL\DocumentIndexDLL.cs" />
+    <Compile Include="DLL\FolderDLL.cs" />
+    <Compile Include="DLL\UserAccessDLL.cs" />
+    <Compile Include="DTO\AuthorDTO.cs" />
+    <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
+    <Compile Include="DTO\DocumentIndexDTO.cs" />
     <Compile Include="DTO\FolderDTO.cs" />
     <Compile Include="DTO\UserAccessDTO.cs" />
     <Compile Include="MainForm.cs">
@@ -67,6 +89,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,8 +104,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="DLL\" />
+    <Folder Include="Assets\Documents\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
