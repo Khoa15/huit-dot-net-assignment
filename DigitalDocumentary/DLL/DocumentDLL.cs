@@ -74,9 +74,14 @@ namespace DigitalDocumentary.DLL
             string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.Status}  WHERE document_id = {doc.Id}";
             return db.NonQuery(sql);
         }
-        public int Delete(DocumentDTO doc)
+        //public int Delete(DocumentDTO doc)
+        //{
+        //    string sql = $"DELETE FROM {DocumentDTO.Table} WHERE document_id = {doc.Id}";
+        //    return db.NonQuery(sql);
+        //}
+        public int Delete(int id)
         {
-            string sql = $"DELETE FROM {DocumentDTO.Table} WHERE document_id = {doc.Id}";
+            string sql = $"DELETE FROM {DocumentDTO.Table} WHERE document_id = {id}";
             return db.NonQuery(sql);
         }
 
@@ -106,8 +111,8 @@ namespace DigitalDocumentary.DLL
 
         public List<DocumentDTO> FindByAuthorName(string authorName)
         {
-            
-                //new List<DocumentDTO>();
+            List<DocumentDTO> result = this.Load($"{AuthorDTO.Table}.name LIKE '%{authorName}%'");
+            //new List<DocumentDTO>();
             //SqlDataReader rd = db.Select(DocumentDTO.Table, $"author LIKE '%{authorName}%'");
             //while (rd.Read())
             //{

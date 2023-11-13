@@ -17,10 +17,10 @@ namespace DigitalDocumentary.DLL
         {
 
         }
-        public List<AuthorDTO> Load()
+        public List<AuthorDTO> Load(string where=null)
         {
             authors.Clear();
-            SqlDataReader rd = db.Select(AuthorDTO.Table);
+            SqlDataReader rd = db.Select(AuthorDTO.Table, where);
             while(rd.Read())
             {
                 AuthorDTO author = new AuthorDTO();

@@ -66,5 +66,13 @@ namespace DigitalDocumentary.DTO
             }
             return sts;
         }
+        public string GetFormattedCreatedAt()
+        {
+            return created_at.ToString("dd/mm/yyyy");
+        }
+        public string GetFormattedUpdatedAt()
+        {
+            return updated_at.ToString("dd/mm/yyyy");
+        }
     }
 }

@@ -55,7 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AuthorBLL.cs" />
     <Compile Include="BLL\DocumentBLL.cs" />
+    <Compile Include="BLL\FolderBLL.cs" />
     <Compile Include="BLL\Helper.cs" />
     <Compile Include="DLL\AuthorDLL.cs" />
     <Compile Include="DLL\DatabaseContextDLL.cs" />

@@ -13,13 +13,16 @@ namespace DigitalDocumentary.DLL
     {
         private List<FolderDTO> folders = new List<FolderDTO>();
         private DatabaseContextDLL db = new DatabaseContextDLL();
+
+        internal List<FolderDTO> Folders { get => folders; set => folders = value; }
+
         public FolderDLL()
         {
         }
-        public List<FolderDTO> Load()
+        public List<FolderDTO> Load(string where=null)
         {
-            folders.Clear();
-            SqlDataReader rd = db.Select(FolderDTO.Table);
+            Folders.Clear();
+            SqlDataReader rd = db.Select(FolderDTO.Table, where);
             while (rd.Read())
             {
                 FolderDTO f = new FolderDTO();
@@ -32,9 +35,13 @@ namespace DigitalDocumentary.DLL
                 // Foreign key ... waiting
 
                 //
-                folders.Add(f);
+                Folders.Add(f);
             }
-            return folders;
+            return Folders;
+        }
+        public FolderDTO LoadById(int id)
+        {
+            return this.Load($"id = {id}").First();
         }
         public int Add(FolderDTO fol)
         {
@@ -56,9 +63,19 @@ namespace DigitalDocumentary.DLL
             string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = '{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = '{parent.Id}', status = {fol.Status} WHERE id = {fol.Id}";
             return db.NonQuery(sql);
         }
-        public int Delete(FolderDTO fol)
+        //public int Delete(FolderDTO fol)
+        //{
+        //    string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {fol.Id}";
+        //    return db.NonQuery(sql);
+        //}
+        public int Delete(int id)
         {
-            string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {fol.Id}";
+            string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {id}";
+            return db.NonQuery(sql);
+        }
+        public int Delete(int[] id)
+        {
+            string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {string.Join(", id=", id)}";
             return db.NonQuery(sql);
         }
     }
