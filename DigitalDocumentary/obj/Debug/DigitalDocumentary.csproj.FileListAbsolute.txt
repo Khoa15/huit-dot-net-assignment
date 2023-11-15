@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.AssemblyReference.cache
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.Properties.Resources.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.GenerateResource.cache
@@ -12,3 +13,16 @@ C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CopyComplete
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb
+=======
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe.config
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\bin\Debug\DigitalDocumentary.pdb
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.AssemblyReference.cache
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.QL_TaiLieuSo.resources
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.Properties.Resources.resources
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.GenerateResource.cache
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CoreCompileInputs.cache
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb
+D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.CP_ThuMuc.resources
+>>>>>>> origin/thao

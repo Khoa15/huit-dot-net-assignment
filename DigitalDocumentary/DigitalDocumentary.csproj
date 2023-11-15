@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DigitalDocumentary</RootNamespace>
     <AssemblyName>DigitalDocumentary</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,17 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,31 +47,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\AuthorBLL.cs" />
-    <Compile Include="BLL\DocumentBLL.cs" />
-    <Compile Include="BLL\FolderBLL.cs" />
-    <Compile Include="BLL\Helper.cs" />
-    <Compile Include="BLL\UserAccessBLL.cs" />
-    <Compile Include="DLL\AuthorDLL.cs" />
-    <Compile Include="DLL\DatabaseContextDLL.cs" />
-    <Compile Include="DLL\DocumentDLL.cs" />
-    <Compile Include="DLL\DocumentIndexDLL.cs" />
-    <Compile Include="DLL\FolderDLL.cs" />
-    <Compile Include="DLL\UserAccessDLL.cs" />
-    <Compile Include="DTO\AuthorDTO.cs" />
-    <Compile Include="DTO\DatabaseContextDTO.cs" />
-    <Compile Include="DTO\DocumentDTO.cs" />
-    <Compile Include="DTO\DocumentIndexDTO.cs" />
-    <Compile Include="DTO\FolderDTO.cs" />
-    <Compile Include="DTO\UserAccessDTO.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="GUI\CP_ThuMuc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="GUI\CP_ThuMuc.Designer.cs">
+      <DependentUpon>CP_ThuMuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QL_TaiLieuSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QL_TaiLieuSo.Designer.cs">
+      <DependentUpon>QL_TaiLieuSo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaiLieuSoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaiLieuSoDataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GUI\CP_ThuMuc.resx">
+      <DependentUpon>CP_ThuMuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QL_TaiLieuSo.resx">
+      <DependentUpon>QL_TaiLieuSo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,8 +80,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,15 +91,85 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TaiLieuSoDataSet.xsc">
+      <DependentUpon>TaiLieuSoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TaiLieuSoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TaiLieuSoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TaiLieuSoDataSet.xss">
+      <DependentUpon>TaiLieuSoDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Documents\" />
+    <Folder Include="BLL\" />
+    <Folder Include="DAL\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <None Include="icon\search.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\add.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\down.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\people.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\ser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\question.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\exit.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\exit1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\table.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\table1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\TB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\hien.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\save.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Sua.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\del.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\up.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\up1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\share.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\tick.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\block.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
