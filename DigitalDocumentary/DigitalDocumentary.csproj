@@ -47,6 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AuthorBLL.cs" />
+    <Compile Include="BLL\DocumentBLL.cs" />
+    <Compile Include="BLL\FolderBLL.cs" />
+    <Compile Include="BLL\Helper.cs" />
+    <Compile Include="BLL\UserAccessBLL.cs" />
+    <Compile Include="DAL\AuthorDLL.cs" />
+    <Compile Include="DAL\DatabaseContextDLL.cs" />
+    <Compile Include="DAL\DocumentDLL.cs" />
+    <Compile Include="DAL\DocumentIndexDLL.cs" />
+    <Compile Include="DAL\FolderDLL.cs" />
+    <Compile Include="DAL\UserAccessDLL.cs" />
+    <Compile Include="DTO\AuthorDTO.cs" />
+    <Compile Include="DTO\DatabaseContextDTO.cs" />
+    <Compile Include="DTO\DocumentDTO.cs" />
+    <Compile Include="DTO\DocumentIndexDTO.cs" />
+    <Compile Include="DTO\FolderDTO.cs" />
+    <Compile Include="DTO\UserAccessDTO.cs" />
     <Compile Include="GUI\CP_ThuMuc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,11 +78,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaiLieuSoDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TaiLieuSoDataSet.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="GUI\CP_ThuMuc.resx">
       <DependentUpon>CP_ThuMuc.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,26 +103,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TaiLieuSoDataSet.xsc">
-      <DependentUpon>TaiLieuSoDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TaiLieuSoDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TaiLieuSoDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TaiLieuSoDataSet.xss">
-      <DependentUpon>TaiLieuSoDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="DAL\" />
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="icon\search.jpg" />
   </ItemGroup>

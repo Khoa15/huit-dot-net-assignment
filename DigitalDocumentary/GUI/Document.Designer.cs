@@ -1,7 +1,7 @@
 ﻿
 namespace DigitalDocumentary.GUI
 {
-    partial class QL_TaiLieuSo
+    partial class Document
     {
         /// <summary>
         /// Required designer variable.

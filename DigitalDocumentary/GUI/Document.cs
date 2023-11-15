@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DigitalDocumentary.GUI
 {
-    public partial class QL_TaiLieuSo : Form
+    public partial class Document : Form
     {
-        public QL_TaiLieuSo()
+        public Document()
         {
             InitializeComponent();
         }
@@ -39,7 +39,7 @@ namespace DigitalDocumentary.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CP_ThuMuc a = new CP_ThuMuc();
+            Folder a = new Folder();
             a.ShowDialog();
         }
     }

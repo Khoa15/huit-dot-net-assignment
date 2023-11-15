@@ -1,7 +1,7 @@
 ﻿
 namespace DigitalDocumentary.GUI
 {
-    partial class CP_ThuMuc
+    partial class Folder
     {
         /// <summary>
         /// Required designer variable.
