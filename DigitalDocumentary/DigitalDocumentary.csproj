@@ -64,25 +64,25 @@
     <Compile Include="DTO\DocumentIndexDTO.cs" />
     <Compile Include="DTO\FolderDTO.cs" />
     <Compile Include="DTO\UserAccessDTO.cs" />
-    <Compile Include="GUI\CP_ThuMuc.cs">
+    <Compile Include="GUI\Document.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\CP_ThuMuc.Designer.cs">
-      <DependentUpon>CP_ThuMuc.cs</DependentUpon>
+    <Compile Include="GUI\Document.Designer.cs">
+      <DependentUpon>Document.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\QL_TaiLieuSo.cs">
+    <Compile Include="GUI\Folder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\QL_TaiLieuSo.Designer.cs">
-      <DependentUpon>QL_TaiLieuSo.cs</DependentUpon>
+    <Compile Include="GUI\Folder.Designer.cs">
+      <DependentUpon>Folder.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\CP_ThuMuc.resx">
-      <DependentUpon>CP_ThuMuc.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Document.resx">
+      <DependentUpon>Document.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\QL_TaiLieuSo.resx">
-      <DependentUpon>QL_TaiLieuSo.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Folder.resx">
+      <DependentUpon>Folder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

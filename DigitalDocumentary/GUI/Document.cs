@@ -20,7 +20,7 @@ namespace DigitalDocumentary.GUI
         private void QL_TaiLieuSo_Load(object sender, EventArgs e)
         {
             btn_IcTable.Enabled = false;
-            panel7.Visible = false;
+            pnBottom.Visible = false;
         }
 
         private void QL_TaiLieuSo_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,6 +41,21 @@ namespace DigitalDocumentary.GUI
         {
             Folder a = new Folder();
             a.ShowDialog();
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripLimitRecord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
