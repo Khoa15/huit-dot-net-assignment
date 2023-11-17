@@ -9,12 +9,11 @@ namespace DigitalDocumentary.DTO
 {
     internal class DatabaseContextDTO
     {
-        private string strCon = "";
+        private string strCon = @"Data Source=MUN\SQLEXPRESS;Initial Catalog=TaiLieuSo;Integrated Security=True";
         private SqlConnection sqlCon;
-        public DatabaseContextDTO() { }
-        public DatabaseContextDTO(string sqlCon)
+        public DatabaseContextDTO()
         {
-            this.strCon = sqlCon;
+            sqlCon = new SqlConnection(strCon);
         }
 
         public SqlConnection Conn { get => sqlCon; set => sqlCon = value; }

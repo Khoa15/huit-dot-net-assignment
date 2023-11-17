@@ -184,17 +184,20 @@ GO
 
 -- INSERT dữ liệu vào bảng Folder
 INSERT INTO Folder (name_id, name, created_by, parent_id, status, created_date)
-VALUES 
-('FDR001', 'Thiếu nhi', 'admin', NULL, 1, '2022-01-01'),
-('FDR002', 'Giáo khoa', 'admin', NULL, 1, '2022-01-01'),
-('FDR003', 'Kinh tế', 'admin', NULL, 1, '2022-01-01'),
-('FDR004', 'Văn học', 'admin', NULL, 1, '2022-01-01'),
-('FDR005', 'Sách giáo dục', 'admin', NULL, 1, '2022-01-01'),
-('FDR006', 'Sách kinh doanh', 'admin', NULL, 1, '2022-01-01'),
-('FDR007', 'Truyện tranh', 'admin', NULL, 1, '2022-01-01'),
-('FDR008', 'Tài liệu', 'admin', NULL, 1, '2022-01-01'),
-('FDR009', 'Sách nói', 'admin', NULL, 1, '2022-01-01'),
-('FDR010', 'Sách thiếu niên', 'admin', NULL, 1, '2022-01-01');
+VALUES
+('FDR001', 'Công nghiệp', 'admin', NULL, 1, '2023-07-20'),
+('FDR002', 'Máy móc thiết bị', 'admin', NULL, 1, '2023-07-20'),
+('FDR003', 'Đổi mới công nghệ', 'admin', NULL, 1, '2023-07-20'),
+('FDR004', '500 Khoa học - tự nhiên', 'admin', NULL, 1, '2023-07-20'),
+('FDR005', '300 Khoa học - xã hội', 'admin', NULL, 1, '2023-07-20'),
+('FDR006', 'Tài liệu thực tập', 'admin', NULL, 1, '2023-07-20'),
+('FDR007', 'Tài liệu số Lạc Việt', 'admin', NULL, 1, '2023-07-20'),
+('FDR008', 'Tin học', 'admin', NULL, 1, '2023-07-20'),
+('FDR009', 'Audio', 'admin', NULL, 1, '2023-07-20'),
+('FDR010', 'Video', 'admin', NULL, 1, '2023-07-20'),
+('FDR011', 'nghệ thuật gốm sứ', 'admin', 3, 1, '2023-07-20'),
+('FDR012', 'tài liệu khác', 'admin', 3, 1, '2023-07-20');
+
 GO
 
 -- INSERT dữ liệu vào bảng Document

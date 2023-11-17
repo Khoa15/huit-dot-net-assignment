@@ -10,7 +10,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class FolderBLL
     {
-        FolderDLL folderDll;
+        FolderDLL folderDll = new FolderDLL();
         public FolderBLL()
         {
         }

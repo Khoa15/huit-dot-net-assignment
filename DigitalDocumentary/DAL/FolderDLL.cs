@@ -1,6 +1,7 @@
 ﻿using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -22,20 +23,28 @@ namespace DigitalDocumentary.DLL
         public List<FolderDTO> Load(string where=null)
         {
             Folders.Clear();
-            SqlDataReader rd = db.Select(FolderDTO.Table, where);
-            while (rd.Read())
+            List<DataRow> dataRows = db.Select(FolderDTO.Table, where);
+            foreach (DataRow rd in dataRows)
             {
                 FolderDTO f = new FolderDTO();
-                f.Id = rd.GetInt32(0);
-                f.NameId = rd.GetString(1);
-                f.Name = rd.GetString(2);
-                f.Created_at = rd.GetDateTime(3);
-                f.Status = rd.GetBoolean(7);
-
-                // Foreign key ... waiting
-
-                //
+                f.Id = int.Parse(rd["folder_id"].ToString());
+                f.NameId = rd["name_id"].ToString();
+                f.Name = rd["name"].ToString();
+                f.Created_at = Convert.ToDateTime(rd["created_date"]);
+                f.Status = Convert.ToBoolean(rd["status"]);
+                object x = rd["parent_id"];
+                if(x == DBNull.Value)
+                {
+                    f.Parent = new FolderDTO() { Id = int.Parse(rd["parent_id"].ToString()) };
+                }
                 Folders.Add(f);
+            }
+            foreach(FolderDTO fol in Folders)
+            {
+                if(fol.Parent != null)
+                {
+                    fol.Parent = Folders.Find(f => f.Id == fol.Parent.Id);
+                }
             }
             return Folders;
         }

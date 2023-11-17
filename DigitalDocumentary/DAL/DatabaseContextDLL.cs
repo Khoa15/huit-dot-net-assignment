@@ -1,6 +1,7 @@
 ﻿using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,19 +34,61 @@ namespace DigitalDocumentary.DLL
             return result;
         }
 
-        public SqlDataReader Select(string table, string where=null, int limit=1000)
+        //public SqlDataReader Select(string table, string where=null, int limit=1000)
+        //{
+        //    string sql = $"SELECT TOP({limit}) * FROM {table} ";
+        //    if (where != null)
+        //    {
+        //        sql += where;
+        //    }
+        //    db.Conn.Open();
+        //    SqlCommand cmd = new SqlCommand(sql, db.Conn);
+        //    SqlDataReader rd = cmd.ExecuteReader();
+        //    // Create a copy of the data before closing the connection
+        //    List<DataRow> data = new List<DataRow>();
+        //    while (rd.Read())
+        //    {
+        //        DataRow row = new DataRow();
+        //        for (int i = 0; i < rd.FieldCount; i++)
+        //        {
+        //            row[rd.GetName(i)] = rd[i];
+        //        }
+        //        data.Add(row);
+        //    }
+
+        //    // Close the database connection
+        //    db.Conn.Close();
+
+        //    // Return a new SqlDataReader from the copied data
+        //    return new SqlDataReader(data);
+        //}
+        public List<DataRow> Select(string table, string where = null, int limit = 1000)
         {
             string sql = $"SELECT TOP({limit}) * FROM {table} ";
             if (where != null)
             {
-                sql += where;
+                sql += "WHERE " + where;
             }
+
             db.Conn.Open();
             SqlCommand cmd = new SqlCommand(sql, db.Conn);
             SqlDataReader rd = cmd.ExecuteReader();
+
+            // Create a DataTable to hold the data
+            DataTable dt = new DataTable();
+            dt.Load(rd);
+
+            // Close the database connection
+            rd.Close();
             db.Conn.Close();
-            return rd;
+
+            // Return the rows from the DataTable
+            var x = dt.AsEnumerable();
+            var y = dt.AsEnumerable().ToList();
+            return dt.AsEnumerable().ToList();
         }
+
+
 
         public SqlDataReader Select(string[] tables, string where = null, int limit = 1000)
         {

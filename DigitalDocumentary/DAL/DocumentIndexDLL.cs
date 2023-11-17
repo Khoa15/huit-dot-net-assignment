@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,20 @@ namespace DigitalDocumentary.DLL
         public List<DocumentIndexDTO> Load()
         {
             documentIndices.Clear();
-            SqlDataReader rd = db.Select(DocumentIndexDTO.Table);
-            while (rd.Read())
-            {
-                DocumentIndexDTO di = new DocumentIndexDTO();
-                di.Id = int.Parse(rd["index_id"].ToString());
-                di.Title = rd["Name"].ToString();
-                di.PageNumber = int.Parse(rd["page_number"].ToString());
+            List<DataRow> rd = db.Select(DocumentIndexDTO.Table);
+            //while (rd.Read())
+            //{
+            //    DocumentIndexDTO di = new DocumentIndexDTO();
+            //    di.Id = int.Parse(rd["index_id"].ToString());
+            //    di.Title = rd["Name"].ToString();
+            //    di.PageNumber = int.Parse(rd["page_number"].ToString());
 
-                // Foreign key ... waiting
+            //    // Foreign key ... waiting
 
-                //
-                documentIndices.Add(di);
+            //    //
+            //    documentIndices.Add(di);
 
-            }
+            //}
             return this.documentIndices;
         }
         public int Add(DocumentIndexDTO docI)

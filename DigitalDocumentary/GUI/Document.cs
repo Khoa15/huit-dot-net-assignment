@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalDocumentary.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace DigitalDocumentary.GUI
         public Document()
         {
             InitializeComponent();
+            FolderBLL f = new FolderBLL();
+            var x = f.Load();
         }
 
         private void QL_TaiLieuSo_Load(object sender, EventArgs e)

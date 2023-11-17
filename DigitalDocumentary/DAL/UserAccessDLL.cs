@@ -1,6 +1,7 @@
 ﻿using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -18,19 +19,19 @@ namespace DigitalDocumentary.DLL
         public List<UserAccessDTO> Load(string where=null)
         {
             userAccesses.Clear();
-            SqlDataReader rd = db.Select(UserAccessDTO.Table, where);
-            while (rd.Read())
-            {
-                UserAccessDTO ua = new UserAccessDTO();
-                ua.Id = rd.GetInt32(0);
-                ua.Display = rd.GetBoolean(1);
-                ua.TrialRead = rd.GetBoolean(2);
-                ua.CanRead = rd.GetBoolean(3);
-                ua.NumberPageRead = rd.GetInt32(4);
-                ua.NumberPageDownload = rd.GetInt32(5);
+            List<DataRow> rd = db.Select(UserAccessDTO.Table, where);
+            //while (rd.Read())
+            //{
+            //    UserAccessDTO ua = new UserAccessDTO();
+            //    ua.Id = rd.GetInt32(0);
+            //    ua.Display = rd.GetBoolean(1);
+            //    ua.TrialRead = rd.GetBoolean(2);
+            //    ua.CanRead = rd.GetBoolean(3);
+            //    ua.NumberPageRead = rd.GetInt32(4);
+            //    ua.NumberPageDownload = rd.GetInt32(5);
 
-                userAccesses.Add(ua);
-            }
+            //    userAccesses.Add(ua);
+            //}
             return userAccesses;
         }
         public UserAccessDTO Get(int id)
