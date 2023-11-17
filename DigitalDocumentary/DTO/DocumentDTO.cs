@@ -15,6 +15,7 @@ namespace DigitalDocumentary.DTO
         private string file_path;
         private string link_to_image;
         private string type;
+        private string updated_by;
         private bool status;
         private AuthorDTO author;
         private FolderDTO folder;
@@ -25,7 +26,7 @@ namespace DigitalDocumentary.DTO
 
         public DocumentDTO() { }
 
-        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, string type, bool status, AuthorDTO author, DateTime updated_at, FolderDTO folder = null)
+        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, string type, bool status, AuthorDTO author, DateTime updated_at, FolderDTO folder = null, string updated_by = null)
         {
             this.id = id;
             this.title = title;
@@ -38,6 +39,7 @@ namespace DigitalDocumentary.DTO
             this.created_at = created_at;
             this.updated_at = updated_at;
             this.Folder = folder;
+            this.updated_by = updated_by;
         }
 
         public static string Table { get => table; set => table = value; }
@@ -47,11 +49,23 @@ namespace DigitalDocumentary.DTO
         public string File_path { get => file_path; set => file_path = value; }
         public string Link_to_image { get => link_to_image; set => link_to_image = value; }
         public string Type { get => type; set => type = value; }
+        public string AuthorName { get
+            {
+                if(this.Author != null)
+                {
+                    return this.Author.Name;
+                }
+                else
+                {
+                    return null;
+                }
+            } }
         internal AuthorDTO Author { get => author; set => author = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
         internal FolderDTO Folder { get => folder; set => folder = value; }
         public bool Status { get => status; set => status = value; }
+        public string Updated_by { get => updated_by; set => updated_by = value; }
 
         public string GetStatus()
         {

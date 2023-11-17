@@ -87,23 +87,48 @@ namespace DigitalDocumentary.DLL
             var y = dt.AsEnumerable().ToList();
             return dt.AsEnumerable().ToList();
         }
-
-
-
-        public SqlDataReader Select(string[] tables, string where = null, int limit = 1000)
+        public List<DataRow> Select(string[] tables, string where = null, int limit = 1000)
         {
             string sql = $"SELECT TOP({limit}) * FROM {string.Join(", ", tables)} ";
-            
             if (where != null)
             {
-                sql += where;
+                sql += "WHERE " + where;
             }
+
             db.Conn.Open();
             SqlCommand cmd = new SqlCommand(sql, db.Conn);
             SqlDataReader rd = cmd.ExecuteReader();
+
+            // Create a DataTable to hold the data
+            DataTable dt = new DataTable();
+            dt.Load(rd);
+
+            // Close the database connection
+            rd.Close();
             db.Conn.Close();
-            return rd;
+
+            // Return the rows from the DataTable
+            var x = dt.AsEnumerable();
+            var y = dt.AsEnumerable().ToList();
+            return dt.AsEnumerable().ToList();
         }
+
+
+
+        //public SqlDataReader Select(string[] tables, string where = null, int limit = 1000)
+        //{
+        //    string sql = $"SELECT TOP({limit}) * FROM {string.Join(", ", tables)} ";
+            
+        //    if (where != null)
+        //    {
+        //        sql += "WHERE "+where;
+        //    }
+        //    db.Conn.Open();
+        //    SqlCommand cmd = new SqlCommand(sql, db.Conn);
+        //    SqlDataReader rd = cmd.ExecuteReader();
+        //    db.Conn.Close();
+        //    return rd;
+        //}
 
         public int Update(string query)
         {

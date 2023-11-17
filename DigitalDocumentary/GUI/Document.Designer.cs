@@ -35,18 +35,10 @@ namespace DigitalDocumentary.GUI
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewDocuments = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeViewFolders = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_IcTable = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -71,7 +63,7 @@ namespace DigitalDocumentary.GUI
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -105,7 +97,7 @@ namespace DigitalDocumentary.GUI
             this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.textBox1);
             this.panel4.Controls.Add(this.btnSearch);
-            this.panel4.Controls.Add(this.dataGridView1);
+            this.panel4.Controls.Add(this.dataGridViewDocuments);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Location = new System.Drawing.Point(307, 3);
             this.panel4.Name = "panel4";
@@ -148,78 +140,13 @@ namespace DigitalDocumentary.GUI
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // dataGridView1
+            // dataGridViewDocuments
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9});
-            this.dataGridView1.Location = new System.Drawing.Point(8, 81);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(726, 398);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "#";
-            this.Column2.MinimumWidth = 2;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 65;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Mã số";
-            this.Column3.MinimumWidth = 2;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 80;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Tiêu đề";
-            this.Column4.MinimumWidth = 2;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 90;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Tác giả";
-            this.Column5.MinimumWidth = 2;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 90;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Loại tài liệu";
-            this.Column6.MinimumWidth = 2;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 90;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Người cập nhật";
-            this.Column7.MinimumWidth = 2;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 90;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Ngày cập nhật";
-            this.Column8.MinimumWidth = 2;
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 90;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Tình trạng";
-            this.Column9.MinimumWidth = 2;
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 90;
+            this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDocuments.Location = new System.Drawing.Point(8, 81);
+            this.dataGridViewDocuments.Name = "dataGridViewDocuments";
+            this.dataGridViewDocuments.Size = new System.Drawing.Size(726, 398);
+            this.dataGridViewDocuments.TabIndex = 3;
             // 
             // label2
             // 
@@ -234,18 +161,18 @@ namespace DigitalDocumentary.GUI
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.treeView1);
+            this.panel5.Controls.Add(this.treeViewFolders);
             this.panel5.Location = new System.Drawing.Point(4, 4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(297, 529);
             this.panel5.TabIndex = 0;
             // 
-            // treeView1
+            // treeViewFolders
             // 
-            this.treeView1.Location = new System.Drawing.Point(4, 6);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(290, 472);
-            this.treeView1.TabIndex = 0;
+            this.treeViewFolders.Location = new System.Drawing.Point(4, 6);
+            this.treeViewFolders.Name = "treeViewFolders";
+            this.treeViewFolders.Size = new System.Drawing.Size(290, 472);
+            this.treeViewFolders.TabIndex = 0;
             // 
             // panel2
             // 
@@ -488,7 +415,7 @@ namespace DigitalDocumentary.GUI
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -505,18 +432,10 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewFolders;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewDocuments;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnPeople;
         private System.Windows.Forms.Button btnDown;

@@ -16,6 +16,7 @@ namespace DigitalDocumentary.DTO
         private bool status;
         private FolderDTO parent;
         private List<DocumentDTO> documents;
+        private FolderDTO next;
         private DateTime created_at;
         public FolderDTO() { }
 
@@ -40,5 +41,6 @@ namespace DigitalDocumentary.DTO
         internal FolderDTO Parent { get => parent; set => parent = value; }
         internal List<DocumentDTO> Documents { get => documents; set => documents = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
+        internal FolderDTO Next { get => next; set => next = value; }
     }
 }

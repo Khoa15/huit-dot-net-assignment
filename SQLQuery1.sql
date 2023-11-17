@@ -57,10 +57,11 @@ CREATE TABLE Document (
     type NVARCHAR(255), -- foreign key QuanLyHT--
     file_path VARCHAR(255),--
     link_to_image VARCHAR(255) NULL,--
-    description TEXT,--
+    description NTEXT,--
     document_status BIT,--
-    created_date DATE,--
-	updated_date DATE,---
+	updated_by NVARCHAR(255) NOT NULL,
+    created_date DATE DEFAULT(GETDATE()),--
+	updated_date DATE DEFAULT(GETDATE()),---
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE()),
 	CONSTRAINT PK_Document PRIMARY KEY (document_id),
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
@@ -93,6 +94,7 @@ BEGIN
     -- Sử dụng getdate() cho created_date và 0 cho document_status
     UPDATE Document
     SET created_date = GETDATE(),
+        updated_date = GETDATE(),
         document_status = 0
     WHERE document_id IN (SELECT document_id FROM inserted);
 END;
@@ -170,64 +172,64 @@ GO
 -- INSERT dữ liệu vào bảng Author
 INSERT INTO Author (name, email, phone, description)
 VALUES 
-('Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', 'Tác giả của cuốn sách "Cho tôi xin một vé đi tuổi thơ".'),
-('Bùi Ngọc Tân', 'buingoctan@gmail.com', '0123456789', 'Tác giả của cuốn sách "Thánh Gióng".'),
-('Nguyễn Thành Long', 'thanhlong@gmail.com', '0912345678', 'Tác giả của cuốn sách "Cây chuối non".'),
-('Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', 'Tác giả của cuốn sách "Kính vạn hoa".'),
-('Trần Thị Rò', 'thiro@gmail.com', '0987654321', 'Tác giả của cuốn sách "Những người khổng lồ tốt".'),
-('Hồ Anh Thái', 'hoanhthai@gmail.com', '0912345678', 'Tác giả của cuốn sách "Người giàu cũng khó khăn".'),
-('Lê Thành Sơn', 'thanhson@gmail.com', '0987654321', 'Tác giả của cuốn sách "Chiếc lá cuối cùng".'),
-('Phạm Viết Đức', 'vietduc@gmail.com', '0912345678', 'Tác giả của cuốn sách "Sự tích tâm và tình".'),
-('Nguyễn Hùng Việt', 'hungviet@gmail.com', '0987654321', 'Tác giả của cuốn sách "Cánh đồng bất tận".'),
-('Nguyễn Trung Trực', 'trungtruc@gmail.com', '0912345678', 'Tác giả của cuốn sách "Sông tre".');
+(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cho tôi xin một vé đi tuổi thơ".'),
+(N'Bùi Ngọc Tân', 'buingoctan@gmail.com', '0123456789', N'Tác giả của cuốn sách "Thánh Gióng".'),
+(N'Nguyễn Thành Long', 'thanhlong@gmail.com', '0912345678', N'Tác giả của cuốn sách "Cây chuối non".'),
+(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', N'Tác giả của cuốn sách "Kính vạn hoa".'),
+(N'Trần Thị Rò', 'thiro@gmail.com', '0987654321', N'Tác giả của cuốn sách "Những người khổng lồ tốt".'),
+(N'Hồ Anh Thái', 'hoanhthai@gmail.com', '0912345678', N'Tác giả của cuốn sách "Người giàu cũng khó khăn".'),
+(N'Lê Thành Sơn', 'thanhson@gmail.com', '0987654321', N'Tác giả của cuốn sách "Chiếc lá cuối cùng".'),
+(N'Phạm Viết Đức', 'vietduc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sự tích tâm và tình".'),
+(N'Nguyễn Hùng Việt', 'hungviet@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cánh đồng bất tận".'),
+(N'Nguyễn Trung Trực', 'trungtruc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sông tre".');
 GO
 
 -- INSERT dữ liệu vào bảng Folder
 INSERT INTO Folder (name_id, name, created_by, parent_id, status, created_date)
 VALUES
-('FDR001', 'Công nghiệp', 'admin', NULL, 1, '2023-07-20'),
-('FDR002', 'Máy móc thiết bị', 'admin', NULL, 1, '2023-07-20'),
-('FDR003', 'Đổi mới công nghệ', 'admin', NULL, 1, '2023-07-20'),
-('FDR004', '500 Khoa học - tự nhiên', 'admin', NULL, 1, '2023-07-20'),
-('FDR005', '300 Khoa học - xã hội', 'admin', NULL, 1, '2023-07-20'),
-('FDR006', 'Tài liệu thực tập', 'admin', NULL, 1, '2023-07-20'),
-('FDR007', 'Tài liệu số Lạc Việt', 'admin', NULL, 1, '2023-07-20'),
-('FDR008', 'Tin học', 'admin', NULL, 1, '2023-07-20'),
-('FDR009', 'Audio', 'admin', NULL, 1, '2023-07-20'),
-('FDR010', 'Video', 'admin', NULL, 1, '2023-07-20'),
-('FDR011', 'nghệ thuật gốm sứ', 'admin', 3, 1, '2023-07-20'),
-('FDR012', 'tài liệu khác', 'admin', 3, 1, '2023-07-20');
+('FDR001', N'Công nghiệp', 'admin', NULL, 1, '2023-07-20'),
+('FDR002', N'Máy móc thiết bị', 'admin', NULL, 1, '2023-07-20'),
+('FDR003', N'Đổi mới công nghệ', 'admin', NULL, 1, '2023-07-20'),
+('FDR004', N'500 Khoa học - tự nhiên', 'admin', NULL, 1, '2023-07-20'),
+('FDR005', N'300 Khoa học - xã hội', 'admin', NULL, 1, '2023-07-20'),
+('FDR006', N'Tài liệu thực tập', 'admin', NULL, 1, '2023-07-20'),
+('FDR007', N'Tài liệu số Lạc Việt', 'admin', NULL, 1, '2023-07-20'),
+('FDR008', N'Tin học', 'admin', NULL, 1, '2023-07-20'),
+('FDR009', N'Audio', 'admin', NULL, 1, '2023-07-20'),
+('FDR010', N'Video', 'admin', NULL, 1, '2023-07-20'),
+('FDR011', N'nghệ thuật gốm sứ', 'admin', 3, 1, '2023-07-20'),
+('FDR012', N'tài liệu khác', 'admin', 3, 1, '2023-07-20');
 
 GO
 
 -- INSERT dữ liệu vào bảng Document
-INSERT INTO Document (folder_id, author_id, title, type, file_path, link_to_image, description)
+INSERT INTO Document (folder_id, author_id, title, type, file_path, link_to_image, description, updated_by)
 VALUES 
-(1, 1, 'Cho tôi xin một vé đi tuổi thơ', 'Tiểu thuyết', 'C:\Documents\ChoToiXinMotVeDiTuoiTho.pdf', NULL, 'Tên sách nói lên tất cả, cuốn sách của tác giả Nguyễn Nhật Ánh sẽ đưa bạn trở lại tuổi thơ ngọt ngào nhất của mình.'),
-(1, 1, 'Kính vạn hoa', 'Tiểu thuyết', 'C:\Documents\KinhVanHoa.pdf', NULL, 'Cuốn tiểu thuyết của tác giả Nguyễn Nhật Ánh là một câu chuyện tình nhẹ nhàng, ấm áp và đầy cảm hứng.'),
-(2, 2, 'Thánh Gióng', 'Truyện tranh', 'C:\Documents\ThanhGiong.pdf', NULL, 'Thanh Giong la mot trong nhung nhan vat lich su noi tieng cua Viet Nam. Nhan vat nay duoc khen la anh hung mang lai nhieu loi ich co ban cho dan toc Viet Nam.'),
-(2, 2, 'Đọc hiểu lớp 2', 'Giáo khoa', 'C:\Documents\DocHieuLop2.pdf', NULL, 'Cuốn sách các bài tập đọc hiểu cho học sinh lớp 2 giúp các em nắm vững kỹ năng đọc hiểu và rèn luyện tư duy.'),
-(3, 3, 'Chiến lược dài hạn trong kinh doanh', 'Kinh doanh', 'C:\Documents\ChienluocDaihan.pdf', NULL, 'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về chiến lược dài hạn trong kinh doanh và giúp bạn xây dựng và triển khai một chiến lược hiệu quả.'),
-(3, 3, 'Làm giàu không khó', 'Kinh doanh', 'C:\Documents\LamGiauKhongKho.pdf', NULL, 'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về cách làm giàu thông qua kinh doanh và đầu tư.'),
-(4, 4, 'Tôi là số 4', 'Tiểu thuyết', 'C:\Documents\ToiLaSo4.pdf', NULL, 'Cuốn tiểu thuyết dành cho lứa tuổi thiếu niên với cốt truyện hấp dẫn, cuốn hút.'),
-(4, 4, 'Harry Potter và Hòn đá Phù thủy', 'Tiểu thuyết', 'C:\Documents\HarryPotterVaHonDaPhuThuy.pdf', NULL, 'Cuốn tiểu thuyết nổi tiếng dành cho lứa tuổi thiếu niên với những phép thuật, bí mật và những cuộc phiêu lưu ly kỳ.'),
-(5, 5, 'Sách giáo khoa lớp 1', 'Giáo khoa', 'C:\Documents\SachGiaoKhoaLop1.pdf', NULL, 'Cuốn sách giáo khoa dành cho học sinh lớp 1 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.'),
-(5, 5, 'Sách giáo khoa lớp 2', 'Giáo khoa', 'C:\Documents\SachGiaoKhoaLop2.pdf', NULL, 'Cuốn sách giáo khoa dành cho học sinh lớp 2 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.');
+(1, 1, N'Cho tôi xin một vé đi tuổi thơ',      N'Tiểu thuyết', 'C:\Documents\ChoToiXinMotVeDiTuoiTho.pdf', NULL, N'Tên sách nói lên tất cả, cuốn sách của tác giả Nguyễn Nhật Ánh sẽ đưa bạn trở lại tuổi thơ ngọt ngào nhất của mình.', 'Khoa'),
+(1, 1, N'Kính vạn hoa',                        N'Tiểu thuyết', 'C:\Documents\KinhVanHoa.pdf', NULL, N'Cuốn tiểu thuyết của tác giả Nguyễn Nhật Ánh là một câu chuyện tình nhẹ nhàng, ấm áp và đầy cảm hứng.', 'Khoa'),
+(2, 2, N'Thánh Gióng',                         N'Truyện tranh', 'C:\Documents\ThanhGiong.pdf', NULL, N'Thanh Giong la mot trong nhung nhan vat lich su noi tieng cua Viet Nam. Nhan vat nay duoc khen la anh hung mang lai nhieu loi ich co ban cho dan toc Viet Nam.', 'Khoa'),
+(2, 2, N'Đọc hiểu lớp 2',                      N'Giáo khoa', 'C:\Documents\DocHieuLop2.pdf', NULL, N'Cuốn sách các bài tập đọc hiểu cho học sinh lớp 2 giúp các em nắm vững kỹ năng đọc hiểu và rèn luyện tư duy.', 'Khoa'),
+(3, 3, N'Chiến lược dài hạn trong kinh doanh', N'Kinh doanh', 'C:\Documents\ChienluocDaihan.pdf', NULL, N'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về chiến lược dài hạn trong kinh doanh và giúp bạn xây dựng và triển khai một chiến lược hiệu quả.', 'Khoa'),
+(3, 3, N'Làm giàu không khó',                  N'Kinh doanh', 'C:\Documents\LamGiauKhongKho.pdf', NULL, N'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về cách làm giàu thông qua kinh doanh và đầu tư.', 'Khoa'),
+(4, 4, N'Tôi là số 4',                         N'Tiểu thuyết', 'C:\Documents\ToiLaSo4.pdf', NULL, N'Cuốn tiểu thuyết dành cho lứa tuổi thiếu niên với cốt truyện hấp dẫn, cuốn hút.', 'Khoa'),
+(4, 4, N'Harry Potter và Hòn đá Phù thủy',     N'Tiểu thuyết', 'C:\Documents\HarryPotterVaHonDaPhuThuy.pdf', NULL, N'Cuốn tiểu thuyết nổi tiếng dành cho lứa tuổi thiếu niên với những phép thuật, bí mật và những cuộc phiêu lưu ly kỳ.', 'Khoa'),
+(5, 5, N'Sách giáo khoa lớp 1',                N'Giáo khoa', 'C:\Documents\SachGiaoKhoaLop1.pdf', NULL, N'Cuốn sách giáo khoa dành cho học sinh lớp 1 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa'),
+(5, 5, N'Sách giáo khoa lớp 2',                N'Giáo khoa', 'C:\Documents\SachGiaoKhoaLop2.pdf', NULL, N'Cuốn sách giáo khoa dành cho học sinh lớp 2 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa');
 GO
 
 -- INSERT dữ liệu vào bảng DocumentIndex
 INSERT INTO DocumentIndex (document_id, page_number, parent_index_id, author_id, title)
 VALUES 
-(1, 1, NULL, 1, 'Giới thiệu'),
-(1, 2, NULL, 1, 'Chương 1'),
-(1, 4, 2, 1, 'Phần 1.1'),
-(1, 5, 2, 1, 'Phần 1.2'),
-(2, 1, NULL, 1, 'Giới thiệu'),
-(2, 2, NULL, 1, 'Chương 1'),
-(2, 3, NULL, 1, 'Chương 2'),
-(2, 4, NULL, 1, 'Chương 3'),
-(3, 1, NULL, 2, 'Trang trước'),
-(3, 3, NULL, 2, 'Trang sau');
+(1, 1, NULL, 1, N'Giới thiệu'),
+(1, 2, NULL, 1, N'Chương 1'),
+(1, 4, 2, 1, N'Phần 1.1'),
+(1, 5, 2, 1, N'Phần 1.2'),
+(2, 1, NULL, 1, N'Giới thiệu'),
+(2, 2, NULL, 1, N'Chương 1'),
+(2, 3, NULL, 1, N'Chương 2'),
+(2, 4, NULL, 1, N'Chương 3'),
+(3, 1, NULL, 2, N'Trang trước'),
+(3, 3, NULL, 2, N'Trang sau');
 GO
 
 -- INSERT dữ liệu vào bảng UserAccess

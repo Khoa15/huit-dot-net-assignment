@@ -1,6 +1,7 @@
 ﻿using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,16 @@ namespace DigitalDocumentary.DLL
         {
             Documents.Clear();
             string[] tables = { DocumentDTO.Table, AuthorDTO.Table };
-            where += $" AND {DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id";
-            SqlDataReader rd = db.Select(tables, where);
-            while (rd.Read())
+            if(where != null)
+            {
+                where += $" AND {DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id";
+            }
+            else
+            {
+                where = $"{DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id";
+            }
+            List<DataRow> dataRows = db.Select(tables, where);
+            foreach(DataRow rd in dataRows)
             {
                 DocumentDTO document = new DocumentDTO();
                 document.Id = int.Parse(rd["document_id"].ToString());
@@ -33,9 +41,12 @@ namespace DigitalDocumentary.DLL
                 document.Description = rd["description"].ToString();
                 document.File_path = rd["file_path"].ToString();
                 document.Link_to_image = rd["link_to_image"].ToString();
-                document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
-                document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
+                document.Updated_by = rd["updated_by"].ToString();
+                document.Created_at = Convert.ToDateTime(rd["created_date"].ToString());
+                document.Updated_at = Convert.ToDateTime(rd["updated_date"].ToString());
 
+                document.Author = new AuthorDTO();
+                document.Author.Name = rd["name"].ToString();
                 // Foreign Key .... waiting
 
                 //

@@ -17,7 +17,15 @@ namespace DigitalDocumentary.BLL
 
         public List<FolderDTO> Load()
         {
-            return folderDll.Load();
+            List<FolderDTO> listFolder = folderDll.Load();
+            foreach(FolderDTO fol in listFolder)
+            {
+                if(fol.Parent != null)
+                {
+                    listFolder.Find(f => f.Id == fol.Parent.Id);
+                }
+            }
+            return listFolder;
         }
         public FolderDTO Load(int id)
         {

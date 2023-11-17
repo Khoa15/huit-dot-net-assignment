@@ -33,7 +33,7 @@ namespace DigitalDocumentary.DLL
                 f.Created_at = Convert.ToDateTime(rd["created_date"]);
                 f.Status = Convert.ToBoolean(rd["status"]);
                 object x = rd["parent_id"];
-                if(x == DBNull.Value)
+                if(x != DBNull.Value)
                 {
                     f.Parent = new FolderDTO() { Id = int.Parse(rd["parent_id"].ToString()) };
                 }
@@ -48,6 +48,11 @@ namespace DigitalDocumentary.DLL
             }
             return Folders;
         }
+        //public List<LinkedList<FolderDTO>> Load()
+        //{
+        //    List<LinkedList<FolderDTO>> folderDTOs = new List<LinkedList<FolderDTO>>();
+        //    return folderDTOs;
+        //}
         public FolderDTO LoadById(int id)
         {
             return this.Load($"id = {id}").First();
