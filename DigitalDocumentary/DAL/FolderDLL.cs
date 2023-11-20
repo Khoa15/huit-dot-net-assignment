@@ -59,12 +59,12 @@ namespace DigitalDocumentary.DLL
         }
         public int Add(FolderDTO fol)
         {
-            FolderDTO parent = null;
+            string parent = "NULL";
             if(fol.Parent != null)
             {
-                parent = fol.Parent;
+                parent = $"{fol.Parent.Id}";
             }
-            string sql = $"INSERT INTO {FolderDTO.Table} (name_id, name, created_by, parent_id, status) VALUES ('{fol.NameId}', '{fol.Name}', '{fol.CreatedBy}', '{parent.Id}', {fol.Status})";
+            string sql = $"INSERT INTO {FolderDTO.Table} (name_id, name, created_by, parent_id, status) VALUES ('{fol.NameId}', N'{fol.Name}', N'{fol.CreatedBy}', {parent}, {Convert.ToInt16(fol.Status)})";
             return db.NonQuery(sql);
         }
         public int Update(FolderDTO fol)
@@ -74,7 +74,7 @@ namespace DigitalDocumentary.DLL
             {
                 parent = fol.Parent;
             }
-            string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = '{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = {parent.Id}, status = {fol.Status} WHERE id = {fol.Id}";
+            string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = N'{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = {parent.Id}, status = {fol.Status} WHERE id = {fol.Id}";
             return db.NonQuery(sql);
         }
         public int UpdateParent(FolderDTO fol, int? pId)

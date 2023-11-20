@@ -20,3 +20,4 @@ D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumenta
 D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.CP_ThuMuc.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Document.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Folder.resources
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.UserControl2.resources

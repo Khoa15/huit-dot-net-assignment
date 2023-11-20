@@ -30,11 +30,19 @@ namespace DigitalDocumentary.BLL
         public FolderDTO Load(int id)
         {
             //return folderDll.LoadById(id);
+            //if(folderDll.Folders.Count == 0)
+            //{
+            //    return folderDll.LoadById(id);
+            //}
             return folderDll.Folders.Find(f => f.Id == id);
         }
-        public int Update(FolderDTO folder)
+        public bool Add(FolderDTO folder)
         {
-            return folderDll.Update(folder);
+            return folderDll.Add(folder) > 0;
+        }
+        public bool Update(FolderDTO folder)
+        {
+            return folderDll.Update(folder) > 0;
         }
         public int UpdateStatusAllDocuments(bool status, int[] docIds)
         {

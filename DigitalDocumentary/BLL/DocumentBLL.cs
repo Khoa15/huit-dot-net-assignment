@@ -109,6 +109,23 @@ namespace DigitalDocumentary.BLL
         {
             return docDll.Documents.Find(o => o == doc);
         }
+        public List<DocumentDTO> Find(int areaSelected, string keyword)
+        {
+            List<DocumentDTO> result = null;
+            switch (areaSelected)
+            {
+                case 0:// Id
+                    result = docDll.Documents.FindAll(d => d.Id == Convert.ToInt32(keyword));
+                    break;
+                case 1:// Title
+                    result = docDll.Documents.FindAll(d => d.Title.Contains(keyword));
+                    break;
+                case 2:// Author Name
+                    result = docDll.Documents.FindAll(d => d.AuthorName.Contains(keyword));
+                    break;
+            }
+            return result;
+        }
         public DocumentDTO FindById(int id)
         {
             return docDll.Documents.Find(d => d.Id == id);

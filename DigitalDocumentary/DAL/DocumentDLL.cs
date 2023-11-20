@@ -41,6 +41,7 @@ namespace DigitalDocumentary.DLL
                 document.Description = rd["description"].ToString();
                 document.File_path = rd["file_path"].ToString();
                 document.Link_to_image = rd["link_to_image"].ToString();
+                document.Type = rd["type"].ToString();
                 document.Updated_by = rd["updated_by"].ToString();
                 document.Created_at = Convert.ToDateTime(rd["created_date"].ToString());
                 document.Updated_at = Convert.ToDateTime(rd["updated_date"].ToString());
