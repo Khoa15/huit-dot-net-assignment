@@ -41,61 +41,61 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pnMain = new System.Windows.Forms.Panel();
-            this.btnPeople = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pnBottom = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtBoxFolder = new System.Windows.Forms.TextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.txtBoxTitle = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.txtBoxAuthor = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.txtBoxDeMuc = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.txtBoxDescription = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.cbBoxTypeDoc = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.txtBoxFilePath = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnFilePath = new System.Windows.Forms.Button();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.cbBoxTypeDoc = new System.Windows.Forms.ComboBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.txtBoxDescription = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.txtBoxDeMuc = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.txtBoxAuthor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.txtBoxTitle = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.txtBoxFolder = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnClearImage = new System.Windows.Forms.Button();
+            this.btnCam = new System.Windows.Forms.Button();
+            this.picBoxAvatar = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnBottom = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnPublic = new System.Windows.Forms.Button();
             this.pnMain.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.pnBottom.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
-            this.panel13.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).BeginInit();
+            this.pnBottom.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button11
@@ -222,24 +222,15 @@
             this.button3.TabIndex = 1;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // btnDown
+            // btnSave
             // 
-            this.btnDown.Image = global::DigitalDocumentary.Properties.Resources.down;
-            this.btnDown.Location = new System.Drawing.Point(89, 9);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(58, 42);
-            this.btnDown.TabIndex = 2;
-            this.btnDown.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd.Image = global::DigitalDocumentary.Properties.Resources.add;
-            this.btnAdd.Location = new System.Drawing.Point(12, 9);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(58, 42);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnSave.Image = global::DigitalDocumentary.Properties.Resources.down;
+            this.btnSave.Location = new System.Drawing.Point(12, 9);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(58, 42);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdit
             // 
@@ -256,22 +247,13 @@
             this.pnMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pnMain.Controls.Add(this.btnPeople);
-            this.pnMain.Controls.Add(this.btnDown);
-            this.pnMain.Controls.Add(this.btnAdd);
+            this.pnMain.Controls.Add(this.button4);
+            this.pnMain.Controls.Add(this.btnPublic);
+            this.pnMain.Controls.Add(this.btnSave);
             this.pnMain.Location = new System.Drawing.Point(0, 538);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(1093, 69);
             this.pnMain.TabIndex = 6;
-            // 
-            // btnPeople
-            // 
-            this.btnPeople.Image = global::DigitalDocumentary.Properties.Resources.people;
-            this.btnPeople.Location = new System.Drawing.Point(164, 9);
-            this.btnPeople.Name = "btnPeople";
-            this.btnPeople.Size = new System.Drawing.Size(58, 42);
-            this.btnPeople.TabIndex = 3;
-            this.btnPeople.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -329,234 +311,17 @@
             this.panel5.Size = new System.Drawing.Size(768, 469);
             this.panel5.TabIndex = 1;
             // 
-            // panel4
+            // panel13
             // 
-            this.panel4.Controls.Add(this.button5);
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Location = new System.Drawing.Point(4, 10);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(280, 306);
-            this.panel4.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(4, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "HÌNH ẢNH TRANG BÌA";
-            // 
-            // pnBottom
-            // 
-            this.pnBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pnBottom.Controls.Add(this.button11);
-            this.pnBottom.Controls.Add(this.button10);
-            this.pnBottom.Controls.Add(this.button9);
-            this.pnBottom.Controls.Add(this.button8);
-            this.pnBottom.Controls.Add(this.button7);
-            this.pnBottom.Controls.Add(this.btnDelFolder);
-            this.pnBottom.Controls.Add(this.btnEdit);
-            this.pnBottom.Controls.Add(this.btnAddDoc);
-            this.pnBottom.Controls.Add(this.button1);
-            this.pnBottom.Controls.Add(this.button2);
-            this.pnBottom.Controls.Add(this.button3);
-            this.pnBottom.Location = new System.Drawing.Point(0, 535);
-            this.pnBottom.Name = "pnBottom";
-            this.pnBottom.Size = new System.Drawing.Size(1093, 69);
-            this.pnBottom.TabIndex = 7;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(12, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1068, 585);
-            this.panel1.TabIndex = 5;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(277, 276);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "THƯ MỤC";
-            // 
-            // txtBoxFolder
-            // 
-            this.txtBoxFolder.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtBoxFolder.Enabled = false;
-            this.txtBoxFolder.Location = new System.Drawing.Point(0, 27);
-            this.txtBoxFolder.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBoxFolder.Name = "txtBoxFolder";
-            this.txtBoxFolder.Size = new System.Drawing.Size(762, 26);
-            this.txtBoxFolder.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.Controls.Add(this.txtBoxFolder);
-            this.panel6.Controls.Add(this.label3);
-            this.panel6.Location = new System.Drawing.Point(3, 4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(762, 53);
-            this.panel6.TabIndex = 2;
-            // 
-            // panel7
-            // 
-            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel7.Controls.Add(this.txtBoxTitle);
-            this.panel7.Controls.Add(this.label4);
-            this.panel7.Location = new System.Drawing.Point(3, 171);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(762, 53);
-            this.panel7.TabIndex = 3;
-            // 
-            // txtBoxTitle
-            // 
-            this.txtBoxTitle.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtBoxTitle.Location = new System.Drawing.Point(0, 27);
-            this.txtBoxTitle.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBoxTitle.Name = "txtBoxTitle";
-            this.txtBoxTitle.Size = new System.Drawing.Size(762, 26);
-            this.txtBoxTitle.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(159, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "TIÊU ĐỀ TÀI LIỆU";
-            // 
-            // panel8
-            // 
-            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel8.Controls.Add(this.txtBoxAuthor);
-            this.panel8.Controls.Add(this.label5);
-            this.panel8.Location = new System.Drawing.Point(3, 250);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(762, 53);
-            this.panel8.TabIndex = 4;
-            // 
-            // txtBoxAuthor
-            // 
-            this.txtBoxAuthor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtBoxAuthor.Location = new System.Drawing.Point(0, 27);
-            this.txtBoxAuthor.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBoxAuthor.Name = "txtBoxAuthor";
-            this.txtBoxAuthor.Size = new System.Drawing.Size(762, 26);
-            this.txtBoxAuthor.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "TÁC GIẢ";
-            // 
-            // panel9
-            // 
-            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel9.Controls.Add(this.txtBoxDeMuc);
-            this.panel9.Controls.Add(this.label6);
-            this.panel9.Location = new System.Drawing.Point(3, 322);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(762, 53);
-            this.panel9.TabIndex = 5;
-            // 
-            // txtBoxDeMuc
-            // 
-            this.txtBoxDeMuc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtBoxDeMuc.Location = new System.Drawing.Point(0, 27);
-            this.txtBoxDeMuc.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBoxDeMuc.Name = "txtBoxDeMuc";
-            this.txtBoxDeMuc.Size = new System.Drawing.Size(762, 26);
-            this.txtBoxDeMuc.TabIndex = 1;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label6.Location = new System.Drawing.Point(0, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "ĐỀ MỤC";
-            // 
-            // panel10
-            // 
-            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel10.Controls.Add(this.txtBoxDescription);
-            this.panel10.Controls.Add(this.label7);
-            this.panel10.Location = new System.Drawing.Point(3, 392);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(762, 77);
-            this.panel10.TabIndex = 6;
-            // 
-            // txtBoxDescription
-            // 
-            this.txtBoxDescription.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtBoxDescription.Location = new System.Drawing.Point(0, 30);
-            this.txtBoxDescription.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBoxDescription.Multiline = true;
-            this.txtBoxDescription.Name = "txtBoxDescription";
-            this.txtBoxDescription.Size = new System.Drawing.Size(762, 47);
-            this.txtBoxDescription.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label7.Location = new System.Drawing.Point(0, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 20);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "MÔ TẢ";
+            this.panel13.Controls.Add(this.panel11);
+            this.panel13.Controls.Add(this.panel12);
+            this.panel13.Controls.Add(this.btnFilePath);
+            this.panel13.Location = new System.Drawing.Point(3, 68);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(762, 87);
+            this.panel13.TabIndex = 10;
             // 
             // panel11
             // 
@@ -569,6 +334,16 @@
             this.panel11.Size = new System.Drawing.Size(312, 53);
             this.panel11.TabIndex = 7;
             this.panel11.Paint += new System.Windows.Forms.PaintEventHandler(this.panel11_Paint);
+            // 
+            // cbBoxTypeDoc
+            // 
+            this.cbBoxTypeDoc.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.cbBoxTypeDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBoxTypeDoc.FormattingEnabled = true;
+            this.cbBoxTypeDoc.Location = new System.Drawing.Point(0, 25);
+            this.cbBoxTypeDoc.Name = "cbBoxTypeDoc";
+            this.cbBoxTypeDoc.Size = new System.Drawing.Size(312, 28);
+            this.cbBoxTypeDoc.TabIndex = 2;
             // 
             // label8
             // 
@@ -626,45 +401,274 @@
             this.btnFilePath.UseVisualStyleBackColor = true;
             this.btnFilePath.Click += new System.EventHandler(this.button4_Click);
             // 
-            // panel13
+            // panel10
             // 
-            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel13.Controls.Add(this.panel11);
-            this.panel13.Controls.Add(this.panel12);
-            this.panel13.Controls.Add(this.btnFilePath);
-            this.panel13.Location = new System.Drawing.Point(3, 68);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(762, 87);
-            this.panel13.TabIndex = 10;
+            this.panel10.Controls.Add(this.txtBoxDescription);
+            this.panel10.Controls.Add(this.label7);
+            this.panel10.Location = new System.Drawing.Point(3, 392);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(762, 77);
+            this.panel10.TabIndex = 6;
             // 
-            // cbBoxTypeDoc
+            // txtBoxDescription
             // 
-            this.cbBoxTypeDoc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.cbBoxTypeDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBoxTypeDoc.FormattingEnabled = true;
-            this.cbBoxTypeDoc.Location = new System.Drawing.Point(0, 25);
-            this.cbBoxTypeDoc.Name = "cbBoxTypeDoc";
-            this.cbBoxTypeDoc.Size = new System.Drawing.Size(312, 28);
-            this.cbBoxTypeDoc.TabIndex = 2;
+            this.txtBoxDescription.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtBoxDescription.Location = new System.Drawing.Point(0, 30);
+            this.txtBoxDescription.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBoxDescription.Multiline = true;
+            this.txtBoxDescription.Name = "txtBoxDescription";
+            this.txtBoxDescription.Size = new System.Drawing.Size(762, 47);
+            this.txtBoxDescription.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "MÔ TẢ";
+            // 
+            // panel9
+            // 
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel9.Controls.Add(this.txtBoxDeMuc);
+            this.panel9.Controls.Add(this.label6);
+            this.panel9.Location = new System.Drawing.Point(3, 322);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(762, 53);
+            this.panel9.TabIndex = 5;
+            // 
+            // txtBoxDeMuc
+            // 
+            this.txtBoxDeMuc.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtBoxDeMuc.Location = new System.Drawing.Point(0, 27);
+            this.txtBoxDeMuc.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBoxDeMuc.Name = "txtBoxDeMuc";
+            this.txtBoxDeMuc.Size = new System.Drawing.Size(762, 26);
+            this.txtBoxDeMuc.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "ĐỀ MỤC";
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel8.Controls.Add(this.txtBoxAuthor);
+            this.panel8.Controls.Add(this.label5);
+            this.panel8.Location = new System.Drawing.Point(3, 250);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(762, 53);
+            this.panel8.TabIndex = 4;
+            // 
+            // txtBoxAuthor
+            // 
+            this.txtBoxAuthor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtBoxAuthor.Location = new System.Drawing.Point(0, 27);
+            this.txtBoxAuthor.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBoxAuthor.Name = "txtBoxAuthor";
+            this.txtBoxAuthor.Size = new System.Drawing.Size(762, 26);
+            this.txtBoxAuthor.TabIndex = 1;
+            this.txtBoxAuthor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxAuthor_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "TÁC GIẢ";
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.Controls.Add(this.txtBoxTitle);
+            this.panel7.Controls.Add(this.label4);
+            this.panel7.Location = new System.Drawing.Point(3, 171);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(762, 53);
+            this.panel7.TabIndex = 3;
+            // 
+            // txtBoxTitle
+            // 
+            this.txtBoxTitle.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtBoxTitle.Location = new System.Drawing.Point(0, 27);
+            this.txtBoxTitle.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBoxTitle.Name = "txtBoxTitle";
+            this.txtBoxTitle.Size = new System.Drawing.Size(762, 26);
+            this.txtBoxTitle.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(159, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "TIÊU ĐỀ TÀI LIỆU";
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.Controls.Add(this.txtBoxFolder);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Location = new System.Drawing.Point(3, 4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(762, 53);
+            this.panel6.TabIndex = 2;
+            // 
+            // txtBoxFolder
+            // 
+            this.txtBoxFolder.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtBoxFolder.Enabled = false;
+            this.txtBoxFolder.Location = new System.Drawing.Point(0, 27);
+            this.txtBoxFolder.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBoxFolder.Name = "txtBoxFolder";
+            this.txtBoxFolder.Size = new System.Drawing.Size(762, 26);
+            this.txtBoxFolder.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "THƯ MỤC";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnClearImage);
+            this.panel4.Controls.Add(this.btnCam);
+            this.panel4.Controls.Add(this.picBoxAvatar);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Location = new System.Drawing.Point(4, 10);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(280, 306);
+            this.panel4.TabIndex = 0;
+            // 
+            // btnClearImage
+            // 
+            this.btnClearImage.Location = new System.Drawing.Point(43, 273);
+            this.btnClearImage.Name = "btnClearImage";
+            this.btnClearImage.Size = new System.Drawing.Size(33, 29);
+            this.btnClearImage.TabIndex = 2;
+            this.btnClearImage.Text = "X";
+            this.btnClearImage.UseVisualStyleBackColor = true;
+            this.btnClearImage.Click += new System.EventHandler(this.btnClearImage_Click);
+            // 
+            // btnCam
+            // 
+            this.btnCam.Location = new System.Drawing.Point(4, 273);
+            this.btnCam.Name = "btnCam";
+            this.btnCam.Size = new System.Drawing.Size(33, 29);
+            this.btnCam.TabIndex = 2;
+            this.btnCam.Text = "C";
+            this.btnCam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCam.UseVisualStyleBackColor = true;
+            this.btnCam.Click += new System.EventHandler(this.btnCam_Click);
+            // 
+            // picBoxAvatar
+            // 
+            this.picBoxAvatar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBoxAvatar.BackColor = System.Drawing.Color.Silver;
+            this.picBoxAvatar.Location = new System.Drawing.Point(0, 27);
+            this.picBoxAvatar.Name = "picBoxAvatar";
+            this.picBoxAvatar.Size = new System.Drawing.Size(277, 276);
+            this.picBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoxAvatar.TabIndex = 1;
+            this.picBoxAvatar.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label2.Location = new System.Drawing.Point(4, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(196, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "HÌNH ẢNH TRANG BÌA";
+            // 
+            // pnBottom
+            // 
+            this.pnBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnBottom.Controls.Add(this.button11);
+            this.pnBottom.Controls.Add(this.button10);
+            this.pnBottom.Controls.Add(this.button9);
+            this.pnBottom.Controls.Add(this.button8);
+            this.pnBottom.Controls.Add(this.button7);
+            this.pnBottom.Controls.Add(this.btnDelFolder);
+            this.pnBottom.Controls.Add(this.btnEdit);
+            this.pnBottom.Controls.Add(this.btnAddDoc);
+            this.pnBottom.Controls.Add(this.button1);
+            this.pnBottom.Controls.Add(this.button2);
+            this.pnBottom.Controls.Add(this.button3);
+            this.pnBottom.Location = new System.Drawing.Point(0, 535);
+            this.pnBottom.Name = "pnBottom";
+            this.pnBottom.Size = new System.Drawing.Size(1093, 69);
+            this.pnBottom.TabIndex = 7;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(12, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1068, 585);
+            this.panel1.TabIndex = 5;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(4, 273);
+            this.button4.Image = global::DigitalDocumentary.Properties.Resources.block;
+            this.button4.Location = new System.Drawing.Point(164, 9);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(33, 29);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "C";
+            this.button4.Size = new System.Drawing.Size(58, 42);
+            this.button4.TabIndex = 13;
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnPublic
             // 
-            this.button5.Location = new System.Drawing.Point(43, 273);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(33, 29);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "X";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnPublic.Image = global::DigitalDocumentary.Properties.Resources.tick;
+            this.btnPublic.Location = new System.Drawing.Point(88, 9);
+            this.btnPublic.Name = "btnPublic";
+            this.btnPublic.Size = new System.Drawing.Size(58, 42);
+            this.btnPublic.TabIndex = 12;
+            this.btnPublic.UseVisualStyleBackColor = true;
             // 
             // AddDocument
             // 
@@ -681,26 +685,26 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.pnBottom.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
+            this.panel13.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            this.panel13.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).EndInit();
+            this.pnBottom.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -720,11 +724,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Panel pnMain;
-        private System.Windows.Forms.Button btnPeople;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -733,7 +735,7 @@
         private System.Windows.Forms.Panel pnBottom;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picBoxAvatar;
         private System.Windows.Forms.Button btnFilePath;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.TextBox txtBoxFilePath;
@@ -757,7 +759,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.ComboBox cbBoxTypeDoc;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnClearImage;
+        private System.Windows.Forms.Button btnCam;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPublic;
     }
 }
