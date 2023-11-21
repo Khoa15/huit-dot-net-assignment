@@ -36,7 +36,7 @@ namespace DigitalDocumentary.DLL
             foreach(DataRow rd in dataRows)
             {
                 DocumentDTO document = new DocumentDTO();
-                document.Id = int.Parse(rd["document_id"].ToString());
+                document.Id = int.Parse(rd["id"].ToString());
                 document.Title = rd["title"].ToString();
                 document.Description = rd["description"].ToString();
                 document.File_path = rd["file_path"].ToString();

@@ -21,3 +21,17 @@ D:\HOCTAP\HK5\CONG_NGHE_NET\Test_PhanHe\huit-dot-net-assignment\DigitalDocumenta
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Document.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Folder.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.UserControl2.resources
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe.config
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.pdb
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.AssemblyReference.cache
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.SuggestedBindingRedirects.cache
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Document.resources
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Folder.resources
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.UserControl2.resources
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.Properties.Resources.resources
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.GenerateResource.cache
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CoreCompileInputs.cache
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb
+C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.AddDocument.resources

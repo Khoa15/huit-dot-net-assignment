@@ -9,16 +9,16 @@ GO
 
 -- Tạo bảng Folder với ràng buộc
 CREATE TABLE Folder (
-    folder_id INT IDENTITY(1,1),
-    name_id NVARCHAR(10) NOT NULL,
+    id INT IDENTITY(1,1),
+    name_id NVARCHAR(10) NOT NULL UNIQUE,
     name NVARCHAR(255) NOT NULL,
     created_by NVARCHAR(255),
     parent_id INT NULL,
 	status BIT DEFAULT(0),
     created_date DATE,
     CONSTRAINT CHK_Folder_CreatedDate CHECK (created_date <= GETDATE()),
-	CONSTRAINT PK_Folder PRIMARY KEY (folder_id),	
-    CONSTRAINT FK_Folder_Parent FOREIGN KEY (parent_id) REFERENCES Folder(folder_id)
+	CONSTRAINT PK_Folder PRIMARY KEY (id),	
+    CONSTRAINT FK_Folder_Parent FOREIGN KEY (parent_id) REFERENCES Folder(id)
 );
 GO
 
@@ -50,7 +50,7 @@ GO
 
 -- Tạo bảng Document với ràng buộc
 CREATE TABLE Document (
-    document_id INT IDENTITY(1,1) NOT NULL,--
+    id INT IDENTITY(1,1) NOT NULL,--
     folder_id INT NOT NULL,--
     author_id INT NULL,--
     title NVARCHAR(255) NOT NULL,--
@@ -63,8 +63,8 @@ CREATE TABLE Document (
     created_date DATE DEFAULT(GETDATE()),--
 	updated_date DATE DEFAULT(GETDATE()),---
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE()),
-	CONSTRAINT PK_Document PRIMARY KEY (document_id),
-    CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(folder_id),
+	CONSTRAINT PK_Document PRIMARY KEY (id),
+    CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(id),
     CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(id)
 );
 GO
@@ -78,7 +78,7 @@ CREATE TABLE DocumentIndex (
     author_id INT NULL,
     title NVARCHAR(255),
 	CONSTRAINT PK_DocumentIndex PRIMARY KEY (index_id),
-	CONSTRAINT FK_DocumentIndex_DocumentID FOREIGN KEY (document_id) REFERENCES Document(document_id),
+	CONSTRAINT FK_DocumentIndex_DocumentID FOREIGN KEY (document_id) REFERENCES Document(id),
 	CONSTRAINT FK_DocumentIndex_ParentIndexID FOREIGN KEY (parent_index_id) REFERENCES DocumentIndex(index_id),
 	CONSTRAINT FK_DocumentIndex_AuthorID FOREIGN KEY (author_id) REFERENCES Author(id)
 );
@@ -96,7 +96,7 @@ BEGIN
     SET created_date = GETDATE(),
         updated_date = GETDATE(),
         document_status = 0
-    WHERE document_id IN (SELECT document_id FROM inserted);
+    WHERE id IN (SELECT id FROM inserted);
 END;
 GO
 
@@ -128,7 +128,7 @@ BEGIN
         SET created_date = COALESCE(i.created_date, GETDATE()),
             created_by = COALESCE(i.created_by, SUSER_NAME())
         FROM Folder AS f
-        JOIN inserted AS i ON f.folder_id = i.folder_id;
+        JOIN inserted AS i ON f.id = i.id;
     END;
 END;
 GO
@@ -146,7 +146,7 @@ BEGIN
         SET created_date = COALESCE(i.created_date, GETDATE()),
             document_status = COALESCE(i.document_status, 0)
         FROM Document AS d
-        JOIN inserted AS i ON d.document_id = i.document_id;
+        JOIN inserted AS i ON d.id = i.id;
     END;
 END;
 GO

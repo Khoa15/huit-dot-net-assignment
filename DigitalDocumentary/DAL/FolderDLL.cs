@@ -27,7 +27,7 @@ namespace DigitalDocumentary.DLL
             foreach (DataRow rd in dataRows)
             {
                 FolderDTO f = new FolderDTO();
-                f.Id = int.Parse(rd["folder_id"].ToString());
+                f.Id = int.Parse(rd["id"].ToString());
                 f.NameId = rd["name_id"].ToString();
                 f.Name = rd["name"].ToString();
                 f.Created_at = Convert.ToDateTime(rd["created_date"]);

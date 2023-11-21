@@ -10,7 +10,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class FolderBLL
     {
-        FolderDLL folderDll = new FolderDLL();
+        static FolderDLL folderDll = new FolderDLL();
         public FolderBLL()
         {
         }
@@ -30,10 +30,10 @@ namespace DigitalDocumentary.BLL
         public FolderDTO Load(int id)
         {
             //return folderDll.LoadById(id);
-            //if(folderDll.Folders.Count == 0)
-            //{
-            //    return folderDll.LoadById(id);
-            //}
+            if(folderDll.Folders.Count == 0)
+            {
+                return folderDll.LoadById(id);
+            }
             return folderDll.Folders.Find(f => f.Id == id);
         }
         public bool Add(FolderDTO folder)
@@ -63,7 +63,7 @@ namespace DigitalDocumentary.BLL
             }
             return excuted;
         }
-        public int Delete(int id)
+        public static int Delete(int id)
         {
             //FolderDTO folder = this.Load(id);
             //return folderDll.Delete(folder);

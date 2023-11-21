@@ -139,5 +139,19 @@ namespace DigitalDocumentary.GUI
             Folder a = new Folder(id);
             a.ShowDialog();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(treeViewFolders.SelectedNode.Name);
+            if (MessageBox.Show("Bạn có chắc muốn xóa bản ghi này?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                FolderBLL.Delete(id);
+            }
+        }
+
+        private void btnAddDoc_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

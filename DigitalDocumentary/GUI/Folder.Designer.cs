@@ -111,7 +111,7 @@ namespace DigitalDocumentary.GUI
             this.panel7.Controls.Add(this.label4);
             this.panel7.Location = new System.Drawing.Point(4, 149);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1055, 64);
+            this.panel7.Size = new System.Drawing.Size(546, 64);
             this.panel7.TabIndex = 3;
             // 
             // ckBoxFolderStatus
@@ -119,7 +119,7 @@ namespace DigitalDocumentary.GUI
             this.ckBoxFolderStatus.AutoSize = true;
             this.ckBoxFolderStatus.Location = new System.Drawing.Point(8, 41);
             this.ckBoxFolderStatus.Name = "ckBoxFolderStatus";
-            this.ckBoxFolderStatus.Size = new System.Drawing.Size(54, 20);
+            this.ckBoxFolderStatus.Size = new System.Drawing.Size(82, 28);
             this.ckBoxFolderStatus.TabIndex = 3;
             this.ckBoxFolderStatus.Text = "Hiện";
             this.ckBoxFolderStatus.UseVisualStyleBackColor = true;
@@ -130,7 +130,7 @@ namespace DigitalDocumentary.GUI
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(4, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 19);
+            this.label4.Size = new System.Drawing.Size(135, 29);
             this.label4.TabIndex = 0;
             this.label4.Text = "Trạng thái";
             // 
@@ -140,14 +140,14 @@ namespace DigitalDocumentary.GUI
             this.panel5.Controls.Add(this.label3);
             this.panel5.Location = new System.Drawing.Point(4, 79);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1055, 64);
+            this.panel5.Size = new System.Drawing.Size(546, 64);
             this.panel5.TabIndex = 2;
             // 
             // txtBoxFolderName
             // 
             this.txtBoxFolderName.Location = new System.Drawing.Point(8, 27);
             this.txtBoxFolderName.Name = "txtBoxFolderName";
-            this.txtBoxFolderName.Size = new System.Drawing.Size(538, 23);
+            this.txtBoxFolderName.Size = new System.Drawing.Size(535, 31);
             this.txtBoxFolderName.TabIndex = 1;
             // 
             // label3
@@ -156,7 +156,7 @@ namespace DigitalDocumentary.GUI
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(4, 4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 19);
+            this.label3.Size = new System.Drawing.Size(164, 29);
             this.label3.TabIndex = 0;
             this.label3.Text = "Tên thư mục";
             // 
@@ -166,14 +166,14 @@ namespace DigitalDocumentary.GUI
             this.panel4.Controls.Add(this.label2);
             this.panel4.Location = new System.Drawing.Point(4, 9);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1055, 64);
+            this.panel4.Size = new System.Drawing.Size(546, 64);
             this.panel4.TabIndex = 0;
             // 
             // txtBoxFolderNameId
             // 
             this.txtBoxFolderNameId.Location = new System.Drawing.Point(8, 27);
             this.txtBoxFolderNameId.Name = "txtBoxFolderNameId";
-            this.txtBoxFolderNameId.Size = new System.Drawing.Size(538, 23);
+            this.txtBoxFolderNameId.Size = new System.Drawing.Size(535, 31);
             this.txtBoxFolderNameId.TabIndex = 1;
             // 
             // label2
@@ -182,7 +182,7 @@ namespace DigitalDocumentary.GUI
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(4, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 19);
+            this.label2.Size = new System.Drawing.Size(155, 29);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã thư mục";
             // 
@@ -238,9 +238,9 @@ namespace DigitalDocumentary.GUI
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(48, 11);
+            this.label1.Location = new System.Drawing.Point(52, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 19);
+            this.label1.Size = new System.Drawing.Size(257, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "CẬP NHẬT THƯ MỤC";
             // 

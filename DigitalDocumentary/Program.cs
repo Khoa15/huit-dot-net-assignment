@@ -16,7 +16,7 @@ namespace DigitalDocumentary
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI.Document());
+            Application.Run(new GUI.AddDocument());
         }
     }
 }

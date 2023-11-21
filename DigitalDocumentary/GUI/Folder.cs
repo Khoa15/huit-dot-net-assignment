@@ -15,6 +15,7 @@ namespace DigitalDocumentary.GUI
     public partial class Folder : Form
     {
         FolderBLL folderBll = new FolderBLL();
+        private bool isEdit = false;
         public Folder()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace DigitalDocumentary.GUI
             txtBoxFolderNameId.Text = fol.NameId;
             txtBoxFolderName.Text = fol.Name;
             ckBoxFolderStatus.Checked = fol.Status;
+            isEdit = true;
         }
 
         private void CP_ThuMuc_Load(object sender, EventArgs e)
