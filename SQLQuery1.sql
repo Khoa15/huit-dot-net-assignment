@@ -246,3 +246,294 @@ VALUES
 (1, 0, 1, 0, 0, 0),
 (1, 1, 1, 1, 1, 1);
 GO
+
+
+--STORED PROCEDURES
+
+-- SELECT
+-- select all documents:
+CREATE PROC SelectAllDocuments
+AS
+BEGIN
+    SELECT * FROM Document;
+END;
+GO
+
+--exec SelectAllDocuments
+
+-- select documents by folder ID:
+CREATE PROC SelectDocumentsByFolderID (@folderID INT)
+AS
+BEGIN
+    SELECT * FROM Document WHERE folder_id = @folderID;
+END;
+GO
+
+--exec SelectDocumentsByFolderID 1
+
+-- select documents by title
+CREATE PROC SelectDocumentsByTitle (@title NVARCHAR(255))
+AS
+BEGIN
+    SELECT * FROM Document WHERE title LIKE '%@title%';
+END;
+GO
+
+-- select documents by author
+CREATE PROC SelectDocumentsByAuthor (@authorID INT)
+AS
+BEGIN
+    SELECT * FROM Document WHERE author_id = @authorID;
+END;
+GO
+
+-- select documents by date range
+CREATE PROC SelectDocumentsByDateRange (@startDate DATE, @endDate DATE)
+AS
+BEGIN
+    SELECT * FROM Document WHERE created_date BETWEEN @startDate AND @endDate;
+END;
+GO
+
+-- select documents by date range and status
+CREATE PROCEDURE SelectDocumentsByDateRangeAndStatus (@startDate DATE, @endDate DATE, @status INT)
+AS
+BEGIN
+    SELECT * FROM Document
+    WHERE created_date BETWEEN @startDate AND @endDate
+      AND document_status = @status;
+END;
+GO
+
+
+-- UPDATE
+-- update the document status to approved
+CREATE PROC UpdateDocumentStatusToApproved
+AS
+BEGIN
+    UPDATE Document SET document_status = 1 WHERE document_status = 0;
+END;
+GO
+
+-- update the title of a document
+CREATE PROC UpdateDocumentTitle (@documentID INT, @newTitle NVARCHAR(255))
+AS
+BEGIN
+    UPDATE Document SET title = @newTitle WHERE id = @documentID;
+END;
+GO
+
+-- update the document status to rejected
+CREATE PROC UpdateDocumentStatusToRejected (@documentID INT)
+AS
+BEGIN
+    UPDATE Document SET document_status = 2 WHERE id = @documentID;
+END;
+GO
+
+-- update the document title and description
+CREATE PROC UpdateDocumentTitleAndDescription (@documentID INT, @newTitle NVARCHAR(255), @newDescription NTEXT)
+AS
+BEGIN
+    UPDATE Document SET title = @newTitle, description = @newDescription WHERE id = @documentID;
+END;
+GO
+
+-- DELETE
+-- delete all documents in a folder
+CREATE PROC DeleteDocumentsInFolder (@folderID INT)
+AS
+BEGIN
+    DELETE FROM Document WHERE folder_id = @folderID;
+END;
+GO
+
+-- delete a specific document
+CREATE PROC DeleteDocument (@documentID INT)
+AS
+BEGIN
+    DELETE FROM Document WHERE id = @documentID;
+END;
+GO
+
+-- delete all documents by author
+CREATE PROC DeleteDocumentsByAuthor (@authorID INT)
+AS
+BEGIN
+    DELETE FROM Document WHERE author_id = @authorID;
+END;
+GO
+
+-- delete all documents in a folder by date range
+CREATE PROC DeleteDocumentsInFolderByDateRange (@folderID INT, @startDate DATE, @endDate DATE)
+AS
+BEGIN
+    DELETE FROM Document WHERE folder_id = @folderID AND created_date BETWEEN @startDate AND @endDate;
+END;
+GO
+
+-- FUNCTION
+-- Hàm trả về tổng số tài liệu
+CREATE FUNCTION CountDocuments()
+RETURNS INT
+AS
+BEGIN
+    DECLARE @count INT;
+    SELECT @count = COUNT(*)
+    FROM Document;
+    RETURN @count;
+END;
+GO
+
+-- Hàm trả về số lượng tài liệu trong thư mục có ID đã cho
+CREATE FUNCTION CountDocumentsByFolderID (@folderID INT)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @count INT;
+    SELECT @count = COUNT(*)
+    FROM Document
+    WHERE folder_id = @folderID;
+    RETURN @count;
+END;
+GO
+
+-- Hàm trả về tất cả các tài liệu trong thư mục có ID đã cho
+CREATE FUNCTION GetDocumentsByFolderID (@folderID INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT *
+    FROM Document
+    WHERE folder_id = @folderID
+);
+GO
+
+-- Hàm trả về ngày tạo của tài liệu mới nhất
+CREATE FUNCTION GetLatestDocumentCreatedDate()
+RETURNS DATE
+AS
+BEGIN
+    DECLARE @latestDate DATE;
+    SELECT @latestDate = MAX(created_date)
+    FROM Document
+    WHERE document_status = 1;
+    RETURN @latestDate;
+END;
+GO
+
+-- Hàm trả về ngày tạo của tài liệu cũ nhất
+CREATE FUNCTION GetOldestDocumentCreatedDate()
+RETURNS DATE
+AS
+BEGIN
+    DECLARE @oldestDate DATE;
+    SELECT @oldestDate = MIN(created_date)
+    FROM Document
+    WHERE document_status = 1;
+    RETURN @oldestDate;
+END;
+GO
+
+-- Hàm trả về số lượng tài liệu có trạng thái đã phê duyệt
+CREATE FUNCTION CountApprovedDocuments()
+RETURNS INT
+AS
+BEGIN
+    DECLARE @count INT;
+    SELECT @count = COUNT(*)
+    FROM Document
+    WHERE document_status = 1;
+    RETURN @count;
+END;
+GO
+
+-- Hàm trả về tất cả các tài liệu được tạo trong khoảng thời gian từ ngày 1 tháng 1 năm 2023 đến ngày 31 tháng 12 năm 2023
+CREATE FUNCTION GetDocumentsInDateRange (@startDate DATE, @endDate DATE)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT *
+    FROM Document
+    WHERE created_date BETWEEN @startDate AND @endDate
+);
+GO
+
+-- Hàm trả về ngày có tài liệu được duyệt nhiều nhất
+CREATE FUNCTION GetDateWithMostApprovedDocuments()
+RETURNS DATE
+AS
+BEGIN
+    DECLARE @maxDate DATE;
+    DECLARE @maxCount INT;
+    SELECT @maxDate = MAX(created_date), @maxCount = COUNT(*)
+    FROM Document
+    WHERE document_status = 1;
+    RETURN @maxDate;
+END;
+GO
+
+-- Hàm trả về ngày có tài liệu được duyệt ít nhất
+CREATE FUNCTION GetDateWithLeastApprovedDocuments()
+RETURNS DATE
+AS
+BEGIN
+    DECLARE @minDate DATE;
+    DECLARE @minCount INT;
+    SELECT @minDate = MIN(created_date), @minCount = COUNT(*)
+    FROM Document
+    WHERE document_status = 1;
+    RETURN @minDate;
+END;
+GO
+
+-- Hàm trả về số lượng tài liệu được duyệt trong một ngày
+CREATE FUNCTION GetNumberOfApprovedDocumentsByDate (@date DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @count INT;
+    SELECT @count = COUNT(*)
+    FROM Document
+    WHERE created_date = @date
+    AND document_status = 1;
+    RETURN @count;
+END;
+GO
+
+-- Hàm trả về số lượng tài liệu được tạo trong một ngày
+CREATE FUNCTION GetNumberOfDocumentsCreatedByDate (@date DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @count INT;
+    SELECT @count = COUNT(*)
+    FROM Document
+    WHERE created_date = @date;
+    RETURN @count;
+END;
+GO
+
+-- Hàm trả về ngày có tài liệu được duyệt nhiều nhất trong một thư mục
+CREATE FUNCTION GetDateWithMostApprovedDocumentsInFolder (@folderID INT)
+RETURNS DATE
+AS
+BEGIN
+    DECLARE @maxDate DATE;
+    DECLARE @maxCount INT;
+    SELECT @maxDate = MAX(created_date), @maxCount = COUNT(*)
+    FROM Document
+    WHERE folder_id = @folderID
+    AND document_status = 1;
+    RETURN @maxDate;
+END;
+GO
+
+
+
+
+
+
+
