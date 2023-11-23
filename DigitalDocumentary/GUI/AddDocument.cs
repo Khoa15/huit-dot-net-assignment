@@ -32,7 +32,8 @@ namespace DigitalDocumentary.GUI
         private void button4_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            if(openFile.ShowDialog() == DialogResult.OK)
+            openFile.Filter = "Document|*.pdf,*.doc,*.docx,*.txt|All Files|*.*";
+            if (openFile.ShowDialog() == DialogResult.OK)
             {
                 txtBoxFilePath.Text = openFile.FileName;
             }
@@ -41,6 +42,7 @@ namespace DigitalDocumentary.GUI
         private void btnCam_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Image|*.png,*.jpg,*.jpeg";
             if(openFile.ShowDialog() == DialogResult.OK)
             {
                 picBoxAvatar.Image = new Bitmap(openFile.OpenFile());
@@ -60,6 +62,7 @@ namespace DigitalDocumentary.GUI
             {
                 Title = txtBoxTitle.Text,
                 Description = txtBoxDescription.Text,
+                
             };
         }
 

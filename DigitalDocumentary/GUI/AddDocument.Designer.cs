@@ -44,6 +44,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pnMain = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnPublic = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -78,8 +80,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnPublic = new System.Windows.Forms.Button();
             this.pnMain.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -254,6 +254,24 @@
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(1093, 69);
             this.pnMain.TabIndex = 6;
+            // 
+            // button4
+            // 
+            this.button4.Image = global::DigitalDocumentary.Properties.Resources.block;
+            this.button4.Location = new System.Drawing.Point(164, 9);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(58, 42);
+            this.button4.TabIndex = 13;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnPublic
+            // 
+            this.btnPublic.Image = global::DigitalDocumentary.Properties.Resources.tick;
+            this.btnPublic.Location = new System.Drawing.Point(88, 9);
+            this.btnPublic.Name = "btnPublic";
+            this.btnPublic.Size = new System.Drawing.Size(58, 42);
+            this.btnPublic.TabIndex = 12;
+            this.btnPublic.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -651,24 +669,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1068, 585);
             this.panel1.TabIndex = 5;
-            // 
-            // button4
-            // 
-            this.button4.Image = global::DigitalDocumentary.Properties.Resources.block;
-            this.button4.Location = new System.Drawing.Point(164, 9);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(58, 42);
-            this.button4.TabIndex = 13;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // btnPublic
-            // 
-            this.btnPublic.Image = global::DigitalDocumentary.Properties.Resources.tick;
-            this.btnPublic.Location = new System.Drawing.Point(88, 9);
-            this.btnPublic.Name = "btnPublic";
-            this.btnPublic.Size = new System.Drawing.Size(58, 42);
-            this.btnPublic.TabIndex = 12;
-            this.btnPublic.UseVisualStyleBackColor = true;
             // 
             // AddDocument
             // 
