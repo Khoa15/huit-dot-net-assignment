@@ -42,8 +42,8 @@ CREATE TABLE Author (
     email NVARCHAR(255),
     phone NVARCHAR(20),
     description NVARCHAR(1000),
-    CONSTRAINT CHK_Author_Email CHECK (LEN(email) <= 255),
-    CONSTRAINT CHK_Author_Phone CHECK (LEN(phone) <= 20),
+    --CONSTRAINT CHK_Author_Email CHECK (LEN(email) <= 255),
+    CONSTRAINT CHK_Author_Phone CHECK (LEN(phone) = 10),
 	CONSTRAINT PK_Author_AuthorID PRIMARY KEY (id)
 );
 GO
@@ -84,6 +84,28 @@ CREATE TABLE DocumentIndex (
 );
 GO
 
+--Tạo Trigger cho email
+CREATE TRIGGER CheckValidEmail
+ON Author
+AFTER INSERT, UPDATE
+AS
+BEGIN
+  IF EXISTS (
+      SELECT 1
+      FROM inserted
+      WHERE email NOT LIKE '%@%.%'
+  )
+  BEGIN
+    THROW 50000, 'Email address is not valid. Please enter a valid email address.', 0;
+  END
+END
+GO
+
+
+--DISABLE TRIGGER CheckValidEmail ON Author;
+--DROP TRIGGER CheckValidEmail ON Author;
+--DROP TRIGGER CheckValidEmail ON DATABASE
+--GO
 -- Tạo trigger cho bảng Document
 CREATE TRIGGER Document_BI
 ON Document
@@ -169,14 +191,16 @@ END;
 GO
 
 
+select * from Author
+
 -- INSERT dữ liệu vào bảng Author
 INSERT INTO Author (name, email, phone, description)
 VALUES 
 (N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cho tôi xin một vé đi tuổi thơ".'),
+(N'Trần Thị Rò', 'thiro@gmail.com', '0987654321', N'Tác giả của cuốn sách "Những người khổng lồ tốt".'),
 (N'Bùi Ngọc Tân', 'buingoctan@gmail.com', '0123456789', N'Tác giả của cuốn sách "Thánh Gióng".'),
 (N'Nguyễn Thành Long', 'thanhlong@gmail.com', '0912345678', N'Tác giả của cuốn sách "Cây chuối non".'),
-(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', N'Tác giả của cuốn sách "Kính vạn hoa".'),
-(N'Trần Thị Rò', 'thiro@gmail.com', '0987654321', N'Tác giả của cuốn sách "Những người khổng lồ tốt".'),
+(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com.', '0987654321', N'Tác giả của cuốn sách "Kính vạn hoa".'),
 (N'Hồ Anh Thái', 'hoanhthai@gmail.com', '0912345678', N'Tác giả của cuốn sách "Người giàu cũng khó khăn".'),
 (N'Lê Thành Sơn', 'thanhson@gmail.com', '0987654321', N'Tác giả của cuốn sách "Chiếc lá cuối cùng".'),
 (N'Phạm Viết Đức', 'vietduc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sự tích tâm và tình".'),
@@ -371,6 +395,47 @@ BEGIN
     DELETE FROM Document WHERE folder_id = @folderID AND created_date BETWEEN @startDate AND @endDate;
 END;
 GO
+
+-- Tạo stored procedure để select cho mục lục của Document
+
+CREATE PROC sp_SelectDocumentIndex
+(
+  @DocumentID INT
+)
+AS
+BEGIN
+  -- Khai báo biến để lưu trữ kết quả trả về
+  DECLARE @DocumentIndex TABLE
+  (
+    index_id INT,
+    document_id INT,
+    page_number INT,
+    parent_index_id INT,
+    author_id INT,
+    title NVARCHAR(255)
+  );
+
+  -- Thêm dữ liệu vào bảng tạm thời @DocumentIndex
+  INSERT INTO @DocumentIndex
+  SELECT
+    DI.index_id,
+    DI.document_id,
+    DI.page_number,
+    DI.parent_index_id,
+    DI.author_id,
+    DI.title
+  FROM DocumentIndex DI
+  WHERE DI.document_id = @DocumentID;
+
+  -- Trả về kết quả
+  SELECT *
+  FROM @DocumentIndex;
+END;
+GO
+
+-- Lấy mục lục của tài liệu có ID = 1
+EXEC sp_SelectDocumentIndex 1;
+go
 
 -- FUNCTION
 -- Hàm trả về tổng số tài liệu
