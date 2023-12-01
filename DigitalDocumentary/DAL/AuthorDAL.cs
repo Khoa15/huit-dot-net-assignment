@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace DigitalDocumentary.DLL
 {
-    internal class AuthorDLL
+    internal class AuthorDAL
     {
         private List<AuthorDTO> authors = new List<AuthorDTO>();
-        private DatabaseContextDLL db = new DatabaseContextDLL();
-        public AuthorDLL()
+        private DatabaseContextDAL db = new DatabaseContextDAL();
+        public AuthorDAL()
         {
 
         }
         public List<AuthorDTO> Load(string where=null)
         {
             authors.Clear();
-            List<DataRow> rd = db.Select(AuthorDTO.Table, where);
+            DataSet rd = db.Select(AuthorDTO.Table, where);
             //while(rd.Read())
             //{
             //    AuthorDTO author = new AuthorDTO();

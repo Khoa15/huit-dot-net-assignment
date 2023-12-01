@@ -1,0 +1,7 @@
+USE TaiLieuSo
+GO
+CREATE PROC SelectAllAuthor
+AS
+BEGIN
+	SELECT * FROM Author;
+END;

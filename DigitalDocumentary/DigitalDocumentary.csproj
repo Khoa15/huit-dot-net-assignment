@@ -49,15 +49,16 @@
   <ItemGroup>
     <Compile Include="BLL\AuthorBLL.cs" />
     <Compile Include="BLL\DocumentBLL.cs" />
+    <Compile Include="BLL\DocumentIndexBLL.cs" />
     <Compile Include="BLL\FolderBLL.cs" />
     <Compile Include="BLL\Helper.cs" />
     <Compile Include="BLL\UserAccessBLL.cs" />
-    <Compile Include="DAL\AuthorDLL.cs" />
-    <Compile Include="DAL\DatabaseContextDLL.cs" />
-    <Compile Include="DAL\DocumentDLL.cs" />
-    <Compile Include="DAL\DocumentIndexDLL.cs" />
-    <Compile Include="DAL\FolderDLL.cs" />
-    <Compile Include="DAL\UserAccessDLL.cs" />
+    <Compile Include="DAL\AuthorDAL.cs" />
+    <Compile Include="DAL\DatabaseContextDAL.cs" />
+    <Compile Include="DAL\DocumentDAL.cs" />
+    <Compile Include="DAL\DocumentIndexDAL.cs" />
+    <Compile Include="DAL\FolderDAL.cs" />
+    <Compile Include="DAL\UserAccessDAL.cs" />
     <Compile Include="DTO\AuthorDTO.cs" />
     <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
@@ -76,17 +77,23 @@
     <Compile Include="GUI\Document.Designer.cs">
       <DependentUpon>Document.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DocumentIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DocumentIndex.Designer.cs">
+      <DependentUpon>DocumentIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Folder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Folder.Designer.cs">
       <DependentUpon>Folder.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\UserControl2.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="GUI\MoveDoc.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\UserControl2.Designer.cs">
-      <DependentUpon>UserControl2.cs</DependentUpon>
+    <Compile Include="GUI\MoveDoc.Designer.cs">
+      <DependentUpon>MoveDoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,11 +103,14 @@
     <EmbeddedResource Include="GUI\Document.resx">
       <DependentUpon>Document.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DocumentIndex.resx">
+      <DependentUpon>DocumentIndex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Folder.resx">
       <DependentUpon>Folder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\UserControl2.resx">
-      <DependentUpon>UserControl2.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\MoveDoc.resx">
+      <DependentUpon>MoveDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,7 +135,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Documents\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="icon\search.jpg" />
   </ItemGroup>

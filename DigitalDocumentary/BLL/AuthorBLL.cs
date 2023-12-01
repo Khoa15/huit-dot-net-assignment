@@ -10,7 +10,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class AuthorBLL
     {
-        AuthorDLL authorDll;
+        AuthorDAL authorDll;
         public AuthorBLL()
         {
         }

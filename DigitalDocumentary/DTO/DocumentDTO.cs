@@ -65,6 +65,7 @@ namespace DigitalDocumentary.DTO
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
         internal FolderDTO Folder { get => folder; set => folder = value; }
         public bool Status { get => status; set => status = value; }
+        public int iStatus { get => Convert.ToInt16(status); }
         public string Updated_by { get => updated_by; set => updated_by = value; }
 
         public string GetStatus()

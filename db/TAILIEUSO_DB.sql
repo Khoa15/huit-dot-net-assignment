@@ -57,9 +57,9 @@ CREATE TABLE Document (
     type NVARCHAR(255), -- foreign key QuanLyHT--
     file_path VARCHAR(255),--
     link_to_image VARCHAR(255) NULL,--
-    description NTEXT,--
+    description NTEXT NULL,--
     document_status BIT,--
-	updated_by NVARCHAR(255) NOT NULL,
+	updated_by NVARCHAR(255) DEFAULT('admin') NOT NULL,
     created_date DATE DEFAULT(GETDATE()),--
 	updated_date DATE DEFAULT(GETDATE()),---
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE()),
@@ -81,6 +81,15 @@ CREATE TABLE DocumentIndex (
 	CONSTRAINT FK_DocumentIndex_DocumentID FOREIGN KEY (document_id) REFERENCES Document(id),
 	CONSTRAINT FK_DocumentIndex_ParentIndexID FOREIGN KEY (parent_index_id) REFERENCES DocumentIndex(index_id),
 	CONSTRAINT FK_DocumentIndex_AuthorID FOREIGN KEY (author_id) REFERENCES Author(id)
+);
+GO
+
+CREATE TABLE DocumentAuthor(
+	document_id INT,
+	author_id INT,
+	CONSTRAINT PK_DocumentAuthor PRIMARY KEY (document_id, author_id),
+	CONSTRAINT FK_DocumentAuthor_Author FOREIGN KEY(author_id) REFERENCES Author(id),
+	CONSTRAINT FK_DocumentAuthor_Document FOREIGN KEY(document_id) REFERENCES Document(id),
 );
 GO
 
@@ -250,127 +259,22 @@ GO
 
 --STORED PROCEDURES
 
+---./Folder
+
+---./Folder
+
+---./UserAccess
+
+---./UserAccess
+
 -- SELECT
 -- select all documents:
-CREATE PROC SelectAllDocuments
-AS
-BEGIN
-    SELECT * FROM Document;
-END;
-GO
 
---exec SelectAllDocuments
-
--- select documents by folder ID:
-CREATE PROC SelectDocumentsByFolderID (@folderID INT)
-AS
-BEGIN
-    SELECT * FROM Document WHERE folder_id = @folderID;
-END;
-GO
-
---exec SelectDocumentsByFolderID 1
-
--- select documents by title
-CREATE PROC SelectDocumentsByTitle (@title NVARCHAR(255))
-AS
-BEGIN
-    SELECT * FROM Document WHERE title LIKE '%@title%';
-END;
-GO
-
--- select documents by author
-CREATE PROC SelectDocumentsByAuthor (@authorID INT)
-AS
-BEGIN
-    SELECT * FROM Document WHERE author_id = @authorID;
-END;
-GO
-
--- select documents by date range
-CREATE PROC SelectDocumentsByDateRange (@startDate DATE, @endDate DATE)
-AS
-BEGIN
-    SELECT * FROM Document WHERE created_date BETWEEN @startDate AND @endDate;
-END;
-GO
-
--- select documents by date range and status
-CREATE PROCEDURE SelectDocumentsByDateRangeAndStatus (@startDate DATE, @endDate DATE, @status INT)
-AS
-BEGIN
-    SELECT * FROM Document
-    WHERE created_date BETWEEN @startDate AND @endDate
-      AND document_status = @status;
-END;
-GO
 
 
 -- UPDATE
 -- update the document status to approved
-CREATE PROC UpdateDocumentStatusToApproved
-AS
-BEGIN
-    UPDATE Document SET document_status = 1 WHERE document_status = 0;
-END;
-GO
 
--- update the title of a document
-CREATE PROC UpdateDocumentTitle (@documentID INT, @newTitle NVARCHAR(255))
-AS
-BEGIN
-    UPDATE Document SET title = @newTitle WHERE id = @documentID;
-END;
-GO
-
--- update the document status to rejected
-CREATE PROC UpdateDocumentStatusToRejected (@documentID INT)
-AS
-BEGIN
-    UPDATE Document SET document_status = 2 WHERE id = @documentID;
-END;
-GO
-
--- update the document title and description
-CREATE PROC UpdateDocumentTitleAndDescription (@documentID INT, @newTitle NVARCHAR(255), @newDescription NTEXT)
-AS
-BEGIN
-    UPDATE Document SET title = @newTitle, description = @newDescription WHERE id = @documentID;
-END;
-GO
-
--- DELETE
--- delete all documents in a folder
-CREATE PROC DeleteDocumentsInFolder (@folderID INT)
-AS
-BEGIN
-    DELETE FROM Document WHERE folder_id = @folderID;
-END;
-GO
-
--- delete a specific document
-CREATE PROC DeleteDocument (@documentID INT)
-AS
-BEGIN
-    DELETE FROM Document WHERE id = @documentID;
-END;
-GO
-
--- delete all documents by author
-CREATE PROC DeleteDocumentsByAuthor (@authorID INT)
-AS
-BEGIN
-    DELETE FROM Document WHERE author_id = @authorID;
-END;
-GO
-
--- delete all documents in a folder by date range
-CREATE PROC DeleteDocumentsInFolderByDateRange (@folderID INT, @startDate DATE, @endDate DATE)
-AS
-BEGIN
-    DELETE FROM Document WHERE folder_id = @folderID AND created_date BETWEEN @startDate AND @endDate;
-END;
-GO
 
 -- FUNCTION
 -- Hàm trả về tổng số tài liệu
@@ -530,7 +434,6 @@ BEGIN
     RETURN @maxDate;
 END;
 GO
-
 
 
 

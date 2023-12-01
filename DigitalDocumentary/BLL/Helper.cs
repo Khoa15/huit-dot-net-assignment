@@ -19,7 +19,7 @@ namespace DigitalDocumentary.BLL
 
         public static string GetCurrentSolutionPath()
         {
-            return Directory.GetCurrentDirectory();
+            return Path.Combine(Directory.GetCurrentDirectory(), "..", "..");
         }
 
         public static bool MoveFile(string src)
@@ -27,7 +27,8 @@ namespace DigitalDocumentary.BLL
             try
             {
                 if (File.Exists(src) == false) return false;
-                string dest = Path.Combine(Path.GetDirectoryName(src), "Assets/Documents");
+                string nameFile = src.Split('\\').Last();
+                string dest = Path.Combine(GetCurrentSolutionPath(), "Assets", "Documents", nameFile);
                 File.Copy(src, dest);
                 if (File.Exists(dest) == false) return false;
                 return true;

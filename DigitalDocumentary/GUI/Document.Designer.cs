@@ -29,7 +29,7 @@ namespace DigitalDocumentary.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -47,17 +47,18 @@ namespace DigitalDocumentary.GUI
             this.btnAsk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnBottom = new System.Windows.Forms.Panel();
+            this.btnDocIndex = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnPublic = new System.Windows.Forms.Button();
+            this.btnMvDocToNewFolder = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnDeleteDoc = new System.Windows.Forms.Button();
             this.btnDelFolder = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAddDoc = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.btnPeople = new System.Windows.Forms.Button();
@@ -118,7 +119,7 @@ namespace DigitalDocumentary.GUI
             this.cbBoxFilterSearch.FormattingEnabled = true;
             this.cbBoxFilterSearch.Location = new System.Drawing.Point(8, 3);
             this.cbBoxFilterSearch.Name = "cbBoxFilterSearch";
-            this.cbBoxFilterSearch.Size = new System.Drawing.Size(119, 37);
+            this.cbBoxFilterSearch.Size = new System.Drawing.Size(119, 27);
             this.cbBoxFilterSearch.TabIndex = 1;
             // 
             // txtBoxSearch
@@ -129,7 +130,7 @@ namespace DigitalDocumentary.GUI
             this.txtBoxSearch.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtBoxSearch.Location = new System.Drawing.Point(133, 3);
             this.txtBoxSearch.Name = "txtBoxSearch";
-            this.txtBoxSearch.Size = new System.Drawing.Size(530, 36);
+            this.txtBoxSearch.Size = new System.Drawing.Size(530, 27);
             this.txtBoxSearch.TabIndex = 2;
             // 
             // btnSearch
@@ -152,8 +153,8 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.AllowUserToDeleteRows = false;
             this.dataGridViewDocuments.AllowUserToResizeColumns = false;
             this.dataGridViewDocuments.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewDocuments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewDocuments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewDocuments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -173,10 +174,11 @@ namespace DigitalDocumentary.GUI
             // 
             // ColSelectRow
             // 
+            this.ColSelectRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.ColSelectRow.HeaderText = "Checkbox";
             this.ColSelectRow.MinimumWidth = 8;
             this.ColSelectRow.Name = "ColSelectRow";
-            this.ColSelectRow.Width = 150;
+            this.ColSelectRow.Width = 83;
             // 
             // label2
             // 
@@ -185,7 +187,7 @@ namespace DigitalDocumentary.GUI
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
             this.label2.Location = new System.Drawing.Point(4, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 29);
+            this.label2.Size = new System.Drawing.Size(223, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Tìm được tất cả ... kết quả";
             // 
@@ -262,7 +264,7 @@ namespace DigitalDocumentary.GUI
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(56, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 29);
+            this.label1.Size = new System.Drawing.Size(187, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ TÀI LIỆU SỐ";
             // 
@@ -271,21 +273,32 @@ namespace DigitalDocumentary.GUI
             this.pnBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnBottom.Controls.Add(this.btnDocIndex);
             this.pnBottom.Controls.Add(this.button11);
-            this.pnBottom.Controls.Add(this.button10);
-            this.pnBottom.Controls.Add(this.button9);
+            this.pnBottom.Controls.Add(this.btnPublic);
+            this.pnBottom.Controls.Add(this.btnMvDocToNewFolder);
             this.pnBottom.Controls.Add(this.button8);
-            this.pnBottom.Controls.Add(this.button7);
+            this.pnBottom.Controls.Add(this.btnDeleteDoc);
             this.pnBottom.Controls.Add(this.btnDelFolder);
             this.pnBottom.Controls.Add(this.btnEdit);
             this.pnBottom.Controls.Add(this.btnAddDoc);
             this.pnBottom.Controls.Add(this.button1);
             this.pnBottom.Controls.Add(this.button2);
-            this.pnBottom.Controls.Add(this.button3);
+            this.pnBottom.Controls.Add(this.btn);
             this.pnBottom.Location = new System.Drawing.Point(1, 544);
             this.pnBottom.Name = "pnBottom";
             this.pnBottom.Size = new System.Drawing.Size(1093, 69);
             this.pnBottom.TabIndex = 4;
+            // 
+            // btnDocIndex
+            // 
+            this.btnDocIndex.Location = new System.Drawing.Point(835, 9);
+            this.btnDocIndex.Name = "btnDocIndex";
+            this.btnDocIndex.Size = new System.Drawing.Size(74, 42);
+            this.btnDocIndex.TabIndex = 11;
+            this.btnDocIndex.Text = "Mục lục";
+            this.btnDocIndex.UseVisualStyleBackColor = true;
+            this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
             // 
             // button11
             // 
@@ -296,23 +309,25 @@ namespace DigitalDocumentary.GUI
             this.button11.TabIndex = 11;
             this.button11.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // btnPublic
             // 
-            this.button10.Image = global::DigitalDocumentary.Properties.Resources.tick;
-            this.button10.Location = new System.Drawing.Point(697, 9);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(58, 42);
-            this.button10.TabIndex = 10;
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnPublic.Image = global::DigitalDocumentary.Properties.Resources.tick;
+            this.btnPublic.Location = new System.Drawing.Point(697, 9);
+            this.btnPublic.Name = "btnPublic";
+            this.btnPublic.Size = new System.Drawing.Size(58, 42);
+            this.btnPublic.TabIndex = 10;
+            this.btnPublic.UseVisualStyleBackColor = true;
+            this.btnPublic.Click += new System.EventHandler(this.btnPublic_Click);
             // 
-            // button9
+            // btnMvDocToNewFolder
             // 
-            this.button9.Image = global::DigitalDocumentary.Properties.Resources.share;
-            this.button9.Location = new System.Drawing.Point(620, 9);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(58, 42);
-            this.button9.TabIndex = 9;
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnMvDocToNewFolder.Image = global::DigitalDocumentary.Properties.Resources.share;
+            this.btnMvDocToNewFolder.Location = new System.Drawing.Point(620, 9);
+            this.btnMvDocToNewFolder.Name = "btnMvDocToNewFolder";
+            this.btnMvDocToNewFolder.Size = new System.Drawing.Size(58, 42);
+            this.btnMvDocToNewFolder.TabIndex = 9;
+            this.btnMvDocToNewFolder.UseVisualStyleBackColor = true;
+            this.btnMvDocToNewFolder.Click += new System.EventHandler(this.btnMvDocToNewFolder_Click);
             // 
             // button8
             // 
@@ -323,15 +338,16 @@ namespace DigitalDocumentary.GUI
             this.button8.TabIndex = 8;
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnDeleteDoc
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button7.Image = global::DigitalDocumentary.Properties.Resources.del;
-            this.button7.Location = new System.Drawing.Point(241, 9);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(58, 42);
-            this.button7.TabIndex = 7;
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnDeleteDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDeleteDoc.Image = global::DigitalDocumentary.Properties.Resources.del;
+            this.btnDeleteDoc.Location = new System.Drawing.Point(241, 9);
+            this.btnDeleteDoc.Name = "btnDeleteDoc";
+            this.btnDeleteDoc.Size = new System.Drawing.Size(58, 42);
+            this.btnDeleteDoc.TabIndex = 7;
+            this.btnDeleteDoc.UseVisualStyleBackColor = false;
+            this.btnDeleteDoc.Click += new System.EventHandler(this.btnDeleteDoc_Click);
             // 
             // btnDelFolder
             // 
@@ -384,15 +400,15 @@ namespace DigitalDocumentary.GUI
             this.button2.TabIndex = 2;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.Image = global::DigitalDocumentary.Properties.Resources.add;
-            this.button3.Location = new System.Drawing.Point(12, 9);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(58, 42);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btn.Image = global::DigitalDocumentary.Properties.Resources.add;
+            this.btn.Location = new System.Drawing.Point(12, 9);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(58, 42);
+            this.btn.TabIndex = 1;
+            this.btn.UseVisualStyleBackColor = false;
             // 
             // btnAdd
             // 
@@ -438,7 +454,7 @@ namespace DigitalDocumentary.GUI
             // 
             // Document
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1093, 610);
@@ -485,13 +501,13 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button btnAddDoc;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn;
         private System.Windows.Forms.Button btnDelFolder;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnDeleteDoc;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnPublic;
+        private System.Windows.Forms.Button btnMvDocToNewFolder;
         private System.Windows.Forms.ComboBox cbBoxFilterSearch;
         private System.Windows.Forms.TextBox txtBoxSearch;
         private System.Windows.Forms.Button btnSearch;
@@ -500,5 +516,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button btnPeople;
         private System.Windows.Forms.Panel pnMain;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelectRow;
+        private System.Windows.Forms.Button btnDocIndex;
     }
 }

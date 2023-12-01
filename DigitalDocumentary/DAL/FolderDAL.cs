@@ -10,21 +10,22 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace DigitalDocumentary.DLL
 {
-    internal class FolderDLL
+    internal class FolderDAL
     {
         private List<FolderDTO> folders = new List<FolderDTO>();
-        private DatabaseContextDLL db = new DatabaseContextDLL();
+        private DatabaseContextDAL db = new DatabaseContextDAL();
 
         internal List<FolderDTO> Folders { get => folders; set => folders = value; }
 
-        public FolderDLL()
+        public FolderDAL()
         {
         }
         public List<FolderDTO> Load(string where=null)
         {
             Folders.Clear();
-            List<DataRow> dataRows = db.Select(FolderDTO.Table, where);
-            foreach (DataRow rd in dataRows)
+            //List<DataRow> dataRows = db.Select(FolderDTO.Table, where, 100);
+            DataSet set = db.Select("SelectAllFolder");
+            foreach (DataRow rd in set.Tables[0].Rows)
             {
                 FolderDTO f = new FolderDTO();
                 f.Id = int.Parse(rd["id"].ToString());
@@ -33,26 +34,21 @@ namespace DigitalDocumentary.DLL
                 f.Created_at = Convert.ToDateTime(rd["created_date"]);
                 f.Status = Convert.ToBoolean(rd["status"]);
                 object x = rd["parent_id"];
-                if(x != DBNull.Value)
+                if (x != DBNull.Value)
                 {
                     f.Parent = new FolderDTO() { Id = int.Parse(rd["parent_id"].ToString()) };
                 }
                 Folders.Add(f);
             }
-            foreach(FolderDTO fol in Folders)
+            foreach (FolderDTO fol in Folders)
             {
-                if(fol.Parent != null)
+                if (fol.Parent != null)
                 {
                     fol.Parent = Folders.Find(f => f.Id == fol.Parent.Id);
                 }
             }
             return Folders;
         }
-        //public List<LinkedList<FolderDTO>> Load()
-        //{
-        //    List<LinkedList<FolderDTO>> folderDTOs = new List<LinkedList<FolderDTO>>();
-        //    return folderDTOs;
-        //}
         public FolderDTO LoadById(int id)
         {
             return this.Load($"id = {id}").First();
@@ -82,11 +78,6 @@ namespace DigitalDocumentary.DLL
             string sql = $"UPDATE {FolderDTO.Table} SET parent_id = {pId} WHERE id = {fol.Id}";
             return db.NonQuery(sql);
         }
-        //public int Delete(FolderDTO fol)
-        //{
-        //    string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {fol.Id}";
-        //    return db.NonQuery(sql);
-        //}
         public int Delete(int id)
         {
             string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {id}";

@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace DigitalDocumentary.DLL
 {
-    internal class DocumentDLL
+    internal class DocumentDAL
     {
         private List<DocumentDTO> documents = new List<DocumentDTO>();
-        private static DatabaseContextDLL db = new DatabaseContextDLL();
+        private static DatabaseContextDAL db = new DatabaseContextDAL();
 
         internal List<DocumentDTO> Documents { get => documents; set => documents = value; }
 
-        public DocumentDLL()
+        public DocumentDAL()
         {
 
         }
@@ -30,10 +30,12 @@ namespace DigitalDocumentary.DLL
             }
             else
             {
-                where = $"{DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id";
+                where = $"{DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id OR {DocumentDTO.Table}.author_id = NULL";
             }
-            List<DataRow> dataRows = db.Select(tables, where);
-            foreach(DataRow rd in dataRows)
+            //List<DataRow> dataRows = db.Select(tables, where);
+            DataSet ds = db.Select("SelectAllDocumentsWithAuthorName");
+            
+            foreach(DataRow rd in ds.Tables[0].Rows)
             {
                 DocumentDTO document = new DocumentDTO();
                 document.Id = int.Parse(rd["id"].ToString());
@@ -61,12 +63,16 @@ namespace DigitalDocumentary.DLL
         }
         public int Add(DocumentDTO doc)
         {
-            string sql = $"INSERT INTO {DocumentDTO.Table} (folder_id, author_id, title, description, type, file_path, link_to_image, document_status) VALUES ({doc.Folder.Id}, {doc.Author.Id}, '{doc.Title}', '{doc.Description}', '{doc.Type}', '{doc.File_path}', '{doc.Link_to_image}', {doc.Status})";
+            if(doc.Author == null)
+            {
+
+            }
+            string sql = $"INSERT INTO {DocumentDTO.Table} (folder_id, author_id, title, description, type, file_path, link_to_image, document_status) VALUES ({doc.Folder.Id}, NULL, N'{doc.Title}', N'{doc.Description}', N'{doc.Type}', '{doc.File_path}', '{doc.Link_to_image}', {doc.iStatus})";
             return db.NonQuery(sql);
         }
         public int Update(DocumentDTO doc)
         {
-            string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.Status}  WHERE document_id = {doc.Id}";
+            string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.iStatus}  WHERE document_id = {doc.Id}";
             return db.NonQuery(sql);
         }
         public int UpdateStatus(DocumentDTO doc)
@@ -95,56 +101,42 @@ namespace DigitalDocumentary.DLL
         //}
         public static int Delete(int id)
         {
-            string sql = $"DELETE FROM {DocumentDTO.Table} WHERE document_id = {id}";
-            return db.NonQuery(sql);
+            return db.NonQueryBySP("DeleteDocument", "@documentID", id);
         }
 
         public List<DocumentDTO> FindByTitle(string title)
         {
             List<DocumentDTO> result = this.Load($"title LIKE '%{title}%'");
-                //new List<DocumentDTO>();
-            //SqlDataReader rd = db.Select(DocumentDTO.Table, $"title LIKE '%{title}%'");
-            //while (rd.Read())
-            //{
-            //    DocumentDTO document = new DocumentDTO();
-            //    document.Id = int.Parse(rd["document_id"].ToString());
-            //    document.Title = rd["title"].ToString();
-            //    document.Description = rd["description"].ToString();
-            //    document.File_path = rd["file_path"].ToString();
-            //    document.Link_to_image = rd["link_to_image"].ToString();
-            //    document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
-            //    document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
-
-            //    // Foreign Key .... waiting
-
-            //    //
-            //    result.Add(document);
-            //}
             return result;
         }
 
         public List<DocumentDTO> FindByAuthorName(string authorName)
         {
             List<DocumentDTO> result = this.Load($"{AuthorDTO.Table}.name LIKE '%{authorName}%'");
-            //new List<DocumentDTO>();
-            //SqlDataReader rd = db.Select(DocumentDTO.Table, $"author LIKE '%{authorName}%'");
-            //while (rd.Read())
-            //{
-            //    DocumentDTO document = new DocumentDTO();
-            //    document.Id = int.Parse(rd["document_id"].ToString());
-            //    document.Title = rd["title"].ToString();
-            //    document.Description = rd["description"].ToString();
-            //    document.File_path = rd["file_path"].ToString();
-            //    document.Link_to_image = rd["link_to_image"].ToString();
-            //    document.Created_at = Convert.ToDateTime(rd["created_at"].ToString());
-            //    document.Updated_at = Convert.ToDateTime(rd["updated_at"].ToString());
-
-            //    // Foreign Key .... waiting
-
-            //    //
-            //    result.Add(document);
-            //}
             return result;
+        }
+
+        public static bool PublicAllDocumentByIdFolder(int fid)
+        {
+            return db.NonQueryBySP("PublicDocumentByIdFolder", "@fid", fid) > 0;
+        }
+        public static bool PrivateAllDocumentByIdFolder(int fid)
+        {
+            return db.NonQueryBySP("PrivateDocumentByIdFolder", "@fid", fid) > 0;
+        }
+
+        public static bool MoveDoc(List<int> docIds, int desFid)
+        {
+            string[] param = { "@docId", "@fid" };
+            for(int i  = 0; i < param.Length; i++)
+            {
+                object[] value = { docIds[i], desFid };
+                if(db.NonQueryBySP("MoveDocToFolder", param, value) == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

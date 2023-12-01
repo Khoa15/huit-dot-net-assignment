@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace DigitalDocumentary.DLL
 {
-    internal class UserAccessDLL
+    internal class UserAccessDAL
     {
         private List<UserAccessDTO> userAccesses = new List<UserAccessDTO>();
-        private DatabaseContextDLL db = new DatabaseContextDLL();
-        public UserAccessDLL()
+        private DatabaseContextDAL db = new DatabaseContextDAL();
+        public UserAccessDAL()
         {
         }
         public List<UserAccessDTO> Load(string where=null)
         {
             userAccesses.Clear();
-            List<DataRow> rd = db.Select(UserAccessDTO.Table, where);
+            DataSet ds = new DataSet("SelectAllUserAccess");
             //while (rd.Read())
             //{
             //    UserAccessDTO ua = new UserAccessDTO();

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DigitalDocumentary.GUI
 {
-    public partial class UserControl2 : UserControl
+    public partial class MoveDoc : Form
     {
-        public UserControl2()
+        public MoveDoc()
         {
             InitializeComponent();
         }

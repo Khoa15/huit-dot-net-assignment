@@ -151,7 +151,63 @@ namespace DigitalDocumentary.GUI
 
         private void btnAddDoc_Click(object sender, EventArgs e)
         {
+            AddDocument addDocument = new AddDocument();
+            addDocument.ShowDialog();
+        }
 
+        private void btnDeleteDoc_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are your sure?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            List<int> ids = IdDocumentSelected();
+            if (documentBLL.Delete(ids))
+            {
+                MessageBox.Show("Deleted!");
+            }
+        }
+
+        private void btnDocIndex_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            for(int i = 0; i < dataGridViewDocuments.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dataGridViewDocuments.Rows[i].Cells[0].Value))
+                {
+                    id = Convert.ToInt32(dataGridViewDocuments.Rows[i].Cells[1].Value);
+                }
+            }
+            DocumentIndex index = new DocumentIndex(id);
+            index.ShowDialog();
+        }
+
+        private void btnPublic_Click(object sender, EventArgs e)
+        {
+            int x = int.Parse(treeViewFolders.SelectedNode.Name);
+            if(MessageBox.Show("Bạn có chắc chắn ban hành tất cả các tài liệu trong thư mục này?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                FolderBLL.PublicDoc(x);
+            }
+        }
+
+        private void btnMvDocToNewFolder_Click(object sender, EventArgs e)
+        {
+
+            //documentBLL.MoveDoc(IdDocumentSelected());
+        }
+
+        private List<int> IdDocumentSelected()
+        {
+            List<int> ids = new List<int>();
+            for (int i = 0; i < dataGridViewDocuments.RowCount; i++)
+            {
+                if (Convert.ToBoolean(dataGridViewDocuments.Rows[i].Cells[0].Value) == true)
+                {
+                    ids.Add(Convert.ToInt32(dataGridViewDocuments.Rows[i].Cells[1].Value));
+                }
+            }
+            return ids;
         }
     }
 }

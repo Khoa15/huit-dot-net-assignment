@@ -21,20 +21,21 @@ namespace DigitalDocumentary.DLL
         public List<DocumentIndexDTO> Load()
         {
             documentIndices.Clear();
-            List<DataRow> rd = db.Select(DocumentIndexDTO.Table);
-            //while (rd.Read())
-            //{
-            //    DocumentIndexDTO di = new DocumentIndexDTO();
-            //    di.Id = int.Parse(rd["index_id"].ToString());
-            //    di.Title = rd["Name"].ToString();
-            //    di.PageNumber = int.Parse(rd["page_number"].ToString());
+            List<DataRow> rd = db.Select(DocumentIndexDTO.Table, null);
+            //DataSet ds = db.Select("");
+            while (rd.Read())
+            {
+                DocumentIndexDTO di = new DocumentIndexDTO();
+                di.Id = int.Parse(rd["index_id"].ToString());
+                di.Title = rd["Name"].ToString();
+                di.PageNumber = int.Parse(rd["page_number"].ToString());
 
-            //    // Foreign key ... waiting
+                // Foreign key ... waiting
 
-            //    //
-            //    documentIndices.Add(di);
+                //
+                documentIndices.Add(di);
 
-            //}
+            }
             return this.documentIndices;
         }
         public int Add(DocumentIndexDTO docI)

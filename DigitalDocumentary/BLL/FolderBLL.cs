@@ -10,7 +10,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class FolderBLL
     {
-        static FolderDLL folderDll = new FolderDLL();
+        static FolderDAL folderDll = new FolderDAL();
         public FolderBLL()
         {
         }
@@ -65,21 +65,29 @@ namespace DigitalDocumentary.BLL
         }
         public static int Delete(int id)
         {
-            //FolderDTO folder = this.Load(id);
-            //return folderDll.Delete(folder);
             return folderDll.Delete(id);
         }
         public int DeleteAllDocument(int id)
         {
             try
             {
-                folderDll.Folders.Find(fol => fol.Id == id).Documents.ForEach(doc => DocumentDLL.Delete(doc.Id));
+                folderDll.Folders.Find(fol => fol.Id == id).Documents.ForEach(doc => DocumentDAL.Delete(doc.Id));
                 return 1;
             }catch (Exception ex)
             {
                 var x = ex.Message;
                 return 0;
             }
+        }
+
+        public static bool PublicDoc(int fid)
+        {
+            return DocumentDAL.PublicAllDocumentByIdFolder(fid);
+        }
+
+        public static bool PrivateDoc(int fid)
+        {
+            return DocumentDAL.PrivateAllDocumentByIdFolder(fid);
         }
     }
 }

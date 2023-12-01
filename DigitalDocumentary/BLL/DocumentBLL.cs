@@ -12,7 +12,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class DocumentBLL
     {
-        static DocumentDLL docDll = new DocumentDLL();
+        static DocumentDAL docDll = new DocumentDAL();
         public DocumentBLL()
         {
         }
@@ -31,6 +31,8 @@ namespace DigitalDocumentary.BLL
         public int Add(DocumentDTO document)
         {
             // Move file, image to this project's path
+            //MoveFile(document.Link_to_image);
+            Helper.MoveFile(document.Link_to_image);
             return docDll.Add(document);
         }
         public int Update(DocumentDTO document)
@@ -63,35 +65,16 @@ namespace DigitalDocumentary.BLL
         }
         public int Delete(int id)
         {
-            return DocumentDLL.Delete(id);
+            return DocumentDAL.Delete(id);
         }
-        //public bool Delete(int[] id)
-        //{
-        //    try
-        //    {
-        //        for (int i = 0; i < id.Length; i++)
-        //        {
-        //            if (DocumentDLL.Delete(id[i]) == 0)
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
         public int[] Delete(int[] id)
         {
-            // Initialize default value's array is 0
             int[] status = Enumerable.Repeat(0, id.Length).ToArray();            
             try
             {
                 for (int i = 0; i < id.Length; i++)
                 {
-                    if (DocumentDLL.Delete(id[i]) == 1)
+                    if (DocumentDAL.Delete(id[i]) == 1)
                     {
                         status[i] = 1;
                     }
@@ -102,6 +85,25 @@ namespace DigitalDocumentary.BLL
             {
                 var x = ex.Message;
                 return status;
+            }
+        }
+        public bool Delete(List<int> ids)
+        {
+            try
+            {
+                for (int i = 0; i < ids.Count; i++)
+                {
+                    if (DocumentDAL.Delete(ids[i]) == 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                var x = ex.Message;
+                return false;
             }
         }
         #region Find
@@ -193,6 +195,10 @@ namespace DigitalDocumentary.BLL
         #region Update
 
         #endregion Update
+        public bool MoveDoc(List<int> docIds, int desfid)
+        {
+            return DocumentDAL.MoveDoc(docIds, desfid);
+        }
         public bool MoveFile(string srcPath)
         {
             return Helper.MoveFile(srcPath);
