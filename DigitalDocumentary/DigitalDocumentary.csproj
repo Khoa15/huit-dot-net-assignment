@@ -89,11 +89,11 @@
     <Compile Include="GUI\Folder.Designer.cs">
       <DependentUpon>Folder.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\MoveDoc.cs">
+    <Compile Include="GUI\MoveDocOrFolder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\MoveDoc.Designer.cs">
-      <DependentUpon>MoveDoc.cs</DependentUpon>
+    <Compile Include="GUI\MoveDocOrFolder.Designer.cs">
+      <DependentUpon>MoveDocOrFolder.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,8 +109,8 @@
     <EmbeddedResource Include="GUI\Folder.resx">
       <DependentUpon>Folder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\MoveDoc.resx">
-      <DependentUpon>MoveDoc.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\MoveDocOrFolder.resx">
+      <DependentUpon>MoveDocOrFolder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

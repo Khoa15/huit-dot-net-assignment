@@ -171,6 +171,7 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDocuments.Size = new System.Drawing.Size(726, 398);
             this.dataGridViewDocuments.TabIndex = 3;
+            this.dataGridViewDocuments.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewDocuments_MouseClick);
             // 
             // ColSelectRow
             // 

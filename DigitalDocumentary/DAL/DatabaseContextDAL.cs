@@ -58,6 +58,9 @@ namespace DigitalDocumentary.DLL
             {
                 return 0;
             }
+            finally{
+                if(db.Conn.State == ConnectionState.Open) db.Conn.Close();
+            }
         }
         public int NonQueryBySP(string nameStoredProcedure, string param, object value)
         {
@@ -78,6 +81,10 @@ namespace DigitalDocumentary.DLL
             }catch(Exception ex)
             {
                 return 0;
+            }
+            finally
+            {
+                if (db.Conn.State == ConnectionState.Open) db.Conn.Close();
             }
         }
 
@@ -163,18 +170,29 @@ namespace DigitalDocumentary.DLL
         public DataSet Select(string nameStoredProcedure = null, string param=null, string value = null)
         {
             DataSet ds = new DataSet();
-            db.Conn.Open();
-            SqlCommand command = new SqlCommand();
-            command.Connection = db.Conn;
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = nameStoredProcedure;
-            if(param != null)
+            try
             {
-                command.Parameters.Add(param, value);
+                db.Conn.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = db.Conn;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = nameStoredProcedure;
+                if(param != null)
+                {
+                    command.Parameters.Add(param, value);
+                }
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(ds);
+                db.Conn.Close();
+
+            }catch(Exception ex)
+            {
+
             }
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            adapter.Fill(ds);
-            db.Conn.Close();
+            finally
+            {
+                if (db.Conn.State == ConnectionState.Open) db.Conn.Close();
+            }
 
             return ds;
         }

@@ -88,5 +88,16 @@ namespace DigitalDocumentary.DLL
             string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {string.Join(", id=", id)}";
             return db.NonQuery(sql);
         }
+
+        public int MoveFolder(int id, int? desId)
+        {
+            string[] keys = { "@id", "@desId"};
+            object[] values = { id.ToString(), desId.ToString() };
+            if(desId == null)
+            {
+                values[1] = DBNull.Value;
+            }
+            return db.NonQueryBySP("MoveFolder", keys, values);
+        }
     }
 }

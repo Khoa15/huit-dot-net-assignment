@@ -195,8 +195,12 @@ namespace DigitalDocumentary.BLL
         #region Update
 
         #endregion Update
-        public bool MoveDoc(List<int> docIds, int desfid)
+        public bool MoveDoc(List<int> docIds, int? desfid)
         {
+            if(docIds.Count == 0)
+            {
+                return false;
+            }
             return DocumentDAL.MoveDoc(docIds, desfid);
         }
         public bool MoveFile(string srcPath)

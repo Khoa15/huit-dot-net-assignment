@@ -16,44 +16,41 @@ namespace DigitalDocumentary.GUI
     {
         FolderBLL f = new FolderBLL();
         DocumentBLL documentBLL = new DocumentBLL();
+        bool isDocOrFolder = false;
         public Document()
         {
             InitializeComponent();
             dataGridViewDocuments.AutoGenerateColumns = false;
             dataGridViewDocuments.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewDocuments.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            LoadFolder();
             LoadDocument(documentBLL.Load());
             LoadSelectionFilter();
-        }
-
-        private void LoadFolder()
-        {
             treeViewFolders.Nodes.Add("TLS", "TÀI LIỆU SỐ");
             TreeNode root = treeViewFolders.Nodes[0];
             List<FolderDTO> folders = f.Load();
-            foreach (FolderDTO folder in folders)
-            {
-                if (folder.Parent == null)
-                {
-                    root.Nodes.Add(folder.Id.ToString(), folder.Name);
-                }
-            }
-            foreach (FolderDTO folder in folders)
-            {
-                TreeNode parentNode = null;
+            LoadFolder(folders, root, null);
+        }
 
-                if (folder.Parent != null)
+        private void LoadFolder(List<FolderDTO> folders, TreeNode root, FolderDTO folder = null)
+        {
+            if (folders.Count == 0) return;
+            if(folder == null)
+            {
+                folders.FindAll(fol => fol.Parent == null).ForEach(fol =>
                 {
-                    parentNode = root.Nodes.Find(folder.Parent.Id.ToString(), false).First();
-                }
-
-                if (parentNode != null)
-                {
-                    parentNode.Nodes.Add(folder.Id.ToString(), folder.Name);
-                }
+                    TreeNode tmp = root.Nodes.Add(fol.Id.ToString(), fol.Name);
+                    LoadFolder(folders, tmp, fol);
+                });
+                root.Expand();
             }
-            root.Expand();
+            else
+            {
+                folders.FindAll(fol => fol.Parent == folder).ForEach(fol =>
+                {
+                    TreeNode tmp = root.Nodes.Add(fol.Id.ToString(), fol.Name);
+                    LoadFolder(folders, tmp, fol);
+                });
+            }
         }
         private void LoadDocument(List<DocumentDTO> docs)
         {
@@ -131,6 +128,7 @@ namespace DigitalDocumentary.GUI
         private void treeViewFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             pnBottom.Visible = true;
+            isDocOrFolder = false;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -193,8 +191,19 @@ namespace DigitalDocumentary.GUI
 
         private void btnMvDocToNewFolder_Click(object sender, EventArgs e)
         {
-
-            //documentBLL.MoveDoc(IdDocumentSelected());
+            List<int> ids = IdDocumentSelected();
+            if(ids.Count == 0 && isDocOrFolder)
+            {
+                MessageBox.Show("You need choose at least one document to move another folder!");
+                return;
+            }
+            else
+            {
+                ids = new List<int>();
+                ids.Add(int.Parse(treeViewFolders.SelectedNode.Name));
+            }
+            MoveDocOrFolder mvDoc = new MoveDocOrFolder(ids, isDocOrFolder);
+            mvDoc.ShowDialog();
         }
 
         private List<int> IdDocumentSelected()
@@ -208,6 +217,11 @@ namespace DigitalDocumentary.GUI
                 }
             }
             return ids;
+        }
+
+        private void dataGridViewDocuments_MouseClick(object sender, MouseEventArgs e)
+        {
+            isDocOrFolder = true;
         }
     }
 }
