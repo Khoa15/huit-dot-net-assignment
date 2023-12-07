@@ -125,7 +125,7 @@ namespace DigitalDocumentary.DLL
             return db.NonQueryBySP("PrivateDocumentByIdFolder", "@fid", fid) > 0;
         }
 
-        public static bool MoveDoc(List<int> docIds, int desFid)
+        public static bool MoveDoc(List<int> docIds, int? desFid)
         {
             string[] param = { "@docId", "@fid" };
             for(int i  = 0; i < param.Length; i++)

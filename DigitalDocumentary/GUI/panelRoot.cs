@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace DigitalDocumentary.GUI
 {
-    public partial class MoveDoc : Form
+    public partial class panelRoot : UserControl
     {
-        public MoveDoc()
+        public panelRoot()
         {
             InitializeComponent();
+        }
+
+        private void btnDocIndex_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -19,19 +19,18 @@ namespace DigitalDocumentary.DLL
         public List<UserAccessDTO> Load(string where=null)
         {
             userAccesses.Clear();
-            DataSet ds = new DataSet("SelectAllUserAccess");
-            //while (rd.Read())
-            //{
-            //    UserAccessDTO ua = new UserAccessDTO();
-            //    ua.Id = rd.GetInt32(0);
-            //    ua.Display = rd.GetBoolean(1);
-            //    ua.TrialRead = rd.GetBoolean(2);
-            //    ua.CanRead = rd.GetBoolean(3);
-            //    ua.NumberPageRead = rd.GetInt32(4);
-            //    ua.NumberPageDownload = rd.GetInt32(5);
-
-            //    userAccesses.Add(ua);
-            //}
+            DataSet ds = db.Select("SelectAllUserAccess");
+            foreach(DataRow row in ds.Tables[0].Rows)
+            {
+                UserAccessDTO ua = new UserAccessDTO();
+                ua.Id = int.Parse(row["user_type_id"].ToString());
+                ua.Display = Convert.ToBoolean(row["display"]);
+                ua.TrialRead = Convert.ToBoolean(row["read_limit"]);
+                ua.CanRead = Convert.ToBoolean(row["read_full"]);
+                ua.NumberPageRead = Convert.ToInt32(row["page_read"]);
+                ua.NumberPageDownload = Convert.ToInt32(row["page_download"]);
+                userAccesses.Add(ua);
+            }
             return userAccesses;
         }
         public UserAccessDTO Get(int id)

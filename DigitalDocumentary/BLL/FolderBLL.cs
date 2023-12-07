@@ -89,5 +89,10 @@ namespace DigitalDocumentary.BLL
         {
             return DocumentDAL.PrivateAllDocumentByIdFolder(fid);
         }
+
+        public bool MoveFolder(int id, int? desId)
+        {
+            return folderDll.MoveFolder(id, desId) > 0;
+        }
     }
 }
