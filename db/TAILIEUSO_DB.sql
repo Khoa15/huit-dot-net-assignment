@@ -24,14 +24,14 @@ GO
 
 -- Tạo bảng UserAccess với ràng buộc
 CREATE TABLE UserAccess (
-    user_type_id INT IDENTITY(1,1) NOT NULL,-- foreign key QuanLyHT
+    patron_type_id char(10) NOT NULL,
     page_read INT NOT NULL DEFAULT(0),
     page_download INT NOT NULL DEFAULT(0),
     display BIT NOT NULL DEFAULT(0),
     read_limit BIT NOT NULL DEFAULT(0),
     read_full BIT NOT NULL DEFAULT(0),
     download BIT NOT NULL DEFAULT(0),
-	CONSTRAINT PK_UserAccess PRIMARY KEY (user_type_id)
+	CONSTRAINT PK_UserAccess PRIMARY KEY (patron_type_id)
 );
 GO
 
@@ -267,18 +267,11 @@ VALUES
 GO
 
 -- INSERT dữ liệu vào bảng UserAccess
-INSERT INTO UserAccess (page_read, page_download, display, read_limit, read_full, download)
+INSERT INTO UserAccess (patron_type_id, page_read, page_download, display, read_limit, read_full, download)
 VALUES 
-(1, 1, 1, 0, 1, 0),
-(1, 1, 1, 1, 1, 1),
-(1, 1, 1, 1, 0, 1),
-(1, 1, 0, 0, 0, 0),
-(1, 0, 0, 0, 0, 0),
-(0, 0, 1, 0, 0, 0),
-(0, 1, 1, 1, 0, 1),
-(1, 1, 1, 1, 1, 1),
-(1, 0, 1, 0, 0, 0),
-(1, 1, 1, 1, 1, 1);
+('CB', 1, 1, 1, 0, 1, 0),
+('TS', 1, 1, 1, 1, 1, 1),
+('SV', 1, 1, 1, 1, 0, 1);
 GO
 
 
@@ -506,3 +499,24 @@ GO
 
 
 
+------------------System Mangement
+
+CREATE TABLE PatronTypes(
+	PatronTypeID char(10) NOT NULL,
+	TypeName nvarchar(50) NOT NULL,
+	Note text NULL,
+	CONSTRAINT PK_PatronTypes PRIMARY KEY (PatronTypeID)
+);
+GO
+INSERT INTO PatronTypes (PatronTypeID, TypeName) VALUES
+	('CB', N'Cán bộ'),
+	('GV', N'Giảng viên'), 
+	('NCS', N'Học viên cao học'),
+	('SV', N'Sinh viên'),
+	('TS', N'Tiến sĩ');
+
+
+-----------Update My Own
+ALTER TABLE UserAccess
+ADD CONSTRAINT FK_UserAccess_PatronTypes FOREIGN KEY (patron_type_id) REFERENCES PatronTypes(PatronTypeID)
+GO

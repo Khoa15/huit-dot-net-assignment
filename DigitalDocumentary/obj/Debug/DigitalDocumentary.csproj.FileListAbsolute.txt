@@ -36,3 +36,6 @@ C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.AddDocument.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.DocumentIndex.resources
 C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.DocumentIndex.resources
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.MoveDocOrFolder.resources
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.panelRoot.resources
+C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Policy.resources

@@ -31,12 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewDocPolicy = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_IcTable = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnAsk = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnAddPolicy = new System.Windows.Forms.Button();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -82,6 +82,15 @@
             this.panel3.Size = new System.Drawing.Size(1062, 536);
             this.panel3.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(33, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Áp dụng cho tài liệu số";
+            // 
             // dataGridViewDocPolicy
             // 
             this.dataGridViewDocPolicy.AllowUserToAddRows = false;
@@ -91,12 +100,14 @@
             this.dataGridViewDocPolicy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewDocPolicy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDocPolicy.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewDocPolicy.Location = new System.Drawing.Point(36, 51);
             this.dataGridViewDocPolicy.MultiSelect = false;
             this.dataGridViewDocPolicy.Name = "dataGridViewDocPolicy";
             this.dataGridViewDocPolicy.RowHeadersWidth = 62;
             this.dataGridViewDocPolicy.Size = new System.Drawing.Size(971, 472);
             this.dataGridViewDocPolicy.TabIndex = 0;
+            this.dataGridViewDocPolicy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocPolicy_CellContentClick);
             // 
             // panel2
             // 
@@ -143,15 +154,6 @@
             this.btnAsk.Size = new System.Drawing.Size(29, 29);
             this.btnAsk.TabIndex = 0;
             this.btnAsk.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Áp dụng cho tài liệu số";
             // 
             // btnAddPolicy
             // 

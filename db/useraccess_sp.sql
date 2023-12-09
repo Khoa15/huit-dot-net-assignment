@@ -3,5 +3,8 @@ GO
 CREATE PROC SelectAllUserAccess
 AS
 BEGIN
-	SELECT * FROM UserAccess
+	SELECT u.*, p.TypeName as Name FROM UserAccess u
+	LEFT JOIN PatronTypes p
+	ON u.patron_type_id = p.PatronTypeID
+	
 END;

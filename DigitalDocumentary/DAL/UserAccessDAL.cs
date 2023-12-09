@@ -23,10 +23,12 @@ namespace DigitalDocumentary.DLL
             foreach(DataRow row in ds.Tables[0].Rows)
             {
                 UserAccessDTO ua = new UserAccessDTO();
-                ua.Id = int.Parse(row["user_type_id"].ToString());
+                ua.Id = row["patron_type_id"].ToString();
+                ua.Name = row["Name"].ToString();
                 ua.Display = Convert.ToBoolean(row["display"]);
                 ua.TrialRead = Convert.ToBoolean(row["read_limit"]);
                 ua.CanRead = Convert.ToBoolean(row["read_full"]);
+                ua.CanDownload = Convert.ToBoolean(row["download"]);
                 ua.NumberPageRead = Convert.ToInt32(row["page_read"]);
                 ua.NumberPageDownload = Convert.ToInt32(row["page_download"]);
                 userAccesses.Add(ua);

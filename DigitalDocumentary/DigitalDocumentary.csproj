@@ -89,11 +89,23 @@
     <Compile Include="GUI\Folder.Designer.cs">
       <DependentUpon>Folder.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\MoveDoc.cs">
+    <Compile Include="GUI\panelRoot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\panelRoot.Designer.cs">
+      <DependentUpon>panelRoot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MoveDocOrFolder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\MoveDoc.Designer.cs">
-      <DependentUpon>MoveDoc.cs</DependentUpon>
+    <Compile Include="GUI\MoveDocOrFolder.Designer.cs">
+      <DependentUpon>MoveDocOrFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Policy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Policy.Designer.cs">
+      <DependentUpon>Policy.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,8 +121,14 @@
     <EmbeddedResource Include="GUI\Folder.resx">
       <DependentUpon>Folder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\MoveDoc.resx">
-      <DependentUpon>MoveDoc.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\panelRoot.resx">
+      <DependentUpon>panelRoot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MoveDocOrFolder.resx">
+      <DependentUpon>MoveDocOrFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Policy.resx">
+      <DependentUpon>Policy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
