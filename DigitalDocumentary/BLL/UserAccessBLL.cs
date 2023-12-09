@@ -10,7 +10,7 @@ namespace DigitalDocumentary.BLL
 {
     internal class UserAccessBLL
     {
-        UserAccessDAL userAccessDll = new UserAccessDAL();
+        UserAccessDAL userAccessDll;
         public UserAccessBLL()
         {
         }
