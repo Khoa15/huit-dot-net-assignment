@@ -26,13 +26,17 @@ namespace DigitalDocumentary.BLL
         {
             return userAccessDll.Update(userAccess);
         }
+        public int Save(UserAccessDTO userAccess)
+        {
+            return this.Update(userAccess);
+        }
         public int Delete(UserAccessDTO userAccess)
         {
             return userAccessDll.Delete(userAccess);
         }
-        public int Delete(int id)
+        public bool Delete(string id)
         {
-            return userAccessDll.Delete(id);
+            return userAccessDll.Delete(id) > 0;
         }
     }
 }

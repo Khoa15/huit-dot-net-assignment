@@ -181,15 +181,16 @@ namespace DigitalDocumentary.GUI
                 dataGridViewDocuments.DataSource = null;
             }
             dataGridViewDocuments.DataSource = docs;
-            DataGridViewColumn[] columns = 
+            DataGridViewColumn[] columns =
             {
-                new DataGridViewTextBoxColumn { Name = "Id", DataPropertyName = "Id", HeaderText = "Mã số", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
-                new DataGridViewTextBoxColumn { Name = "Title", DataPropertyName = "Title", HeaderText = "Tiêu đề", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth=150 },
-                new DataGridViewTextBoxColumn { Name = "Author", DataPropertyName = "AuthorName", HeaderText = "Tác giả", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells, MinimumWidth=100 },
-                new DataGridViewTextBoxColumn { Name = "Type", DataPropertyName = "Type", HeaderText = "Loại tài liệu", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
-                new DataGridViewTextBoxColumn { Name = "Updated_by", DataPropertyName = "Updated_by", HeaderText = "Người cập nhật", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
-                new DataGridViewTextBoxColumn { Name = "Updated_date", DataPropertyName = "Updated_at", HeaderText = "Ngày cập nhật", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
-                new DataGridViewTextBoxColumn { Name = "Status", DataPropertyName = "Status", HeaderText = "Tình trạng", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
+                new DataGridViewCheckBoxColumn {HeaderText = "Unchecked", ValueType = typeof(bool)},
+                new DataGridViewTextBoxColumn { Name = "Id", DataPropertyName = "Id", HeaderText = "Mã số", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
+                new DataGridViewTextBoxColumn { Name = "Title", DataPropertyName = "Title", HeaderText = "Tiêu đề", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth=150 },
+                new DataGridViewTextBoxColumn { Name = "Author", DataPropertyName = "AuthorName", HeaderText = "Tác giả", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells, MinimumWidth=100 },
+                new DataGridViewTextBoxColumn { Name = "Type", DataPropertyName = "Type", HeaderText = "Loại tài liệu", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
+                new DataGridViewTextBoxColumn { Name = "Updated_by", DataPropertyName = "Updated_by", HeaderText = "Người cập nhật", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
+                new DataGridViewTextBoxColumn { Name = "Updated_date", DataPropertyName = "Updated_at", HeaderText = "Ngày cập nhật", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
+                new DataGridViewTextBoxColumn { Name = "Status", DataPropertyName = "Status", HeaderText = "Tình trạng", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
             };
 
             dataGridViewDocuments.Columns.AddRange(columns);
@@ -230,6 +231,45 @@ namespace DigitalDocumentary.GUI
         {
             Policy policy = new Policy();
             policy.ShowDialog();
+        }
+
+        private void dataGridViewDocuments_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex > 0)
+            {
+                DataGridViewRow row = senderGrid.Rows[e.RowIndex];
+            }
+        }
+
+        private void dataGridViewDocuments_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.ColumnIndex == 0)
+            {
+                DataGridViewCheckBoxColumn column= (DataGridViewCheckBoxColumn)senderGrid.Columns[e.ColumnIndex];
+                
+                if(column.HeaderText.Equals("Unchecked"))
+                {
+                    column.HeaderText = "Checked";
+                    ToggleCheckBox(true);
+                }
+                else
+                {
+                    column.HeaderText = "Unchecked";
+                    ToggleCheckBox(false);
+                }
+            }
+        }
+        private void ToggleCheckBox(bool check)
+        {
+            for (int i = 0; i < dataGridViewDocuments.RowCount; i++)
+            {
+                DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell)dataGridViewDocuments.Rows[i].Cells[0];
+                checkBoxCell.Value = check;
+            }
         }
     }
 }

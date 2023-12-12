@@ -45,20 +45,26 @@ namespace DigitalDocumentary.DLL
                             $"VALUES ({ua.Display}, {ua.TrialRead}, {ua.CanRead}, {ua.CanDownload}, {ua.NumberPageRead}, {ua.NumberPageDownload})";
             return db.NonQuery(sql);
         }
+        //public int Update(UserAccessDTO ua)
+        //{
+        //    string sql = $"UPDATE {UserAccessDTO.Table} SET display = {ua.Display}, read_limit = {ua.TrialRead}, read_full={ua.CanRead}, download={ua.CanDownload}, page_read={ua.NumberPageRead}, page_download ={ua.NumberPageDownload} WHERE user_type_id = {ua.Id}";
+        //    return db.NonQuery(sql);
+        //}
         public int Update(UserAccessDTO ua)
         {
-            string sql = $"UPDATE {UserAccessDTO.Table} SET display = {ua.Display}, read_limit = {ua.TrialRead}, read_full={ua.CanRead}, download={ua.CanDownload}, page_read={ua.NumberPageRead}, page_download ={ua.NumberPageDownload} WHERE user_type_id = {ua.Id}";
-            return db.NonQuery(sql);
+            //UpdateUserAccess(@id CHAR(10), @page_read INT, @page_download INT, @display BIT, @read_limit BIT, @read_full BIT, @download BIT)
+            string[] keys = { "@id", "@page_read", "@page_download", "@display", "@read_limit", "@read_full", "@download" };
+            object[] values = { ua.Id, ua.TrialRead, ua.CanDownload, ua.Display, ua.CanRead, ua.NumberPageRead, ua.NumberPageDownload };
+            return db.NonQueryBySP("UpdateUserAccess", keys, values);
         }
         public int Delete(UserAccessDTO ua)
         {
             string sql = $"DELETE FROM {UserAccessDTO.Table} WHERE user_type_id = {ua.Id}";
             return db.NonQuery(sql);
         }
-        public int Delete(int id)
+        public int Delete(string id)
         {
-            string sql = $"DELETE FROM {UserAccessDTO.Table} WHERE user_type_id = {id}";
-            return db.NonQuery(sql);
+            return db.NonQueryBySP("DeleteUserAccess", "@id", id);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace DigitalDocumentary.GUI
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Document));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -38,7 +39,6 @@ namespace DigitalDocumentary.GUI
             this.txtBoxSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridViewDocuments = new System.Windows.Forms.DataGridView();
-            this.ColSelectRow = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.treeViewFolders = new System.Windows.Forms.TreeView();
@@ -168,25 +168,16 @@ namespace DigitalDocumentary.GUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewDocuments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDocuments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColSelectRow});
             this.dataGridViewDocuments.Location = new System.Drawing.Point(8, 81);
             this.dataGridViewDocuments.MultiSelect = false;
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
             this.dataGridViewDocuments.RowHeadersVisible = false;
             this.dataGridViewDocuments.RowHeadersWidth = 62;
             this.dataGridViewDocuments.RowTemplate.Height = 30;
-            this.dataGridViewDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDocuments.Size = new System.Drawing.Size(726, 398);
             this.dataGridViewDocuments.TabIndex = 3;
-            // 
-            // ColSelectRow
-            // 
-            this.ColSelectRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ColSelectRow.HeaderText = "Checkbox";
-            this.ColSelectRow.MinimumWidth = 8;
-            this.ColSelectRow.Name = "ColSelectRow";
-            this.ColSelectRow.Width = 83;
+            this.dataGridViewDocuments.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDocuments_ColumnHeaderMouseClick);
+            this.dataGridViewDocuments.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDocuments_RowHeaderMouseClick);
             // 
             // label2
             // 
@@ -481,12 +472,16 @@ namespace DigitalDocumentary.GUI
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(239, 9);
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button4.Location = new System.Drawing.Point(241, 9);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(74, 42);
+            this.button4.Size = new System.Drawing.Size(41, 42);
             this.button4.TabIndex = 11;
-            this.button4.Text = "Biên tập";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
@@ -582,7 +577,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnPeople;
         private System.Windows.Forms.Panel pnMain;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelectRow;
         private System.Windows.Forms.Button btnDocIndex;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel6;
