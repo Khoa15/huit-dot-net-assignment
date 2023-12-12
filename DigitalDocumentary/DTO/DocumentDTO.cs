@@ -14,7 +14,7 @@ namespace DigitalDocumentary.DTO
         private string description;
         private string file_path;
         private string link_to_image;
-        private string type;
+        private ItemTypeDTO itemType;
         private string updated_by;
         private bool status;
         private string author;
@@ -26,14 +26,14 @@ namespace DigitalDocumentary.DTO
 
         public DocumentDTO() { }
 
-        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, string type, bool status, string author, DateTime updated_at, FolderDTO folder = null, string updated_by = null)
+        public DocumentDTO(int id, string title, string description, string file_path, DateTime created_at, string link_to_image, ItemTypeDTO itemType, bool status, string author, DateTime updated_at, FolderDTO folder = null, string updated_by = null)
         {
             this.id = id;
             this.title = title;
             this.description = description;
             this.file_path = file_path;
             this.link_to_image = link_to_image;
-            this.type = type;
+            this.itemType = itemType;
             this.Status = status;
             this.author = author;
             this.created_at = created_at;
@@ -48,13 +48,13 @@ namespace DigitalDocumentary.DTO
         public string Description { get => description; set => description = value; }
         public string File_path { get => file_path; set => file_path = value; }
         public string Link_to_image { get => link_to_image; set => link_to_image = value; }
-        public string Type { get => type; set => type = value; }
+        public ItemTypeDTO ItemType { get => itemType; set => itemType = value; }
         internal string Author { get => author; set => author = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
         internal FolderDTO Folder { get => folder; set => folder = value; }
         public bool Status { get => status; set => status = value; }
-        public int iStatus { get => Convert.ToInt16(status); }
+        public int bStatus { get => Convert.ToInt16(status); }
         public string Updated_by { get => updated_by; set => updated_by = value; }
 
         public string GetStatus
@@ -72,6 +72,11 @@ namespace DigitalDocumentary.DTO
                 }
                 return sts;
             }
+        }
+
+        public string Type
+        {
+            get => itemType.TypeName;
         }
         public string GetFormattedCreatedAt()
         {

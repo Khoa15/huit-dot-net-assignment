@@ -87,6 +87,32 @@ namespace DigitalDocumentary.DLL
                 if (db.Conn.State == ConnectionState.Open) db.Conn.Close();
             }
         }
+        public DataSet Select(string nameStoredProcedure)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                db.Conn.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = db.Conn;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = nameStoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(ds);
+                db.Conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (db.Conn.State == ConnectionState.Open) db.Conn.Close();
+            }
+
+            return ds;
+        }
         public DataSet Select(string nameStoredProcedure = null, string param=null, object value = null)
         {
             DataSet ds = new DataSet();

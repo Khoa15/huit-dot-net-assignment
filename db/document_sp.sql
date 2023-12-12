@@ -93,7 +93,9 @@ GO
 CREATE PROC SelectAllDocuments
 AS
 BEGIN
-	SELECT TOP(1000) Document.* FROM Document
+	SELECT TOP(1000) Document.*, ItemTypes.* FROM Document
+	LEFT JOIN ItemTypes
+	ON Document.ItemTypeID = ItemTypes.ItemTypeID
 END;
 GO
 CREATE PROC PublicDocumentByIdFolder (@fid INT)
@@ -120,15 +122,17 @@ GO
 CREATE PROC SelectDocument(@docId INT)
 AS
 BEGIN
-	SELECT * FROM Document WHERE Document.id = @docId
+	SELECT * FROM Document
+	LEFT JOIN ItemTypes
+	ON Document.ItemTypeID = ItemTypes.ItemTypeID
+	WHERE Document.id = @docId
 END;
 GO
 
 CREATE PROC UpdateDocument(
 	@docId INT,
-	@folder_id INT,
 	@title NVARCHAR(255),
-	@type CHAR(10),
+	@itemTypeID CHAR(10),
 	@file_path VARCHAR(255),
 	@link_to_image VARCHAR(255),
 	@description NTEXT,
@@ -138,8 +142,7 @@ CREATE PROC UpdateDocument(
 AS
 BEGIN
 	UPDATE Document SET
-		folder_id =  @folder_id,
-		ItemTypeID= @type,
+		ItemTypeID= @itemTypeID,
 		file_path= @file_path,
 		title =  @title,
 		link_to_image= @link_to_image,
@@ -152,10 +155,9 @@ END;
 GO
 
 CREATE PROC InsertDocument(
-	@folder_id INT,
-	@title NVARCHAR(255),
-	@ItemTypeID CHAR(10),
+	@itemTypeID CHAR(10),
 	@file_path VARCHAR(255),
+	@title NVARCHAR(255),
 	@link_to_image VARCHAR(255),
 	@description NTEXT,
 	@status BIT,
@@ -164,11 +166,10 @@ CREATE PROC InsertDocument(
 AS
 BEGIN
 	INSERT INTO Document
-		(folder_id, ItemTypeID, file_path, title, link_to_image, description, document_status, updated_by)
+		(ItemTypeID, file_path, title, link_to_image, description, document_status, updated_by)
 	VALUES
 		(
-			@folder_id,
-			@ItemTypeID,
+			@itemTypeID,
 			@file_path,
 			@title,
 			@link_to_image,

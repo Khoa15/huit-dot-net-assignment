@@ -46,18 +46,27 @@ namespace DigitalDocumentary.DLL
         }
         public int Add(DocumentDTO doc)
         {
-            if(doc.Author == null)
+            object link_to_image = DBNull.Value;
+            if (doc.Link_to_image != null)
             {
-
+                link_to_image = doc.Link_to_image;
             }
-            string sql = $"INSERT INTO {DocumentDTO.Table} (folder_id, author_id, title, description, type, file_path, link_to_image, document_status) VALUES ({doc.Folder.Id}, NULL, N'{doc.Title}', N'{doc.Description}', N'{doc.Type}', '{doc.File_path}', '{doc.Link_to_image}', {doc.iStatus})";
-            return db.NonQuery(sql);
+            //string sql = $"INSERT INTO {DocumentDTO.Table} (folder_id, author_id, title, description, type, file_path, link_to_image, document_status) VALUES ({doc.Folder.Id}, NULL, N'{doc.Title}', N'{doc.Description}', N'{doc.Type}', '{doc.File_path}', '{doc.Link_to_image}', {doc.iStatus})";
+
+            string[] keys = {  "@itemTypeID", "@file_path", "@title", "@link_to_image", "@description", "@status", "@updated_by" };
+            object[] values = {doc.ItemType.ItemTypeId, doc.File_path, doc.Title, link_to_image, doc.Description, doc.bStatus, doc.Updated_by};
+            return db.NonQueryBySP("InsertDocument", keys, values);
         }
         public int Update(DocumentDTO doc)
         {
+            object link_to_image = DBNull.Value;
+            if(doc.Link_to_image!= null)
+            {
+                link_to_image = doc.Link_to_image;
+            }
             //string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.iStatus}  WHERE document_id = {doc.Id}";
-            string[] keys = { "@docId", "@folder_id", "@title", "@type", "@file_path", "@link_to_image", "@description", "@status", "@updated_by" };
-            object[] values = { doc.Id, doc.Folder.Id, doc.Title, doc.Type, doc.File_path, doc.Link_to_image, doc.Description, doc.iStatus, doc.Updated_by};
+            string[] keys = {"@docId", "@itemTypeID", "@file_path", "@title", "@link_to_image", "@description", "@status", "@updated_by" };
+            object[] values = { doc.Id, doc.ItemType.ItemTypeId, doc.File_path, doc.Title, link_to_image, doc.Description, doc.bStatus, doc.Updated_by};
             return db.NonQueryBySP("UpdateDocument", keys,values);
         }
         public int UpdateStatus(DocumentDTO doc)
@@ -135,7 +144,7 @@ namespace DigitalDocumentary.DLL
                 document.Description = row["description"].ToString();
                 document.File_path = row["file_path"].ToString();
                 document.Link_to_image = row["link_to_image"].ToString();
-                document.Type = row["type"].ToString();
+                document.ItemType = row["ItemTypeID"].ToString();
                 document.Updated_by = row["updated_by"].ToString();
                 document.Created_at = Convert.ToDateTime(row["created_date"].ToString());
                 document.Updated_at = Convert.ToDateTime(row["updated_date"].ToString());

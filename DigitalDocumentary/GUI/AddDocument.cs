@@ -1,4 +1,5 @@
 ﻿using DigitalDocumentary.BLL;
+using DigitalDocumentary.DAL;
 using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace DigitalDocumentary.GUI
 {
     public partial class AddDocument : Form
     {
+        ItemTypeBLL itemTypeBLL = new ItemTypeBLL();
         DocumentBLL documentBll = new DocumentBLL();
         DocumentDTO doc;
         bool isEdit = false;
@@ -37,8 +39,10 @@ namespace DigitalDocumentary.GUI
         }
         private void LoadDocumentType()
         {
-            cbBoxTypeDoc.Items.Add("Books - Sách");
-            cbBoxTypeDoc.Items.Add("Computer file - Tập tin");
+            itemTypeBLL.Load().ForEach(item =>
+            {
+                cbBoxTypeDoc.Items.Add(item.TypeName);
+            });
             cbBoxTypeDoc.SelectedIndex = 0;
         }
 
@@ -85,6 +89,8 @@ namespace DigitalDocumentary.GUI
                 MessageBox.Show("Some fields can't be empty");
                 return;
             }
+            string typeName = cbBoxTypeDoc.SelectedItem.ToString();
+            ItemTypeDTO TypeId = itemTypeBLL.Load(typeName);
             Button clicked = (Button)sender;
             if(isEdit)
             {
@@ -93,10 +99,7 @@ namespace DigitalDocumentary.GUI
                 doc.Link_to_image = picBoxAvatar.ImageLocation;
                 doc.File_path = txtBoxFilePath.Text;
                 doc.Author = txtBoxAuthor.Text;
-                doc.Folder = new FolderDTO()
-                {
-                    Id = 1,
-                };
+                doc.ItemType = TypeId;
                 doc.Status = clicked.Tag.ToString().Equals("save");
                 doc.Updated_by = "admin";
                 if (documentBll.Update(doc) > 0)
@@ -117,11 +120,9 @@ namespace DigitalDocumentary.GUI
                     Link_to_image = picBoxAvatar.ImageLocation,
                     File_path = txtBoxFilePath.Text,
                     Author = txtBoxAuthor.Text,
-                    Folder = new FolderDTO()
-                    {
-                        Id = 1,
-                    },
+                    ItemType = TypeId,
                     Status = clicked.Tag.ToString().Equals("save"),
+                    Updated_by = "admin",
                 };
 
                 if (documentBll.Add(doc) > 0)

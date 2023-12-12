@@ -51,7 +51,7 @@ GO
 -- Tạo bảng Document với ràng buộc
 CREATE TABLE Document (
     id INT IDENTITY(1,1) NOT NULL,--
-    folder_id INT NOT NULL,--
+    folder_id INT NULL,--
     author NVARCHAR(255) NULL,--
     title NVARCHAR(255) NOT NULL,--
     ItemTypeID CHAR(10),
@@ -491,7 +491,8 @@ GO
 
 INSERT INTO ItemTypes (ItemTypeID, TypeName)
 VALUES
-('b', N'Books - sách'),
+('b', N'Books - Sách'),
+('cf', N'Computer file - Tập tin'),
 ('d', N'Đề tài'),
 ('h', N'Hội thảo'),
 ('o', N'Ngoại văn'),

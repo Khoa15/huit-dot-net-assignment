@@ -89,6 +89,7 @@ namespace DigitalDocumentary.GUI
                     MessageBox.Show("Failure!");
                 }
             }
+            InitLoadFolder();
         }
         private void btnAddDoc_Click(object sender, EventArgs e)
         {
@@ -196,7 +197,7 @@ namespace DigitalDocumentary.GUI
                 new DataGridViewCheckBoxColumn {HeaderText = "Unchecked", ValueType = typeof(bool)},
                 new DataGridViewTextBoxColumn { Name = "Id", DataPropertyName = "Id", HeaderText = "Mã số", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
                 new DataGridViewTextBoxColumn { Name = "Title", DataPropertyName = "Title", HeaderText = "Tiêu đề", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth=150 },
-                new DataGridViewTextBoxColumn { Name = "Author", DataPropertyName = "AuthorName", HeaderText = "Tác giả", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells, MinimumWidth=100 },
+                new DataGridViewTextBoxColumn { Name = "Author", DataPropertyName = "Author", HeaderText = "Tác giả", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells, MinimumWidth=100 },
                 new DataGridViewTextBoxColumn { Name = "Type", DataPropertyName = "Type", HeaderText = "Loại tài liệu", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
                 new DataGridViewTextBoxColumn { Name = "Updated_by", DataPropertyName = "Updated_by", HeaderText = "Người cập nhật", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
                 new DataGridViewTextBoxColumn { Name = "Updated_date", DataPropertyName = "Updated_at", HeaderText = "Ngày cập nhật", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },

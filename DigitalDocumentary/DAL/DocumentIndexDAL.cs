@@ -58,9 +58,8 @@ namespace DigitalDocumentary.DLL
             {
                 parent = docI.Parent;
             }
-            //string sql = $"INSERT INTO {DocumentIndexDTO.Table} (document_id, page_number, parent_index_id, author_id, title) VALUES ({docI.Document.Id}, {docI.PageNumber}, {parent.Id}, {docI.Author.Id}, '{docI.Title}')";
             string[] keys = { "@document_id", "@page_number", "@parent_index_id", "@author", "@title" };
-            object[] values = { docI.Id, docI.PageNumber, parent.Id, docI.Author, docI.Title };
+            object[] values = { docI.Document.Id, docI.PageNumber, parent.Id, docI.Author, docI.Title };
             return db.NonQueryBySP("InsertDocumentIndex", keys, values);
         }
         public int Update(DocumentIndexDTO docI)
@@ -70,14 +69,10 @@ namespace DigitalDocumentary.DLL
             {
                 parent = docI.Parent;
             }
-            string sql = $"UPDATE {DocumentIndexDTO.Table} SET document_id = {docI.Document.Id}, page_number = {docI.PageNumber}, parent_index_id = {parent.Id}, author_id = {docI.Author.Id}, title = '{docI.Title}' WHERE id = {docI.Id}";
-            return db.NonQuery(sql);
+            string[] keys = {"@id", "@document_id", "@page_number", "@parent_index_id", "@author", "@title" };
+            object[] values = { docI.Id, docI.Document.Id, docI.PageNumber, parent.Id, docI.Author, docI.Title };
+            return db.NonQueryBySP("UpdateDocumentIndex", keys, values);
         }
-        //public static int Delete(DocumentIndexDTO docI)
-        //{
-        //    string sql = $"DELETE FROM {DocumentIndexDTO.Table} WHERE id = {docI.Id}";
-        //    return db.NonQuery(sql);
-        //}
         public static int Delete(int id)
         {
             string sql = $"DELETE FROM {DocumentIndexDTO.Table} WHERE id = {id}";

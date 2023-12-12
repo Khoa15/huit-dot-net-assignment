@@ -51,16 +51,19 @@
     <Compile Include="BLL\DocumentIndexBLL.cs" />
     <Compile Include="BLL\FolderBLL.cs" />
     <Compile Include="BLL\Helper.cs" />
+    <Compile Include="BLL\ItemTypeBLL.cs" />
     <Compile Include="BLL\UserAccessBLL.cs" />
     <Compile Include="DAL\DatabaseContextDAL.cs" />
     <Compile Include="DAL\DocumentDAL.cs" />
     <Compile Include="DAL\DocumentIndexDAL.cs" />
     <Compile Include="DAL\FolderDAL.cs" />
+    <Compile Include="DAL\ItemTypeDAL.cs" />
     <Compile Include="DAL\UserAccessDAL.cs" />
     <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
     <Compile Include="DTO\DocumentIndexDTO.cs" />
     <Compile Include="DTO\FolderDTO.cs" />
+    <Compile Include="DTO\ItemTypeDTO.cs" />
     <Compile Include="DTO\UserAccessDTO.cs" />
     <Compile Include="GUI\AddDocument.cs">
       <SubType>Form</SubType>
