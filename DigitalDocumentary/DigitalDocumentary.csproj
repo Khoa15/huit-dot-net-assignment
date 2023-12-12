@@ -216,5 +216,21 @@
   <ItemGroup>
     <None Include="icon\block.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\resize\add.png" />
+    <Content Include="Assets\resize\ban.png" />
+    <Content Include="Assets\resize\bookmark.png" />
+    <Content Include="Assets\resize\camera.png" />
+    <Content Include="Assets\resize\check-mark.png" />
+    <Content Include="Assets\resize\close.png" />
+    <Content Include="Assets\resize\diskette.png" />
+    <Content Include="Assets\resize\download-to-storage-drive.png" />
+    <Content Include="Assets\resize\editing.png" />
+    <Content Include="Assets\resize\group.png" />
+    <Content Include="Assets\resize\search.png" />
+    <Content Include="Assets\resize\share.png" />
+    <Content Include="Assets\resize\trash.png" />
+    <Content Include="Assets\resize\upload.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

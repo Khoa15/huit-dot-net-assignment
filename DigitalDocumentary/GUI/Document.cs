@@ -29,8 +29,10 @@ namespace DigitalDocumentary.GUI
         }
         private void QL_TaiLieuSo_Load(object sender, EventArgs e)
         {
+            panel6.Dock = DockStyle.Bottom;
+            pnMain.Visible = false;
             btn_IcTable.Enabled = false;
-            pnBottom.Visible = false;
+            pnFolDoc.Visible = false;
         }
         private void QL_TaiLieuSo_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -66,7 +68,7 @@ namespace DigitalDocumentary.GUI
         }
         private void treeViewFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            pnBottom.Visible = true;
+            pnFolDoc.Visible = true;
             isDocOrFolder = false;
         }
         private void btnEdit_Click(object sender, EventArgs e)
@@ -223,7 +225,7 @@ namespace DigitalDocumentary.GUI
             {
                 panel6.Dock = DockStyle.Bottom;
                 pnMain.Hide();
-                pnBottom.Hide();
+                pnFolDoc.Hide();
             }
         }
 
