@@ -123,7 +123,7 @@ namespace DigitalDocumentary.BLL
                     result = docDll.Documents.FindAll(d => d.Title.Contains(keyword));
                     break;
                 case 2:// Author Name
-                    result = docDll.Documents.FindAll(d => d.AuthorName.Contains(keyword));
+                    result = docDll.Documents.FindAll(d => d.Author.Contains(keyword));
                     break;
             }
             return result;
@@ -143,7 +143,7 @@ namespace DigitalDocumentary.BLL
         }
         public List<DocumentDTO> FindByAuthorName(string authorName)
         {
-            return docDll.Documents.Where(d => d.Author.Name.Like(authorName) == true).ToList();
+            return docDll.Documents.Where(d => d.Author.Like(authorName) == true).ToList();
         }
         public List<DocumentDTO> FindByAuthorNameDB(string authorName)
         {
@@ -173,7 +173,7 @@ namespace DigitalDocumentary.BLL
             {
                 docDll.Load();
             }
-            return docDll.Documents.OrderBy(d => d.Author.Name).ToList();
+            return docDll.Documents.OrderBy(d => d.Author).ToList();
         }
         public List<DocumentDTO> SortByUpdated()
         {

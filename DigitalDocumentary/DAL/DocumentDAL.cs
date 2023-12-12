@@ -24,17 +24,7 @@ namespace DigitalDocumentary.DLL
         public List<DocumentDTO> Load(string where = null)
         {
             Documents.Clear();
-            string[] tables = { DocumentDTO.Table, AuthorDTO.Table };
-            if(where != null)
-            {
-                where += $" AND {DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id";
-            }
-            else
-            {
-                where = $"{DocumentDTO.Table}.author_id = {AuthorDTO.Table}.id OR {DocumentDTO.Table}.author_id = NULL";
-            }
-            //List<DataRow> dataRows = db.Select(tables, where);
-            DataSet ds = db.Select("SelectAllDocumentsWithAuthorName");
+            DataSet ds = db.Select("SelectAllDocuments");
             
             foreach(DataRow rd in ds.Tables[0].Rows)
             {
@@ -111,8 +101,8 @@ namespace DigitalDocumentary.DLL
 
         public List<DocumentDTO> FindByAuthorName(string authorName)
         {
-            List<DocumentDTO> result = this.Load($"{AuthorDTO.Table}.name LIKE '%{authorName}%'");
-            return result;
+            //List<DocumentDTO> result = this.Load($"{AuthorDTO.Table}.name LIKE '%{authorName}%'");
+            return null;
         }
 
         public static bool PublicAllDocumentByIdFolder(int fid)
@@ -150,8 +140,7 @@ namespace DigitalDocumentary.DLL
                 document.Created_at = Convert.ToDateTime(row["created_date"].ToString());
                 document.Updated_at = Convert.ToDateTime(row["updated_date"].ToString());
 
-                document.Author = new AuthorDTO();
-                document.Author.Name = row["name"].ToString();
+                document.Author = row["author"].ToString();
             return document;
         }
     }

@@ -47,19 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\AuthorBLL.cs" />
     <Compile Include="BLL\DocumentBLL.cs" />
     <Compile Include="BLL\DocumentIndexBLL.cs" />
     <Compile Include="BLL\FolderBLL.cs" />
     <Compile Include="BLL\Helper.cs" />
     <Compile Include="BLL\UserAccessBLL.cs" />
-    <Compile Include="DAL\AuthorDAL.cs" />
     <Compile Include="DAL\DatabaseContextDAL.cs" />
     <Compile Include="DAL\DocumentDAL.cs" />
     <Compile Include="DAL\DocumentIndexDAL.cs" />
     <Compile Include="DAL\FolderDAL.cs" />
     <Compile Include="DAL\UserAccessDAL.cs" />
-    <Compile Include="DTO\AuthorDTO.cs" />
     <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
     <Compile Include="DTO\DocumentIndexDTO.cs" />

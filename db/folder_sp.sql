@@ -37,5 +37,3 @@ BEGIN
 			id =	@id
 END;
 GO
-
-exec UpdateFolder @id=13,@name_id=N'Test',@name=N'Test',@created_by=N'admin',@parent_id=NULL,@status=0

@@ -20,7 +20,6 @@ BEGIN
 						read_full = @read_full,
 						download = @download
 					WHERE patron_type_id = @id
-
 END;
 
 GO

@@ -7,14 +7,6 @@ BEGIN
 END;
 GO
 
-CREATE PROC SelectAllDocuments
-AS
-BEGIN
-	SELECT * FROM Document;
-END;
-GO
-
-
 CREATE PROC SelectDocumentsByFolderID (@folderID INT)
 AS
 BEGIN
@@ -30,12 +22,6 @@ BEGIN
 END;
 GO
 
-CREATE PROC SelectDocumentsByAuthor (@authorID INT)
-AS
-BEGIN
-    SELECT * FROM Document WHERE author_id = @authorID;
-END;
-GO
 
 CREATE PROC SelectDocumentIndexByDocument (@docID INT)
 AS
@@ -104,12 +90,10 @@ GO
 
 
 -- Newest - 01/12/2023 - BY KHOA // Using
-CREATE PROC SelectAllDocumentsWithAuthorName
+CREATE PROC SelectAllDocuments
 AS
 BEGIN
-	SELECT TOP(1000) Document.*, Author.name FROM Document
-	LEFT JOIN Author
-	On Author.id = Document.author_id;
+	SELECT TOP(1000) Document.* FROM Document
 END;
 GO
 CREATE PROC PublicDocumentByIdFolder (@fid INT)
@@ -136,10 +120,7 @@ GO
 CREATE PROC SelectDocument(@docId INT)
 AS
 BEGIN
-	SELECT Document.*, Author.name FROM Document
-	LEFT JOIN Author
-	On Author.id = Document.author_id
-	WHERE Document.id = @docId
+	SELECT * FROM Document WHERE Document.id = @docId
 END;
 GO
 
@@ -147,7 +128,7 @@ CREATE PROC UpdateDocument(
 	@docId INT,
 	@folder_id INT,
 	@title NVARCHAR(255),
-	@type NVARCHAR(255),
+	@type CHAR(10),
 	@file_path VARCHAR(255),
 	@link_to_image VARCHAR(255),
 	@description NTEXT,
@@ -158,7 +139,7 @@ AS
 BEGIN
 	UPDATE Document SET
 		folder_id =  @folder_id,
-		type= @type,
+		ItemTypeID= @type,
 		file_path= @file_path,
 		title =  @title,
 		link_to_image= @link_to_image,
@@ -167,5 +148,33 @@ BEGIN
 		updated_by = @updated_by
 	WHERE
 		id = @docId
+END;
+GO
+
+CREATE PROC InsertDocument(
+	@folder_id INT,
+	@title NVARCHAR(255),
+	@ItemTypeID CHAR(10),
+	@file_path VARCHAR(255),
+	@link_to_image VARCHAR(255),
+	@description NTEXT,
+	@status BIT,
+	@updated_by NVARCHAR(255)
+)
+AS
+BEGIN
+	INSERT INTO Document
+		(folder_id, ItemTypeID, file_path, title, link_to_image, description, document_status, updated_by)
+	VALUES
+		(
+			@folder_id,
+			@ItemTypeID,
+			@file_path,
+			@title,
+			@link_to_image,
+			@description,
+			@status,
+			@updated_by
+		)
 END;
 GO

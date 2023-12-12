@@ -36,25 +36,25 @@ CREATE TABLE UserAccess (
 GO
 
 -- Create the Author table
-CREATE TABLE Author (
-    id INT IDENTITY(1,1) NOT NULL,
-    name NVARCHAR(255) NOT NULL,
-    email NVARCHAR(255),
-    phone NVARCHAR(20),
-    description NVARCHAR(1000),
-    --CONSTRAINT CHK_Author_Email CHECK (LEN(email) <= 255),
-    CONSTRAINT CHK_Author_Phone CHECK (LEN(phone) = 10),
-	CONSTRAINT PK_Author_AuthorID PRIMARY KEY (id)
-);
-GO
+--CREATE TABLE Author (
+--    id INT IDENTITY(1,1) NOT NULL,
+--    name NVARCHAR(255) NOT NULL,
+--    email NVARCHAR(255),
+--    phone NVARCHAR(20),
+--    description NVARCHAR(1000),
+--    --CONSTRAINT CHK_Author_Email CHECK (LEN(email) <= 255),
+--    CONSTRAINT CHK_Author_Phone CHECK (LEN(phone) = 10),
+--	CONSTRAINT PK_Author_AuthorID PRIMARY KEY (id)
+--);
+--GO
 
 -- Tạo bảng Document với ràng buộc
 CREATE TABLE Document (
     id INT IDENTITY(1,1) NOT NULL,--
     folder_id INT NOT NULL,--
-    author_id INT NULL,--
+    author NVARCHAR(255) NULL,--
     title NVARCHAR(255) NOT NULL,--
-    type NVARCHAR(255), -- foreign key QuanLyHT--
+    ItemTypeID CHAR(10),
     file_path VARCHAR(255),--
     link_to_image VARCHAR(255) NULL,--
     description NTEXT NULL,--
@@ -65,7 +65,6 @@ CREATE TABLE Document (
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE()),
 	CONSTRAINT PK_Document PRIMARY KEY (id),
     CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(id),
-    CONSTRAINT FK_Document_Author FOREIGN KEY (author_id) REFERENCES Author(id)
 );
 GO
 	
@@ -75,40 +74,39 @@ CREATE TABLE DocumentIndex (
     document_id INT NOT NULL,
     page_number INT,
     parent_index_id INT NULL,
-    author_id INT NULL,
+    author NVARCHAR(255) NULL,
     title NVARCHAR(255),
 	CONSTRAINT PK_DocumentIndex PRIMARY KEY (index_id),
 	CONSTRAINT FK_DocumentIndex_DocumentID FOREIGN KEY (document_id) REFERENCES Document(id),
 	CONSTRAINT FK_DocumentIndex_ParentIndexID FOREIGN KEY (parent_index_id) REFERENCES DocumentIndex(index_id),
-	CONSTRAINT FK_DocumentIndex_AuthorID FOREIGN KEY (author_id) REFERENCES Author(id)
 );
 GO
 
-CREATE TABLE DocumentAuthor(
-	document_id INT,
-	author_id INT,
-	CONSTRAINT PK_DocumentAuthor PRIMARY KEY (document_id, author_id),
-	CONSTRAINT FK_DocumentAuthor_Author FOREIGN KEY(author_id) REFERENCES Author(id),
-	CONSTRAINT FK_DocumentAuthor_Document FOREIGN KEY(document_id) REFERENCES Document(id),
-);
+--CREATE TABLE DocumentAuthor(
+--	document_id INT,
+--	author_id INT,
+--	CONSTRAINT PK_DocumentAuthor PRIMARY KEY (document_id, author_id),
+--	CONSTRAINT FK_DocumentAuthor_Author FOREIGN KEY(author_id) REFERENCES Author(id),
+--	CONSTRAINT FK_DocumentAuthor_Document FOREIGN KEY(document_id) REFERENCES Document(id),
+--);
 GO
 
 --Tạo Trigger cho email
-CREATE TRIGGER CheckValidEmail
-ON Author
-AFTER INSERT, UPDATE
-AS
-BEGIN
-  IF EXISTS (
-      SELECT 1
-      FROM inserted
-      WHERE email NOT LIKE '%@%.%'
-  )
-  BEGIN
-    THROW 50000, 'Email address is not valid. Please enter a valid email address.', 0;
-  END
-END
-GO
+--CREATE TRIGGER CheckValidEmail
+--ON Author
+--AFTER INSERT, UPDATE
+--AS
+--BEGIN
+--  IF EXISTS (
+--      SELECT 1
+--      FROM inserted
+--      WHERE email NOT LIKE '%@%.%'
+--  )
+--  BEGIN
+--    THROW 50000, 'Email address is not valid. Please enter a valid email address.', 0;
+--  END
+--END
+--GO
 
 
 --DISABLE TRIGGER CheckValidEmail ON Author;
@@ -200,21 +198,20 @@ END;
 GO
 
 
-select * from Author
+--select * from Author
 
--- INSERT dữ liệu vào bảng Author
-INSERT INTO Author (name, email, phone, description)
-VALUES 
-(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cho tôi xin một vé đi tuổi thơ".'),
-(N'Trần Thị Rò', 'thiro@gmail.com', '0987654321', N'Tác giả của cuốn sách "Những người khổng lồ tốt".'),
-(N'Bùi Ngọc Tân', 'buingoctan@gmail.com', '0123456789', N'Tác giả của cuốn sách "Thánh Gióng".'),
-(N'Nguyễn Thành Long', 'thanhlong@gmail.com', '0912345678', N'Tác giả của cuốn sách "Cây chuối non".'),
-(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com.', '0987654321', N'Tác giả của cuốn sách "Kính vạn hoa".'),
-(N'Hồ Anh Thái', 'hoanhthai@gmail.com', '0912345678', N'Tác giả của cuốn sách "Người giàu cũng khó khăn".'),
-(N'Lê Thành Sơn', 'thanhson@gmail.com', '0987654321', N'Tác giả của cuốn sách "Chiếc lá cuối cùng".'),
-(N'Phạm Viết Đức', 'vietduc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sự tích tâm và tình".'),
-(N'Nguyễn Hùng Việt', 'hungviet@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cánh đồng bất tận".'),
-(N'Nguyễn Trung Trực', 'trungtruc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sông tre".');
+--INSERT INTO Author (name, email, phone, description)
+--VALUES 
+--(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cho tôi xin một vé đi tuổi thơ".'),
+--(N'Trần Thị Rò', 'thiro@gmail.com', '0987654321', N'Tác giả của cuốn sách "Những người khổng lồ tốt".'),
+--(N'Bùi Ngọc Tân', 'buingoctan@gmail.com', '0123456789', N'Tác giả của cuốn sách "Thánh Gióng".'),
+--(N'Nguyễn Thành Long', 'thanhlong@gmail.com', '0912345678', N'Tác giả của cuốn sách "Cây chuối non".'),
+--(N'Nguyễn Nhật Ánh', 'nhatanh@gmail.com.', '0987654321', N'Tác giả của cuốn sách "Kính vạn hoa".'),
+--(N'Hồ Anh Thái', 'hoanhthai@gmail.com', '0912345678', N'Tác giả của cuốn sách "Người giàu cũng khó khăn".'),
+--(N'Lê Thành Sơn', 'thanhson@gmail.com', '0987654321', N'Tác giả của cuốn sách "Chiếc lá cuối cùng".'),
+--(N'Phạm Viết Đức', 'vietduc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sự tích tâm và tình".'),
+--(N'Nguyễn Hùng Việt', 'hungviet@gmail.com', '0987654321', N'Tác giả của cuốn sách "Cánh đồng bất tận".'),
+--(N'Nguyễn Trung Trực', 'trungtruc@gmail.com', '0912345678', N'Tác giả của cuốn sách "Sông tre".');
 GO
 
 -- INSERT dữ liệu vào bảng Folder
@@ -232,37 +229,37 @@ VALUES
 ('FDR010', N'Video', 'admin', NULL, 1, '2023-07-20'),
 ('FDR011', N'nghệ thuật gốm sứ', 'admin', 3, 1, '2023-07-20'),
 ('FDR012', N'tài liệu khác', 'admin', 3, 1, '2023-07-20');
-
 GO
 
 -- INSERT dữ liệu vào bảng Document
-INSERT INTO Document (folder_id, author_id, title, type, file_path, link_to_image, description, updated_by)
+INSERT INTO Document (folder_id, title, ItemTypeID, file_path, link_to_image, description, updated_by, author)
 VALUES 
-(1, 1, N'Cho tôi xin một vé đi tuổi thơ',      N'Tiểu thuyết', 'C:\Documents\ChoToiXinMotVeDiTuoiTho.pdf', NULL, N'Tên sách nói lên tất cả, cuốn sách của tác giả Nguyễn Nhật Ánh sẽ đưa bạn trở lại tuổi thơ ngọt ngào nhất của mình.', 'Khoa'),
-(1, 1, N'Kính vạn hoa',                        N'Tiểu thuyết', 'C:\Documents\KinhVanHoa.pdf', NULL, N'Cuốn tiểu thuyết của tác giả Nguyễn Nhật Ánh là một câu chuyện tình nhẹ nhàng, ấm áp và đầy cảm hứng.', 'Khoa'),
-(2, 2, N'Thánh Gióng',                         N'Truyện tranh', 'C:\Documents\ThanhGiong.pdf', NULL, N'Thanh Giong la mot trong nhung nhan vat lich su noi tieng cua Viet Nam. Nhan vat nay duoc khen la anh hung mang lai nhieu loi ich co ban cho dan toc Viet Nam.', 'Khoa'),
-(2, 2, N'Đọc hiểu lớp 2',                      N'Giáo khoa', 'C:\Documents\DocHieuLop2.pdf', NULL, N'Cuốn sách các bài tập đọc hiểu cho học sinh lớp 2 giúp các em nắm vững kỹ năng đọc hiểu và rèn luyện tư duy.', 'Khoa'),
-(3, 3, N'Chiến lược dài hạn trong kinh doanh', N'Kinh doanh', 'C:\Documents\ChienluocDaihan.pdf', NULL, N'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về chiến lược dài hạn trong kinh doanh và giúp bạn xây dựng và triển khai một chiến lược hiệu quả.', 'Khoa'),
-(3, 3, N'Làm giàu không khó',                  N'Kinh doanh', 'C:\Documents\LamGiauKhongKho.pdf', NULL, N'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về cách làm giàu thông qua kinh doanh và đầu tư.', 'Khoa'),
-(4, 4, N'Tôi là số 4',                         N'Tiểu thuyết', 'C:\Documents\ToiLaSo4.pdf', NULL, N'Cuốn tiểu thuyết dành cho lứa tuổi thiếu niên với cốt truyện hấp dẫn, cuốn hút.', 'Khoa'),
-(4, 4, N'Harry Potter và Hòn đá Phù thủy',     N'Tiểu thuyết', 'C:\Documents\HarryPotterVaHonDaPhuThuy.pdf', NULL, N'Cuốn tiểu thuyết nổi tiếng dành cho lứa tuổi thiếu niên với những phép thuật, bí mật và những cuộc phiêu lưu ly kỳ.', 'Khoa'),
-(5, 5, N'Sách giáo khoa lớp 1',                N'Giáo khoa', 'C:\Documents\SachGiaoKhoaLop1.pdf', NULL, N'Cuốn sách giáo khoa dành cho học sinh lớp 1 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa'),
-(5, 5, N'Sách giáo khoa lớp 2',                N'Giáo khoa', 'C:\Documents\SachGiaoKhoaLop2.pdf', NULL, N'Cuốn sách giáo khoa dành cho học sinh lớp 2 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa');
+(1, N'Cho tôi xin một vé đi tuổi thơ', 'b',         'C:\Documents\ChoToiXinMotVeDiTuoiTho.pdf', NULL, 'Tên sách nói lên tất cả, cuốn sách của tác giả Nguyễn Nhật Ánh sẽ đưa bạn trở lại tuổi thơ ngọt ngào nhất của mình.', 'Khoa', 'Nguyễn Nhật Ánh'),
+(1, N'Kính vạn hoa', 'b',                           'C:\Documents\KinhVanHoa.pdf', NULL, 'Cuốn tiểu thuyết của tác giả Nguyễn Nhật Ánh là một câu chuyện tình nhẹ nhàng, ấm áp và đầy cảm hứng.', 'Khoa', 'Nguyễn Nhật Ánh'),
+(2, N'Thánh Gióng', 'b',                            'C:\Documents\ThanhGiong.pdf', NULL, 'Thanh Giong là một trong những nhân vật lịch sử nổi tiếng của Việt Nam. Nhân vật này được khen là anh hùng mang lại nhiều lợi ích cơ bản cho dân tộc Việt Nam.', 'Khoa', 'Nguyễn Nhật Ánh'),
+(2, N'Đọc hiểu lớp 2', 'b',                         'C:\Documents\DocHieuLop2.pdf', NULL, 'Cuốn sách các bài tập đọc hiểu cho học sinh lớp 2 giúp các em nắm vững kỹ năng đọc hiểu và rèn luyện tư duy.', 'Khoa', 'Không có tác giả'),
+(3, N'Chiến lược dài hạn trong kinh doanh', 'b',    'C:\Documents\ChienluocDaihan.pdf', NULL, 'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về chiến lược dài hạn trong kinh doanh và giúp bạn xây dựng và triển khai một chiến lược hiệu quả.', 'Khoa', NULL),
+(3, N'Làm giàu không khó', 'b',                     'C:\Documents\LamGiauKhongKho.pdf', NULL, 'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về cách làm giàu thông qua kinh doanh và đầu tư.', 'Khoa', NULL),
+(4, N'Tôi là số 4', 'b',                            'C:\Documents\ToiLaSo4.pdf', NULL, 'Cuốn tiểu thuyết dành cho lứa tuổi thiếu niên với cốt truyện hấp dẫn, cuốn hút.', 'Khoa', NULL),
+(4, N'Harry Potter và Hòn đá Phù thủy', 'b',        'C:\Documents\HarryPotterVaHonDaPhuThuy.pdf', NULL, 'Cuốn tiểu thuyết nổi tiếng dành cho lứa tuổi thiếu niên với những phép thuật, bí mật và những cuộc phiêu lưu ly kỳ.', 'Khoa', NULL),
+(5, N'Sách giáo khoa lớp 1', 'b',                   'C:\Documents\SachGiaoKhoaLop1.pdf', NULL, 'Cuốn sách giáo khoa dành cho học sinh lớp 1 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa', NULL),
+(5, N'Sách giáo khoa lớp 2', 'b',                   'C:\Documents\SachGiaoKhoaLop2.pdf', NULL, 'Cuốn sách giáo khoa dành cho học sinh lớp 2 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa', NULL);
+
 GO
 
 -- INSERT dữ liệu vào bảng DocumentIndex
-INSERT INTO DocumentIndex (document_id, page_number, parent_index_id, author_id, title)
+INSERT INTO DocumentIndex (document_id, page_number, parent_index_id, title)
 VALUES 
-(1, 1, NULL, 1, N'Giới thiệu'),
-(1, 2, NULL, 1, N'Chương 1'),
-(1, 4, 2, 1, N'Phần 1.1'),
-(1, 5, 2, 1, N'Phần 1.2'),
-(2, 1, NULL, 1, N'Giới thiệu'),
-(2, 2, NULL, 1, N'Chương 1'),
-(2, 3, NULL, 1, N'Chương 2'),
-(2, 4, NULL, 1, N'Chương 3'),
-(3, 1, NULL, 2, N'Trang trước'),
-(3, 3, NULL, 2, N'Trang sau');
+(1, 1, NULL,  N'Giới thiệu'),
+(1, 2, NULL,  N'Chương 1'),
+(1, 4, 2,  N'Phần 1.1'),
+(1, 5, 2,  N'Phần 1.2'),
+(2, 1, NULL,  N'Giới thiệu'),
+(2, 2, NULL,  N'Chương 1'),
+(2, 3, NULL,  N'Chương 2'),
+(2, 4, NULL,  N'Chương 3'),
+(3, 1, NULL,  N'Trang trước'),
+(3, 3, NULL,  N'Trang sau');
 GO
 
 -- INSERT dữ liệu vào bảng UserAccess
@@ -295,43 +292,43 @@ GO
 
 -- Tạo stored procedure để select cho mục lục của Document
 
-CREATE PROC sp_SelectDocumentIndex
-(
-  @DocumentID INT
-)
-AS
-BEGIN
-  -- Khai báo biến để lưu trữ kết quả trả về
-  DECLARE @DocumentIndex TABLE
-  (
-    index_id INT,
-    document_id INT,
-    page_number INT,
-    parent_index_id INT,
-    author_id INT,
-    title NVARCHAR(255)
-  );
+--CREATE PROC sp_SelectDocumentIndex
+--(
+--  @DocumentID INT
+--)
+--AS
+--BEGIN
+--  -- Khai báo biến để lưu trữ kết quả trả về
+--  DECLARE @DocumentIndex TABLE
+--  (
+--    index_id INT,
+--    document_id INT,
+--    page_number INT,
+--    parent_index_id INT,
+--    author_id INT,
+--    title NVARCHAR(255)
+--  );
 
-  -- Thêm dữ liệu vào bảng tạm thời @DocumentIndex
-  INSERT INTO @DocumentIndex
-  SELECT
-    DI.index_id,
-    DI.document_id,
-    DI.page_number,
-    DI.parent_index_id,
-    DI.author_id,
-    DI.title
-  FROM DocumentIndex DI
-  WHERE DI.document_id = @DocumentID;
+--  -- Thêm dữ liệu vào bảng tạm thời @DocumentIndex
+--  INSERT INTO @DocumentIndex
+--  SELECT
+--    DI.index_id,
+--    DI.document_id,
+--    DI.page_number,
+--    DI.parent_index_id,
+--    DI.author_id,
+--    DI.title
+--  FROM DocumentIndex DI
+--  WHERE DI.document_id = @DocumentID;
 
-  -- Trả về kết quả
-  SELECT *
-  FROM @DocumentIndex;
-END;
-GO
+--  -- Trả về kết quả
+--  SELECT *
+--  FROM @DocumentIndex;
+--END;
+--GO
 
 -- Lấy mục lục của tài liệu có ID = 1
-EXEC sp_SelectDocumentIndex 1;
+--EXEC sp_SelectDocumentIndex 1;
 go
 
 
@@ -484,6 +481,24 @@ CREATE TABLE PatronTypes(
 	CONSTRAINT PK_PatronTypes PRIMARY KEY (PatronTypeID)
 );
 GO
+
+CREATE TABLE ItemTypes(
+	ItemTypeID CHAR(10),
+	TypeName NVARCHAR(50) NOT NULL UNIQUE,
+	CONSTRAINT PK_ItemTypes PRIMARY KEY(ItemTypeID),
+);
+GO
+
+INSERT INTO ItemTypes (ItemTypeID, TypeName)
+VALUES
+('b', N'Books - sách'),
+('d', N'Đề tài'),
+('h', N'Hội thảo'),
+('o', N'Ngoại văn'),
+('m', N'Maps - Bản đồ'),
+('s', N'Serials - Ấn phẩm định kỳ'),
+('x', N'Mixed Material - Tài liệu hỗn hợp');
+GO
 INSERT INTO PatronTypes (PatronTypeID, TypeName) VALUES
 	('CB', N'Cán bộ'),
 	('GV', N'Giảng viên'), 
@@ -497,17 +512,21 @@ ALTER TABLE UserAccess
 ADD CONSTRAINT FK_UserAccess_PatronTypes FOREIGN KEY (patron_type_id) REFERENCES PatronTypes(PatronTypeID)
 GO
 
+ALTER TABLE Document
+ADD CONSTRAINT FK_Document_ItemTypes FOREIGN KEY (ItemTypeID) REFERENCES ItemTypes(ItemTypeID)
+GO
+
 ------FUNCTION NEWEST 12/12
 
 -- Hàm trả về số lượng tài liệu trong thư mục có ID đã cho
-CREATE FUNCTION CountDocumentsByFolderID (@folderID INT)
+CREATE FUNCTION CountDocumentsByFolderID (@folder_id INT)
 RETURNS INT
 AS
 BEGIN
     DECLARE @count INT;
     SELECT @count = COUNT(*)
     FROM Document
-    WHERE folder_id = @folderID;
+    WHERE folder_id = @folder_id;
     RETURN @count;
 END;
 GO

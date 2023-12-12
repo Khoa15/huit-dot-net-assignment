@@ -56,7 +56,6 @@ namespace DigitalDocumentary.GUI
             this.btnDeleteDocInFolder = new System.Windows.Forms.Button();
             this.btnDelFolder = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.btnDocIndex = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.btnPublic = new System.Windows.Forms.Button();
             this.btnAddDoc = new System.Windows.Forms.Button();
@@ -81,6 +80,7 @@ namespace DigitalDocumentary.GUI
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.btnDocIndex = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -285,6 +285,7 @@ namespace DigitalDocumentary.GUI
             this.pnFolDoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnFolDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnFolDoc.Controls.Add(this.btnDocIndex);
             this.pnFolDoc.Controls.Add(this.button3);
             this.pnFolDoc.Controls.Add(this.btnEditDoc);
             this.pnFolDoc.Controls.Add(this.btnEditFolder);
@@ -293,7 +294,6 @@ namespace DigitalDocumentary.GUI
             this.pnFolDoc.Controls.Add(this.btnDeleteDocInFolder);
             this.pnFolDoc.Controls.Add(this.btnDelFolder);
             this.pnFolDoc.Controls.Add(this.button8);
-            this.pnFolDoc.Controls.Add(this.btnDocIndex);
             this.pnFolDoc.Controls.Add(this.button9);
             this.pnFolDoc.Controls.Add(this.btnPublic);
             this.pnFolDoc.Controls.Add(this.btnAddDoc);
@@ -346,7 +346,7 @@ namespace DigitalDocumentary.GUI
             this.btnMvDocToNewFolder.BackColor = System.Drawing.Color.White;
             this.btnMvDocToNewFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMvDocToNewFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnMvDocToNewFolder.Image")));
-            this.btnMvDocToNewFolder.Location = new System.Drawing.Point(496, 9);
+            this.btnMvDocToNewFolder.Location = new System.Drawing.Point(546, 9);
             this.btnMvDocToNewFolder.Name = "btnMvDocToNewFolder";
             this.btnMvDocToNewFolder.Size = new System.Drawing.Size(41, 42);
             this.btnMvDocToNewFolder.TabIndex = 1;
@@ -394,28 +394,18 @@ namespace DigitalDocumentary.GUI
             this.button8.BackColor = System.Drawing.Color.White;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(449, 9);
+            this.button8.Location = new System.Drawing.Point(499, 9);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(41, 42);
             this.button8.TabIndex = 1;
             this.button8.UseVisualStyleBackColor = false;
-            // 
-            // btnDocIndex
-            // 
-            this.btnDocIndex.Location = new System.Drawing.Point(673, 9);
-            this.btnDocIndex.Name = "btnDocIndex";
-            this.btnDocIndex.Size = new System.Drawing.Size(74, 42);
-            this.btnDocIndex.TabIndex = 11;
-            this.btnDocIndex.Text = "Mục lục";
-            this.btnDocIndex.UseVisualStyleBackColor = true;
-            this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
             // 
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.White;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(590, 9);
+            this.button9.Location = new System.Drawing.Point(640, 9);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(41, 42);
             this.button9.TabIndex = 1;
@@ -426,7 +416,7 @@ namespace DigitalDocumentary.GUI
             this.btnPublic.BackColor = System.Drawing.Color.White;
             this.btnPublic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublic.Image = ((System.Drawing.Image)(resources.GetObject("btnPublic.Image")));
-            this.btnPublic.Location = new System.Drawing.Point(543, 9);
+            this.btnPublic.Location = new System.Drawing.Point(593, 9);
             this.btnPublic.Name = "btnPublic";
             this.btnPublic.Size = new System.Drawing.Size(41, 42);
             this.btnPublic.TabIndex = 1;
@@ -686,6 +676,18 @@ namespace DigitalDocumentary.GUI
             this.button4.TabIndex = 1;
             this.button4.UseVisualStyleBackColor = false;
             // 
+            // btnDocIndex
+            // 
+            this.btnDocIndex.BackColor = System.Drawing.Color.White;
+            this.btnDocIndex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDocIndex.Image = ((System.Drawing.Image)(resources.GetObject("btnDocIndex.Image")));
+            this.btnDocIndex.Location = new System.Drawing.Point(441, 9);
+            this.btnDocIndex.Name = "btnDocIndex";
+            this.btnDocIndex.Size = new System.Drawing.Size(41, 42);
+            this.btnDocIndex.TabIndex = 2;
+            this.btnDocIndex.UseVisualStyleBackColor = false;
+            this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
+            // 
             // Document
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -737,7 +739,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.TextBox txtBoxSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel pnMain;
-        private System.Windows.Forms.Button btnDocIndex;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnAdd;
@@ -769,5 +770,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnEditDoc;
         private System.Windows.Forms.Button btnDeleteDocInFolder;
+        private System.Windows.Forms.Button btnDocIndex;
     }
 }

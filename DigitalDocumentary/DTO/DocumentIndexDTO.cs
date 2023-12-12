@@ -14,10 +14,10 @@ namespace DigitalDocumentary.DTO
         private DocumentDTO document;
         private int pageNumber;
         private DocumentIndexDTO parent;
-        private AuthorDTO author;
+        private string author;
         public DocumentIndexDTO() { }
 
-        public DocumentIndexDTO(int id, string title, DocumentDTO document, int pageNumber, DocumentIndexDTO parent, AuthorDTO author)
+        public DocumentIndexDTO(int id, string title, DocumentDTO document, int pageNumber, DocumentIndexDTO parent, string author)
         {
             this.Id = id;
             this.Title = title;
@@ -33,6 +33,6 @@ namespace DigitalDocumentary.DTO
         public int PageNumber { get => pageNumber; set => pageNumber = value; }
         internal DocumentDTO Document { get => document; set => document = value; }
         internal DocumentIndexDTO Parent { get => parent; set => parent = value; }
-        internal AuthorDTO Author { get => author; set => author = value; }
+        internal string Author { get => author; set => author = value; }
     }
 }
