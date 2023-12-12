@@ -86,14 +86,13 @@ namespace DigitalDocumentary.GUI
                 return;
             }
             Button clicked = (Button)sender;
-            List<AuthorDTO> authorDTOs = new List<AuthorDTO>();
-            var x = txtBoxAuthor.Text.Split(';');
             if(isEdit)
             {
                 doc.Title = txtBoxTitle.Text;
                 doc.Description = txtBoxDescription.Text;
                 doc.Link_to_image = picBoxAvatar.ImageLocation;
                 doc.File_path = txtBoxFilePath.Text;
+                doc.Author = txtBoxAuthor.Text;
                 doc.Folder = new FolderDTO()
                 {
                     Id = 1,
@@ -117,6 +116,7 @@ namespace DigitalDocumentary.GUI
                     Description = txtBoxDescription.Text,
                     Link_to_image = picBoxAvatar.ImageLocation,
                     File_path = txtBoxFilePath.Text,
+                    Author = txtBoxAuthor.Text,
                     Folder = new FolderDTO()
                     {
                         Id = 1,

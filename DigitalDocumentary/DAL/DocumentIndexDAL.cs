@@ -59,7 +59,9 @@ namespace DigitalDocumentary.DLL
                 parent = docI.Parent;
             }
             //string sql = $"INSERT INTO {DocumentIndexDTO.Table} (document_id, page_number, parent_index_id, author_id, title) VALUES ({docI.Document.Id}, {docI.PageNumber}, {parent.Id}, {docI.Author.Id}, '{docI.Title}')";
-            return db.NonQuery(sql);
+            string[] keys = { "@document_id", "@page_number", "@parent_index_id", "@author", "@title" };
+            object[] values = { docI.Id, docI.PageNumber, parent.Id, docI.Author, docI.Title };
+            return db.NonQueryBySP("InsertDocumentIndex", keys, values);
         }
         public int Update(DocumentIndexDTO docI)
         {
