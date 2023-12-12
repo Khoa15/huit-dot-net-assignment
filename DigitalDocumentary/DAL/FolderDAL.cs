@@ -23,7 +23,6 @@ namespace DigitalDocumentary.DLL
         public List<FolderDTO> Load(string where=null)
         {
             Folders.Clear();
-            //List<DataRow> dataRows = db.Select(FolderDTO.Table, where, 100);
             DataSet set = db.Select("SelectAllFolder");
             foreach (DataRow rd in set.Tables[0].Rows)
             {
@@ -31,8 +30,10 @@ namespace DigitalDocumentary.DLL
                 f.Id = int.Parse(rd["id"].ToString());
                 f.NameId = rd["name_id"].ToString();
                 f.Name = rd["name"].ToString();
+                f.CreatedBy = rd["created_by"].ToString();
                 f.Created_at = Convert.ToDateTime(rd["created_date"]);
                 f.Status = Convert.ToBoolean(rd["status"]);
+                f.NumOfDoc = this.CountDocInFolder(f.Id);
                 object x = rd["parent_id"];
                 if (x != DBNull.Value)
                 {
@@ -55,23 +56,20 @@ namespace DigitalDocumentary.DLL
         }
         public int Add(FolderDTO fol)
         {
-            string parent = "NULL";
-            if(fol.Parent != null)
-            {
-                parent = $"{fol.Parent.Id}";
-            }
-            string sql = $"INSERT INTO {FolderDTO.Table} (name_id, name, created_by, parent_id, status) VALUES ('{fol.NameId}', N'{fol.Name}', N'{fol.CreatedBy}', {parent}, {Convert.ToInt16(fol.Status)})";
-            return db.NonQuery(sql);
+            string[] keys = {"@name_id", "@name", "@created_by", "@status"};
+            object[] values = { fol.NameId, fol.Name, fol.CreatedBy, Convert.ToInt16(fol.Status)};
+            return db.NonQueryBySP("InsertFolder", keys, values);
         }
         public int Update(FolderDTO fol)
         {
-            FolderDTO parent = null;
-            if (fol.Parent != null)
+            object parent = DBNull.Value;
+            if(fol.Parent != null)
             {
-                parent = fol.Parent;
+                parent = fol.Parent.Id;
             }
-            string sql = $"UPDATE {FolderDTO.Table} SET name_id = '{fol.NameId}', name = N'{fol.Name}', created_by = '{fol.CreatedBy}', parent_id = {parent.Id}, status = {fol.Status} WHERE id = {fol.Id}";
-            return db.NonQuery(sql);
+            string[] keys = {"@id", "@name_id", "@name", "@created_by", "@parent_id", "@status" };
+            object[] values = { fol.Id, fol.NameId, fol.Name, fol.CreatedBy, parent, Convert.ToInt16(fol.Status) };
+            return db.NonQueryBySP("UpdateFolder", keys, values);
         }
         public int UpdateParent(FolderDTO fol, int? pId)
         {
@@ -98,6 +96,21 @@ namespace DigitalDocumentary.DLL
                 values[1] = DBNull.Value;
             }
             return db.NonQueryBySP("MoveFolder", keys, values);
+        }
+
+        //// Function
+        ///
+        public int CountDocInFolder(int folId)
+        {
+            return db.QueryByFunction("CountDocumentsByFolderID", "@FolderID", folId);
+        }
+        public int CountDocIsPublic()
+        {
+            return db.QueryByFunction("CountDocumentIsPublic");
+        }
+        public int CountDocUnPublic()
+        {
+            return db.QueryByFunction("CountDocumentUnPublic");
         }
     }
 }

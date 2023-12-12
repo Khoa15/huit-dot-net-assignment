@@ -14,14 +14,6 @@ BEGIN
 END;
 GO
 
-CREATE PROC SelectAllDocumentsWithAuthorName
-AS
-BEGIN
-	SELECT TOP(1000) Document.*, Author.name FROM Document
-	LEFT JOIN Author
-	On Author.id = Document.author_id;
-END;
-GO
 
 CREATE PROC SelectDocumentsByFolderID (@folderID INT)
 AS
@@ -111,7 +103,15 @@ END;
 GO
 
 
--- Newest - 01/12/2023
+-- Newest - 01/12/2023 - BY KHOA // Using
+CREATE PROC SelectAllDocumentsWithAuthorName
+AS
+BEGIN
+	SELECT TOP(1000) Document.*, Author.name FROM Document
+	LEFT JOIN Author
+	On Author.id = Document.author_id;
+END;
+GO
 CREATE PROC PublicDocumentByIdFolder (@fid INT)
 AS
 BEGIN
@@ -130,5 +130,42 @@ CREATE PROC MoveDocToFolder(@docId INT, @fid INT)
 AS
 BEGIN
 	UPDATE Document SET folder_id = @fid WHERE id = @docId
+END;
+GO
+
+CREATE PROC SelectDocument(@docId INT)
+AS
+BEGIN
+	SELECT Document.*, Author.name FROM Document
+	LEFT JOIN Author
+	On Author.id = Document.author_id
+	WHERE Document.id = @docId
+END;
+GO
+
+CREATE PROC UpdateDocument(
+	@docId INT,
+	@folder_id INT,
+	@title NVARCHAR(255),
+	@type NVARCHAR(255),
+	@file_path VARCHAR(255),
+	@link_to_image VARCHAR(255),
+	@description NTEXT,
+	@status BIT,
+	@updated_by NVARCHAR(255)
+)
+AS
+BEGIN
+	UPDATE Document SET
+		folder_id =  @folder_id,
+		type= @type,
+		file_path= @file_path,
+		title =  @title,
+		link_to_image= @link_to_image,
+		description =  @description,
+		document_status= @status,
+		updated_by = @updated_by
+	WHERE
+		id = @docId
 END;
 GO

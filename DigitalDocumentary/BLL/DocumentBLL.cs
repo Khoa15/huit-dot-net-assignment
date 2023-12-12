@@ -207,5 +207,10 @@ namespace DigitalDocumentary.BLL
         {
             return Helper.MoveFile(srcPath);
         }
+
+        public bool DeleteByFolder(int id)
+        {
+            return DocumentDAL.DeleteByFolder(id) > 0;
+        }
     }
 }

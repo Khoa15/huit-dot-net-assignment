@@ -115,7 +115,6 @@ GO
 --DROP TRIGGER CheckValidEmail ON Author;
 --DROP TRIGGER CheckValidEmail ON DATABASE
 --GO
->>>>>>> 246c455c972171d276296f8d31276549aff941d0:SQLQuery1.sql
 -- Tạo trigger cho bảng Document
 CREATE TRIGGER Document_BI
 ON Document
@@ -335,31 +334,8 @@ GO
 EXEC sp_SelectDocumentIndex 1;
 go
 
--- FUNCTION
--- Hàm trả về tổng số tài liệu
-CREATE FUNCTION CountDocuments()
-RETURNS INT
-AS
-BEGIN
-    DECLARE @count INT;
-    SELECT @count = COUNT(*)
-    FROM Document;
-    RETURN @count;
-END;
-GO
 
--- Hàm trả về số lượng tài liệu trong thư mục có ID đã cho
-CREATE FUNCTION CountDocumentsByFolderID (@folderID INT)
-RETURNS INT
-AS
-BEGIN
-    DECLARE @count INT;
-    SELECT @count = COUNT(*)
-    FROM Document
-    WHERE folder_id = @folderID;
-    RETURN @count;
-END;
-GO
+
 
 -- Hàm trả về tất cả các tài liệu trong thư mục có ID đã cho
 CREATE FUNCTION GetDocumentsByFolderID (@folderID INT)
@@ -519,4 +495,43 @@ INSERT INTO PatronTypes (PatronTypeID, TypeName) VALUES
 -----------Update My Own
 ALTER TABLE UserAccess
 ADD CONSTRAINT FK_UserAccess_PatronTypes FOREIGN KEY (patron_type_id) REFERENCES PatronTypes(PatronTypeID)
+GO
+
+------FUNCTION NEWEST 12/12
+
+-- Hàm trả về số lượng tài liệu trong thư mục có ID đã cho
+CREATE FUNCTION CountDocumentsByFolderID (@folderID INT)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @count INT;
+    SELECT @count = COUNT(*)
+    FROM Document
+    WHERE folder_id = @folderID;
+    RETURN @count;
+END;
+GO
+
+CREATE FUNCTION CountDocumentIsPublic()
+RETURNS INT
+AS
+BEGIN
+	DECLARE @count INT
+	SELECT @count = COUNT(*)
+	FROM Document
+	WHERE document_status = 1
+	RETURN @count
+END;
+GO
+
+CREATE FUNCTION CountDocumentUnPublic()
+RETURNS INT
+AS
+BEGIN
+	DECLARE @count INT
+	SELECT @count = COUNT(*)
+	FROM Document
+	WHERE document_status = 0
+	RETURN @count
+END;
 GO

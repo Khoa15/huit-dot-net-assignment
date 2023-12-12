@@ -63,9 +63,9 @@ namespace DigitalDocumentary.BLL
             }
             return excuted;
         }
-        public static int Delete(int id)
+        public static bool Delete(int id)
         {
-            return folderDll.Delete(id);
+            return folderDll.Delete(id) > 0;
         }
         public int DeleteAllDocument(int id)
         {
@@ -93,6 +93,22 @@ namespace DigitalDocumentary.BLL
         public bool MoveFolder(int id, int? desId)
         {
             return folderDll.MoveFolder(id, desId) > 0;
+        }
+
+        ///Function
+        ///
+        public int CountDocInFolder(int folId)
+        {
+            return folderDll.CountDocInFolder(folId);
+        }
+
+        public int CountDocIsPublic()
+        {
+            return folderDll.CountDocIsPublic();
+        }
+        public int CountDocUnPublic()
+        {
+            return folderDll.CountDocUnPublic();
         }
     }
 }

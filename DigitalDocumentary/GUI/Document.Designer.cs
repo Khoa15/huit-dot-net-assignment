@@ -48,38 +48,39 @@ namespace DigitalDocumentary.GUI
             this.btnAsk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnFolDoc = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnEditDoc = new System.Windows.Forms.Button();
+            this.btnEditFolder = new System.Windows.Forms.Button();
+            this.btnMvDocToNewFolder = new System.Windows.Forms.Button();
+            this.btnDeleteDoc = new System.Windows.Forms.Button();
+            this.btnDeleteDocInFolder = new System.Windows.Forms.Button();
+            this.btnDelFolder = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.btnDocIndex = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.btnPublic = new System.Windows.Forms.Button();
+            this.btnAddDoc = new System.Windows.Forms.Button();
+            this.btn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnMain = new System.Windows.Forms.Panel();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.btnPeople = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnAddFolder = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.btnPeople = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.btn = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelFolder = new System.Windows.Forms.Button();
-            this.btnDeleteDoc = new System.Windows.Forms.Button();
-            this.btnAddDoc = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.btnMvDocToNewFolder = new System.Windows.Forms.Button();
-            this.btnPublic = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -186,8 +187,10 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.RowTemplate.Height = 30;
             this.dataGridViewDocuments.Size = new System.Drawing.Size(726, 398);
             this.dataGridViewDocuments.TabIndex = 3;
+            this.dataGridViewDocuments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocuments_CellContentClick);
             this.dataGridViewDocuments.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDocuments_ColumnHeaderMouseClick);
             this.dataGridViewDocuments.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDocuments_RowHeaderMouseClick);
+            this.dataGridViewDocuments.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewDocuments_MouseClick);
             // 
             // label2
             // 
@@ -283,9 +286,11 @@ namespace DigitalDocumentary.GUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnFolDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pnFolDoc.Controls.Add(this.button3);
-            this.pnFolDoc.Controls.Add(this.btnEdit);
+            this.pnFolDoc.Controls.Add(this.btnEditDoc);
+            this.pnFolDoc.Controls.Add(this.btnEditFolder);
             this.pnFolDoc.Controls.Add(this.btnMvDocToNewFolder);
             this.pnFolDoc.Controls.Add(this.btnDeleteDoc);
+            this.pnFolDoc.Controls.Add(this.btnDeleteDocInFolder);
             this.pnFolDoc.Controls.Add(this.btnDelFolder);
             this.pnFolDoc.Controls.Add(this.button8);
             this.pnFolDoc.Controls.Add(this.btnDocIndex);
@@ -299,15 +304,169 @@ namespace DigitalDocumentary.GUI
             this.pnFolDoc.Size = new System.Drawing.Size(1093, 69);
             this.pnFolDoc.TabIndex = 4;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(347, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(41, 42);
+            this.button3.TabIndex = 1;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // btnEditDoc
+            // 
+            this.btnEditDoc.BackColor = System.Drawing.Color.White;
+            this.btnEditDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditDoc.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEditDoc.Image = ((System.Drawing.Image)(resources.GetObject("btnEditDoc.Image")));
+            this.btnEditDoc.Location = new System.Drawing.Point(253, 9);
+            this.btnEditDoc.Name = "btnEditDoc";
+            this.btnEditDoc.Size = new System.Drawing.Size(41, 42);
+            this.btnEditDoc.TabIndex = 11;
+            this.btnEditDoc.UseVisualStyleBackColor = false;
+            this.btnEditDoc.Click += new System.EventHandler(this.btnEditDoc_Click);
+            // 
+            // btnEditFolder
+            // 
+            this.btnEditFolder.BackColor = System.Drawing.Color.White;
+            this.btnEditFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditFolder.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEditFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnEditFolder.Image")));
+            this.btnEditFolder.Location = new System.Drawing.Point(58, 9);
+            this.btnEditFolder.Name = "btnEditFolder";
+            this.btnEditFolder.Size = new System.Drawing.Size(41, 42);
+            this.btnEditFolder.TabIndex = 11;
+            this.btnEditFolder.UseVisualStyleBackColor = false;
+            this.btnEditFolder.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnMvDocToNewFolder
+            // 
+            this.btnMvDocToNewFolder.BackColor = System.Drawing.Color.White;
+            this.btnMvDocToNewFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMvDocToNewFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnMvDocToNewFolder.Image")));
+            this.btnMvDocToNewFolder.Location = new System.Drawing.Point(496, 9);
+            this.btnMvDocToNewFolder.Name = "btnMvDocToNewFolder";
+            this.btnMvDocToNewFolder.Size = new System.Drawing.Size(41, 42);
+            this.btnMvDocToNewFolder.TabIndex = 1;
+            this.btnMvDocToNewFolder.UseVisualStyleBackColor = false;
+            this.btnMvDocToNewFolder.Click += new System.EventHandler(this.btnMvDocToNewFolder_Click);
+            // 
+            // btnDeleteDoc
+            // 
+            this.btnDeleteDoc.BackColor = System.Drawing.Color.White;
+            this.btnDeleteDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteDoc.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteDoc.Image")));
+            this.btnDeleteDoc.Location = new System.Drawing.Point(300, 9);
+            this.btnDeleteDoc.Name = "btnDeleteDoc";
+            this.btnDeleteDoc.Size = new System.Drawing.Size(41, 42);
+            this.btnDeleteDoc.TabIndex = 1;
+            this.btnDeleteDoc.UseVisualStyleBackColor = false;
+            this.btnDeleteDoc.Click += new System.EventHandler(this.btnDeleteDoc_Click);
+            // 
+            // btnDeleteDocInFolder
+            // 
+            this.btnDeleteDocInFolder.BackColor = System.Drawing.Color.White;
+            this.btnDeleteDocInFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteDocInFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteDocInFolder.Image")));
+            this.btnDeleteDocInFolder.Location = new System.Drawing.Point(152, 9);
+            this.btnDeleteDocInFolder.Name = "btnDeleteDocInFolder";
+            this.btnDeleteDocInFolder.Size = new System.Drawing.Size(41, 42);
+            this.btnDeleteDocInFolder.TabIndex = 1;
+            this.btnDeleteDocInFolder.UseVisualStyleBackColor = false;
+            this.btnDeleteDocInFolder.Click += new System.EventHandler(this.btnDeleteDocInFolder_Click);
+            // 
+            // btnDelFolder
+            // 
+            this.btnDelFolder.BackColor = System.Drawing.Color.White;
+            this.btnDelFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnDelFolder.Image")));
+            this.btnDelFolder.Location = new System.Drawing.Point(105, 9);
+            this.btnDelFolder.Name = "btnDelFolder";
+            this.btnDelFolder.Size = new System.Drawing.Size(41, 42);
+            this.btnDelFolder.TabIndex = 1;
+            this.btnDelFolder.UseVisualStyleBackColor = false;
+            this.btnDelFolder.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.White;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.Location = new System.Drawing.Point(449, 9);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(41, 42);
+            this.button8.TabIndex = 1;
+            this.button8.UseVisualStyleBackColor = false;
+            // 
             // btnDocIndex
             // 
-            this.btnDocIndex.Location = new System.Drawing.Point(606, 9);
+            this.btnDocIndex.Location = new System.Drawing.Point(673, 9);
             this.btnDocIndex.Name = "btnDocIndex";
             this.btnDocIndex.Size = new System.Drawing.Size(74, 42);
             this.btnDocIndex.TabIndex = 11;
             this.btnDocIndex.Text = "Mục lục";
             this.btnDocIndex.UseVisualStyleBackColor = true;
             this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.White;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.Location = new System.Drawing.Point(590, 9);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(41, 42);
+            this.button9.TabIndex = 1;
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // btnPublic
+            // 
+            this.btnPublic.BackColor = System.Drawing.Color.White;
+            this.btnPublic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPublic.Image = ((System.Drawing.Image)(resources.GetObject("btnPublic.Image")));
+            this.btnPublic.Location = new System.Drawing.Point(543, 9);
+            this.btnPublic.Name = "btnPublic";
+            this.btnPublic.Size = new System.Drawing.Size(41, 42);
+            this.btnPublic.TabIndex = 1;
+            this.btnPublic.UseVisualStyleBackColor = false;
+            this.btnPublic.Click += new System.EventHandler(this.btnPublic_Click);
+            // 
+            // btnAddDoc
+            // 
+            this.btnAddDoc.BackColor = System.Drawing.Color.White;
+            this.btnAddDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddDoc.Image = ((System.Drawing.Image)(resources.GetObject("btnAddDoc.Image")));
+            this.btnAddDoc.Location = new System.Drawing.Point(206, 9);
+            this.btnAddDoc.Name = "btnAddDoc";
+            this.btnAddDoc.Size = new System.Drawing.Size(41, 42);
+            this.btnAddDoc.TabIndex = 1;
+            this.btnAddDoc.UseVisualStyleBackColor = false;
+            this.btnAddDoc.Click += new System.EventHandler(this.btnAddDoc_Click);
+            // 
+            // btn
+            // 
+            this.btn.BackColor = System.Drawing.Color.White;
+            this.btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn.Image = ((System.Drawing.Image)(resources.GetObject("btn.Image")));
+            this.btn.Location = new System.Drawing.Point(11, 9);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(41, 42);
+            this.btn.TabIndex = 1;
+            this.btn.UseVisualStyleBackColor = false;
+            this.btn.Click += new System.EventHandler(this.btnAddFolder_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(394, 9);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(41, 42);
+            this.button2.TabIndex = 1;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // pnMain
             // 
@@ -332,65 +491,137 @@ namespace DigitalDocumentary.GUI
             this.pnMain.Size = new System.Drawing.Size(1093, 69);
             this.pnMain.TabIndex = 1;
             // 
-            // contextMenuStrip1
+            // button21
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.button21.BackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.Image = ((System.Drawing.Image)(resources.GetObject("button21.Image")));
+            this.button21.Location = new System.Drawing.Point(617, 9);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(41, 42);
+            this.button21.TabIndex = 1;
+            this.button21.UseVisualStyleBackColor = false;
             // 
-            // panel6
+            // button20
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel6.Controls.Add(this.button4);
-            this.panel6.Controls.Add(this.button5);
-            this.panel6.Controls.Add(this.button6);
-            this.panel6.Controls.Add(this.button7);
-            this.panel6.Location = new System.Drawing.Point(1, 266);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1093, 69);
-            this.panel6.TabIndex = 12;
+            this.button20.BackColor = System.Drawing.Color.White;
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button20.Image = ((System.Drawing.Image)(resources.GetObject("button20.Image")));
+            this.button20.Location = new System.Drawing.Point(570, 9);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(41, 42);
+            this.button20.TabIndex = 1;
+            this.button20.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // button19
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(241, 9);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(41, 42);
-            this.button4.TabIndex = 11;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button19.BackColor = System.Drawing.Color.White;
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button19.Image = ((System.Drawing.Image)(resources.GetObject("button19.Image")));
+            this.button19.Location = new System.Drawing.Point(523, 9);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(41, 42);
+            this.button19.TabIndex = 1;
+            this.button19.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // button18
             // 
-            this.button5.Image = global::DigitalDocumentary.Properties.Resources.people;
-            this.button5.Location = new System.Drawing.Point(164, 9);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(58, 42);
-            this.button5.TabIndex = 3;
-            this.button5.UseVisualStyleBackColor = true;
+            this.button18.BackColor = System.Drawing.Color.White;
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Image = ((System.Drawing.Image)(resources.GetObject("button18.Image")));
+            this.button18.Location = new System.Drawing.Point(476, 9);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(41, 42);
+            this.button18.TabIndex = 1;
+            this.button18.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // btnPeople
             // 
-            this.button6.Image = global::DigitalDocumentary.Properties.Resources.down;
-            this.button6.Location = new System.Drawing.Point(89, 9);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(58, 42);
-            this.button6.TabIndex = 2;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnPeople.BackColor = System.Drawing.Color.White;
+            this.btnPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPeople.Image = ((System.Drawing.Image)(resources.GetObject("btnPeople.Image")));
+            this.btnPeople.Location = new System.Drawing.Point(105, 9);
+            this.btnPeople.Name = "btnPeople";
+            this.btnPeople.Size = new System.Drawing.Size(41, 42);
+            this.btnPeople.TabIndex = 1;
+            this.btnPeople.UseVisualStyleBackColor = false;
             // 
-            // button7
+            // button16
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button7.Image = global::DigitalDocumentary.Properties.Resources.add;
-            this.button7.Location = new System.Drawing.Point(12, 9);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(58, 42);
-            this.button7.TabIndex = 1;
-            this.button7.UseVisualStyleBackColor = false;
+            this.button16.BackColor = System.Drawing.Color.White;
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button16.Image = ((System.Drawing.Image)(resources.GetObject("button16.Image")));
+            this.button16.Location = new System.Drawing.Point(411, 9);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(41, 42);
+            this.button16.TabIndex = 1;
+            this.button16.UseVisualStyleBackColor = false;
+            // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.White;
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button15.Image = ((System.Drawing.Image)(resources.GetObject("button15.Image")));
+            this.button15.Location = new System.Drawing.Point(364, 9);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(41, 42);
+            this.button15.TabIndex = 1;
+            this.button15.UseVisualStyleBackColor = false;
+            // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.White;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Image = ((System.Drawing.Image)(resources.GetObject("button14.Image")));
+            this.button14.Location = new System.Drawing.Point(317, 9);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(41, 42);
+            this.button14.TabIndex = 1;
+            this.button14.UseVisualStyleBackColor = false;
+            // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.White;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
+            this.button13.Location = new System.Drawing.Point(270, 9);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(41, 42);
+            this.button13.TabIndex = 1;
+            this.button13.UseVisualStyleBackColor = false;
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.White;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
+            this.button12.Location = new System.Drawing.Point(223, 9);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(41, 42);
+            this.button12.TabIndex = 1;
+            this.button12.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.White;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
+            this.button10.Location = new System.Drawing.Point(176, 9);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(41, 42);
+            this.button10.TabIndex = 1;
+            this.button10.UseVisualStyleBackColor = false;
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.Color.White;
+            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDown.Image = ((System.Drawing.Image)(resources.GetObject("btnDown.Image")));
+            this.btnDown.Location = new System.Drawing.Point(58, 9);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(41, 42);
+            this.btnDown.TabIndex = 1;
+            this.btnDown.UseVisualStyleBackColor = false;
             // 
             // btnAdd
             // 
@@ -402,284 +633,58 @@ namespace DigitalDocumentary.GUI
             this.btnAdd.Size = new System.Drawing.Size(41, 42);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnDown
+            // contextMenuStrip1
             // 
-            this.btnDown.BackColor = System.Drawing.Color.White;
-            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDown.Image = ((System.Drawing.Image)(resources.GetObject("btnDown.Image")));
-            this.btnDown.Location = new System.Drawing.Point(67, 9);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(41, 42);
-            this.btnDown.TabIndex = 1;
-            this.btnDown.UseVisualStyleBackColor = false;
-            this.btnDown.Click += new System.EventHandler(this.btnAdd_Click);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // button10
+            // panel6
             // 
-            this.button10.BackColor = System.Drawing.Color.White;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
-            this.button10.Location = new System.Drawing.Point(335, 9);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(41, 42);
-            this.button10.TabIndex = 1;
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.btnAdd_Click);
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel6.Controls.Add(this.btnAddFolder);
+            this.panel6.Controls.Add(this.button11);
+            this.panel6.Controls.Add(this.button4);
+            this.panel6.Location = new System.Drawing.Point(1, 266);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1093, 69);
+            this.panel6.TabIndex = 12;
             // 
-            // button12
+            // btnAddFolder
             // 
-            this.button12.BackColor = System.Drawing.Color.White;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
-            this.button12.Location = new System.Drawing.Point(382, 9);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(41, 42);
-            this.button12.TabIndex = 1;
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAddFolder.BackColor = System.Drawing.Color.White;
+            this.btnAddFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnAddFolder.Image")));
+            this.btnAddFolder.Location = new System.Drawing.Point(11, 9);
+            this.btnAddFolder.Name = "btnAddFolder";
+            this.btnAddFolder.Size = new System.Drawing.Size(41, 42);
+            this.btnAddFolder.TabIndex = 1;
+            this.btnAddFolder.UseVisualStyleBackColor = false;
+            this.btnAddFolder.Click += new System.EventHandler(this.btnAddFolder_Click);
             // 
-            // button13
+            // button11
             // 
-            this.button13.BackColor = System.Drawing.Color.White;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
-            this.button13.Location = new System.Drawing.Point(429, 9);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(41, 42);
-            this.button13.TabIndex = 1;
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.btnAdd_Click);
+            this.button11.BackColor = System.Drawing.Color.White;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
+            this.button11.Location = new System.Drawing.Point(105, 9);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(41, 42);
+            this.button11.TabIndex = 1;
+            this.button11.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // button4
             // 
-            this.button14.BackColor = System.Drawing.Color.White;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Image = ((System.Drawing.Image)(resources.GetObject("button14.Image")));
-            this.button14.Location = new System.Drawing.Point(476, 9);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(41, 42);
-            this.button14.TabIndex = 1;
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.White;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Image = ((System.Drawing.Image)(resources.GetObject("button15.Image")));
-            this.button15.Location = new System.Drawing.Point(523, 9);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(41, 42);
-            this.button15.TabIndex = 1;
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.White;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Image = ((System.Drawing.Image)(resources.GetObject("button16.Image")));
-            this.button16.Location = new System.Drawing.Point(570, 9);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(41, 42);
-            this.button16.TabIndex = 1;
-            this.button16.UseVisualStyleBackColor = false;
-            this.button16.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnPeople
-            // 
-            this.btnPeople.BackColor = System.Drawing.Color.White;
-            this.btnPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPeople.Image = ((System.Drawing.Image)(resources.GetObject("btnPeople.Image")));
-            this.btnPeople.Location = new System.Drawing.Point(127, 9);
-            this.btnPeople.Name = "btnPeople";
-            this.btnPeople.Size = new System.Drawing.Size(41, 42);
-            this.btnPeople.TabIndex = 1;
-            this.btnPeople.UseVisualStyleBackColor = false;
-            this.btnPeople.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button18
-            // 
-            this.button18.BackColor = System.Drawing.Color.White;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Image = ((System.Drawing.Image)(resources.GetObject("button18.Image")));
-            this.button18.Location = new System.Drawing.Point(664, 9);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(41, 42);
-            this.button18.TabIndex = 1;
-            this.button18.UseVisualStyleBackColor = false;
-            this.button18.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.Color.White;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Image = ((System.Drawing.Image)(resources.GetObject("button19.Image")));
-            this.button19.Location = new System.Drawing.Point(711, 9);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(41, 42);
-            this.button19.TabIndex = 1;
-            this.button19.UseVisualStyleBackColor = false;
-            this.button19.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button20
-            // 
-            this.button20.BackColor = System.Drawing.Color.White;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Image = ((System.Drawing.Image)(resources.GetObject("button20.Image")));
-            this.button20.Location = new System.Drawing.Point(758, 9);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(41, 42);
-            this.button20.TabIndex = 1;
-            this.button20.UseVisualStyleBackColor = false;
-            this.button20.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button21
-            // 
-            this.button21.BackColor = System.Drawing.Color.White;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Image = ((System.Drawing.Image)(resources.GetObject("button21.Image")));
-            this.button21.Location = new System.Drawing.Point(805, 9);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(41, 42);
-            this.button21.TabIndex = 1;
-            this.button21.UseVisualStyleBackColor = false;
-            this.button21.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btn
-            // 
-            this.btn.BackColor = System.Drawing.Color.White;
-            this.btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn.Image = ((System.Drawing.Image)(resources.GetObject("btn.Image")));
-            this.btn.Location = new System.Drawing.Point(11, 9);
-            this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(41, 42);
-            this.btn.TabIndex = 1;
-            this.btn.UseVisualStyleBackColor = false;
-            this.btn.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.White;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(67, 9);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(41, 42);
-            this.btnEdit.TabIndex = 11;
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // btnDelFolder
-            // 
-            this.btnDelFolder.BackColor = System.Drawing.Color.White;
-            this.btnDelFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnDelFolder.Image")));
-            this.btnDelFolder.Location = new System.Drawing.Point(127, 9);
-            this.btnDelFolder.Name = "btnDelFolder";
-            this.btnDelFolder.Size = new System.Drawing.Size(41, 42);
-            this.btnDelFolder.TabIndex = 1;
-            this.btnDelFolder.UseVisualStyleBackColor = false;
-            this.btnDelFolder.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDeleteDoc
-            // 
-            this.btnDeleteDoc.BackColor = System.Drawing.Color.White;
-            this.btnDeleteDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteDoc.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteDoc.Image")));
-            this.btnDeleteDoc.Location = new System.Drawing.Point(181, 9);
-            this.btnDeleteDoc.Name = "btnDeleteDoc";
-            this.btnDeleteDoc.Size = new System.Drawing.Size(41, 42);
-            this.btnDeleteDoc.TabIndex = 1;
-            this.btnDeleteDoc.UseVisualStyleBackColor = false;
-            this.btnDeleteDoc.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnAddDoc
-            // 
-            this.btnAddDoc.BackColor = System.Drawing.Color.White;
-            this.btnAddDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddDoc.Image = ((System.Drawing.Image)(resources.GetObject("btnAddDoc.Image")));
-            this.btnAddDoc.Location = new System.Drawing.Point(250, 9);
-            this.btnAddDoc.Name = "btnAddDoc";
-            this.btnAddDoc.Size = new System.Drawing.Size(41, 42);
-            this.btnAddDoc.TabIndex = 1;
-            this.btnAddDoc.UseVisualStyleBackColor = false;
-            this.btnAddDoc.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(344, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(41, 42);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(297, 9);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(41, 42);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.White;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(408, 9);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(41, 42);
-            this.button8.TabIndex = 1;
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnMvDocToNewFolder
-            // 
-            this.btnMvDocToNewFolder.BackColor = System.Drawing.Color.White;
-            this.btnMvDocToNewFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMvDocToNewFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnMvDocToNewFolder.Image")));
-            this.btnMvDocToNewFolder.Location = new System.Drawing.Point(455, 9);
-            this.btnMvDocToNewFolder.Name = "btnMvDocToNewFolder";
-            this.btnMvDocToNewFolder.Size = new System.Drawing.Size(41, 42);
-            this.btnMvDocToNewFolder.TabIndex = 1;
-            this.btnMvDocToNewFolder.UseVisualStyleBackColor = false;
-            this.btnMvDocToNewFolder.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnPublic
-            // 
-            this.btnPublic.BackColor = System.Drawing.Color.White;
-            this.btnPublic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPublic.Image = ((System.Drawing.Image)(resources.GetObject("btnPublic.Image")));
-            this.btnPublic.Location = new System.Drawing.Point(502, 9);
-            this.btnPublic.Name = "btnPublic";
-            this.btnPublic.Size = new System.Drawing.Size(41, 42);
-            this.btnPublic.TabIndex = 1;
-            this.btnPublic.UseVisualStyleBackColor = false;
-            this.btnPublic.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.White;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(549, 9);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(41, 42);
-            this.button9.TabIndex = 1;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.btnAdd_Click);
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(58, 9);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(41, 42);
+            this.button4.TabIndex = 1;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // Document
             // 
@@ -735,10 +740,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button btnDocIndex;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button20;
@@ -752,7 +753,7 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnEditFolder;
         private System.Windows.Forms.Button btnDeleteDoc;
         private System.Windows.Forms.Button btnDelFolder;
         private System.Windows.Forms.Button btnAddDoc;
@@ -763,5 +764,10 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnPublic;
+        private System.Windows.Forms.Button btnAddFolder;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnEditDoc;
+        private System.Windows.Forms.Button btnDeleteDocInFolder;
     }
 }

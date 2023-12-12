@@ -1,4 +1,5 @@
 ﻿using DigitalDocumentary.DTO;
+using DigitalDocumentary.GUI;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,19 +38,8 @@ namespace DigitalDocumentary.DLL
             
             foreach(DataRow rd in ds.Tables[0].Rows)
             {
-                DocumentDTO document = new DocumentDTO();
-                document.Id = int.Parse(rd["id"].ToString());
-                document.Title = rd["title"].ToString();
-                document.Description = rd["description"].ToString();
-                document.File_path = rd["file_path"].ToString();
-                document.Link_to_image = rd["link_to_image"].ToString();
-                document.Type = rd["type"].ToString();
-                document.Updated_by = rd["updated_by"].ToString();
-                document.Created_at = Convert.ToDateTime(rd["created_date"].ToString());
-                document.Updated_at = Convert.ToDateTime(rd["updated_date"].ToString());
+                DocumentDTO document = SetData(rd);
 
-                document.Author = new AuthorDTO();
-                document.Author.Name = rd["name"].ToString();
                 // Foreign Key .... waiting
 
                 //
@@ -59,7 +49,10 @@ namespace DigitalDocumentary.DLL
         }
         public DocumentDTO Get(int id)
         {
-            return this.Load($"id = {id}").First();
+            DocumentDTO document;
+            DataSet result = db.Select("SelectDocument", "@docId", id);
+            document = SetData(result.Tables[0].Rows[0]);
+            return document;
         }
         public int Add(DocumentDTO doc)
         {
@@ -72,8 +65,10 @@ namespace DigitalDocumentary.DLL
         }
         public int Update(DocumentDTO doc)
         {
-            string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.iStatus}  WHERE document_id = {doc.Id}";
-            return db.NonQuery(sql);
+            //string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.iStatus}  WHERE document_id = {doc.Id}";
+            string[] keys = { "@docId", "@folder_id", "@title", "@type", "@file_path", "@link_to_image", "@description", "@status", "@updated_by" };
+            object[] values = { doc.Id, doc.Folder.Id, doc.Title, doc.Type, doc.File_path, doc.Link_to_image, doc.Description, doc.iStatus, doc.Updated_by};
+            return db.NonQueryBySP("UpdateDocument", keys,values);
         }
         public int UpdateStatus(DocumentDTO doc)
         {
@@ -103,6 +98,10 @@ namespace DigitalDocumentary.DLL
         {
             return db.NonQueryBySP("DeleteDocument", "@documentID", id);
         }
+        public static int DeleteByFolder(int id)
+        {
+            return db.NonQueryBySP("DeleteDocumentsInFolder", "@folderID", id);
+        }
 
         public List<DocumentDTO> FindByTitle(string title)
         {
@@ -128,7 +127,7 @@ namespace DigitalDocumentary.DLL
         public static bool MoveDoc(List<int> docIds, int? desFid)
         {
             string[] param = { "@docId", "@fid" };
-            for(int i  = 0; i < param.Length; i++)
+            for(int i  = 0; i < docIds.Count; i++)
             {
                 object[] value = { docIds[i], desFid };
                 if(db.NonQueryBySP("MoveDocToFolder", param, value) == 0)
@@ -137,6 +136,23 @@ namespace DigitalDocumentary.DLL
                 }
             }
             return true;
+        }
+        private DocumentDTO SetData(DataRow row)
+        {
+            DocumentDTO document = new DocumentDTO();
+                document.Id = int.Parse(row["id"].ToString());
+                document.Title = row["title"].ToString();
+                document.Description = row["description"].ToString();
+                document.File_path = row["file_path"].ToString();
+                document.Link_to_image = row["link_to_image"].ToString();
+                document.Type = row["type"].ToString();
+                document.Updated_by = row["updated_by"].ToString();
+                document.Created_at = Convert.ToDateTime(row["created_date"].ToString());
+                document.Updated_at = Convert.ToDateTime(row["updated_date"].ToString());
+
+                document.Author = new AuthorDTO();
+                document.Author.Name = row["name"].ToString();
+            return document;
         }
     }
 }

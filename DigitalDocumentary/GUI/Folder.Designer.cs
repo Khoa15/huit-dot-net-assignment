@@ -31,6 +31,7 @@ namespace DigitalDocumentary.GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Folder));
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -47,7 +48,6 @@ namespace DigitalDocumentary.GUI
             this.btnExit = new System.Windows.Forms.Button();
             this.btnAsk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -67,6 +67,18 @@ namespace DigitalDocumentary.GUI
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(584, 59);
             this.panel6.TabIndex = 3;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.White;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(15, 8);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(41, 42);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel1
             // 
@@ -233,17 +245,6 @@ namespace DigitalDocumentary.GUI
             this.label1.Size = new System.Drawing.Size(178, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "CẬP NHẬT THƯ MỤC";
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.White;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(15, 8);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(41, 42);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.UseVisualStyleBackColor = false;
             // 
             // Folder
             // 

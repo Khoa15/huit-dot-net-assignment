@@ -39,7 +39,6 @@ namespace DigitalDocumentary.DLL
             try
             {
                 if (param.Length != value.Length) return 0;
-                db.Conn.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = db.Conn;
                 command.CommandType = CommandType.StoredProcedure;
@@ -51,6 +50,7 @@ namespace DigitalDocumentary.DLL
                         command.Parameters.AddWithValue(param[i], value[i]);
                     }
                 }
+                db.Conn.Open();
                 int result = command.ExecuteNonQuery();
                 db.Conn.Close();
                 return result;
@@ -87,87 +87,7 @@ namespace DigitalDocumentary.DLL
                 if (db.Conn.State == ConnectionState.Open) db.Conn.Close();
             }
         }
-
-        //public SqlDataReader Select(string table, string where=null, int limit=1000)
-        //{
-        //    string sql = $"SELECT TOP({limit}) * FROM {table} ";
-        //    if (where != null)
-        //    {
-        //        sql += where;
-        //    }
-        //    db.Conn.Open();
-        //    SqlCommand cmd = new SqlCommand(sql, db.Conn);
-        //    SqlDataReader rd = cmd.ExecuteReader();
-        //    // Create a copy of the data before closing the connection
-        //    List<DataRow> data = new List<DataRow>();
-        //    while (rd.Read())
-        //    {
-        //        DataRow row = new DataRow();
-        //        for (int i = 0; i < rd.FieldCount; i++)
-        //        {
-        //            row[rd.GetName(i)] = rd[i];
-        //        }
-        //        data.Add(row);
-        //    }
-
-        //    // Close the database connection
-        //    db.Conn.Close();
-
-        //    // Return a new SqlDataReader from the copied data
-        //    return new SqlDataReader(data);
-        //}
-        //public List<DataRow> Select(string table, string where = null, int limit = 1000)
-        //{
-        //    string sql = $"SELECT TOP({limit}) * FROM {table} ";
-        //    if (where != null)
-        //    {
-        //        sql += "WHERE " + where;
-        //    }
-
-        //    db.Conn.Open();
-        //    SqlCommand cmd = new SqlCommand(sql, db.Conn);
-        //    SqlDataReader rd = cmd.ExecuteReader();
-
-        //    // Create a DataTable to hold the data
-        //    DataTable dt = new DataTable();
-        //    dt.Load(rd);
-
-        //    // Close the database connection
-        //    rd.Close();
-        //    db.Conn.Close();
-
-        //    // Return the rows from the DataTable
-        //    var x = dt.AsEnumerable();
-        //    var y = dt.AsEnumerable().ToList();
-        //    return dt.AsEnumerable().ToList();
-        //}
-        //public List<DataRow> Select(string[] tables, string where = null, int limit = 1000)
-        //{
-        //    string sql = $"SELECT TOP({limit}) * FROM {string.Join(", ", tables)} ";
-        //    if (where != null)
-        //    {
-        //        sql += "WHERE " + where;
-        //    }
-
-        //    db.Conn.Open();
-        //    SqlCommand cmd = new SqlCommand(sql, db.Conn);
-        //    SqlDataReader rd = cmd.ExecuteReader();
-
-        //    // Create a DataTable to hold the data
-        //    DataTable dt = new DataTable();
-        //    dt.Load(rd);
-
-        //    // Close the database connection
-        //    rd.Close();
-        //    db.Conn.Close();
-
-        //    // Return the rows from the DataTable
-        //    var x = dt.AsEnumerable();
-        //    var y = dt.AsEnumerable().ToList();
-        //    return dt.AsEnumerable().ToList();
-        //}
-
-        public DataSet Select(string nameStoredProcedure = null, string param=null, string value = null)
+        public DataSet Select(string nameStoredProcedure = null, string param=null, object value = null)
         {
             DataSet ds = new DataSet();
             try
@@ -179,7 +99,7 @@ namespace DigitalDocumentary.DLL
                 command.CommandText = nameStoredProcedure;
                 if(param != null)
                 {
-                    command.Parameters.Add(param, value);
+                    command.Parameters.AddWithValue(param, value);
                 }
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(ds);
@@ -196,23 +116,6 @@ namespace DigitalDocumentary.DLL
 
             return ds;
         }
-
-
-        //public SqlDataReader Select(string[] tables, string where = null, int limit = 1000)
-        //{
-        //    string sql = $"SELECT TOP({limit}) * FROM {string.Join(", ", tables)} ";
-
-        //    if (where != null)
-        //    {
-        //        sql += "WHERE "+where;
-        //    }
-        //    db.Conn.Open();
-        //    SqlCommand cmd = new SqlCommand(sql, db.Conn);
-        //    SqlDataReader rd = cmd.ExecuteReader();
-        //    db.Conn.Close();
-        //    return rd;
-        //}
-
         public int Update(string query)
         {
             string sql = "UPDATE [table] SET";
@@ -242,5 +145,48 @@ namespace DigitalDocumentary.DLL
             db.Conn.Close();
             return result;
         }
+
+        public int QueryByFunction(string function)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = db.Conn;
+                cmd.CommandText = $"SELECT dbo.{function}() As Result";
+                db.Conn.Open();
+                int result = Convert.ToInt32(cmd.ExecuteScalar());
+                db.Conn.Close();
+                return result;
+            }catch(Exception ex) {
+                return -1;
+            }
+            finally
+            {
+                db.Conn.Close();
+            }
+        }
+        public int QueryByFunction(string function, string key, object value)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = db.Conn;
+                cmd.CommandText = $"SELECT dbo.{function}({key}) As Result";
+                cmd.Parameters.AddWithValue(key, value);
+                db.Conn.Open();
+                int result = Convert.ToInt32(cmd.ExecuteScalar());
+                db.Conn.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            finally
+            {
+                db.Conn.Close();
+            }
+        }
+
     }
 }

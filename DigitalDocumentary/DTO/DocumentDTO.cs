@@ -68,18 +68,21 @@ namespace DigitalDocumentary.DTO
         public int iStatus { get => Convert.ToInt16(status); }
         public string Updated_by { get => updated_by; set => updated_by = value; }
 
-        public string GetStatus()
+        public string GetStatus
         {
-            string sts = String.Empty;
-            if (status)
+            get
             {
-                sts = "Đã ban hành";
+                string sts = String.Empty;
+                if (status)
+                {
+                    sts = "Đã ban hành";
+                }
+                else
+                {
+                    sts = "Chưa ban hành";
+                }
+                return sts;
             }
-            else
-            {
-                sts = "Chưa ban hành";
-            }
-            return sts;
         }
         public string GetFormattedCreatedAt()
         {

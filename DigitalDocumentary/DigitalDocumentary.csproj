@@ -89,6 +89,7 @@
     <Compile Include="GUI\Folder.Designer.cs">
       <DependentUpon>Folder.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Notification.cs" />
     <Compile Include="GUI\panelRoot.cs">
       <SubType>UserControl</SubType>
     </Compile>

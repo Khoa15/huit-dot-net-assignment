@@ -10,16 +10,30 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace DigitalDocumentary.GUI
 {
     public partial class AddDocument : Form
     {
         DocumentBLL documentBll = new DocumentBLL();
+        DocumentDTO doc;
+        bool isEdit = false;
         public AddDocument()
         {
             InitializeComponent();
             LoadDocumentType();
+        }
+        public AddDocument(int id)
+        {
+            InitializeComponent();
+            LoadDocumentType();
+            doc = documentBll.Load(id);
+            txtBoxTitle.Text = doc.Title;
+            txtBoxDescription.Text = doc.Description;
+            picBoxAvatar.ImageLocation = doc.Link_to_image;
+            txtBoxFilePath.Text = doc.File_path;
+            isEdit = true;
         }
         private void LoadDocumentType()
         {
@@ -71,29 +85,65 @@ namespace DigitalDocumentary.GUI
                 MessageBox.Show("Some fields can't be empty");
                 return;
             }
+            Button clicked = (Button)sender;
             List<AuthorDTO> authorDTOs = new List<AuthorDTO>();
             var x = txtBoxAuthor.Text.Split(';');
-            DocumentDTO document = new DocumentDTO()
+            if(isEdit)
             {
-                Title = txtBoxTitle.Text,
-                Description = txtBoxDescription.Text,
-                Link_to_image = picBoxAvatar.ImageLocation,
-                File_path = txtBoxFilePath.Text,
-                Folder = new FolderDTO()
+                doc.Title = txtBoxTitle.Text;
+                doc.Description = txtBoxDescription.Text;
+                doc.Link_to_image = picBoxAvatar.ImageLocation;
+                doc.File_path = txtBoxFilePath.Text;
+                doc.Folder = new FolderDTO()
                 {
                     Id = 1,
+                };
+                doc.Status = clicked.Tag.ToString().Equals("save");
+                doc.Updated_by = "admin";
+                if (documentBll.Update(doc) > 0)
+                {
+                    MessageBox.Show("Updated successfully!");
                 }
-            };
-
-            if (documentBll.Add(document) > 0)
+                else
+                {
+                    MessageBox.Show("Failure!");
+                }
+            }
+            else
             {
-                MessageBox.Show("Added successfully!");
+                doc = new DocumentDTO()
+                {
+                    Title = txtBoxTitle.Text,
+                    Description = txtBoxDescription.Text,
+                    Link_to_image = picBoxAvatar.ImageLocation,
+                    File_path = txtBoxFilePath.Text,
+                    Folder = new FolderDTO()
+                    {
+                        Id = 1,
+                    },
+                    Status = clicked.Tag.ToString().Equals("save"),
+                };
+
+                if (documentBll.Add(doc) > 0)
+                {
+                    MessageBox.Show("Added successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Failure!");
+                }
+
             }
         }
 
         private void txtBoxAuthor_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void btnPublic_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(sender, e);
         }
     }
 }
