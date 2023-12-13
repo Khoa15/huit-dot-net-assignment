@@ -42,5 +42,6 @@ namespace DigitalDocumentary.DTO
         public int NumberPageRead { get => numberPageRead; set => numberPageRead = value; }
         public int NumberPageDownload { get => numberPageDownload; set => numberPageDownload = value; }
         public string Name { get => name; set => name = value; }
+        public List<string> ListName { get => new List<string>() { "John Doe", "Jane Smith", "Bob Johnson" }; }
     }
 }

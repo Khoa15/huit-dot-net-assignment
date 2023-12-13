@@ -1,4 +1,4 @@
-USE TaiLieuSo
+﻿USE TaiLieuSo
 GO
 CREATE PROC SelectAllFolder
 AS
@@ -35,5 +35,45 @@ BEGIN
 		
 		WHERE
 			id =	@id
+END;
+GO
+
+CREATE PROC SelectAllParentFolder(@fid INT)
+AS
+BEGIN
+	WITH Tree AS (
+	  -- Trường hợp cơ bản: Chọn cha của mục lục cần tìm
+	  SELECT id, parent_id, 0 AS Level
+	  FROM Folder
+	  WHERE id = @fid  -- Thay 'MucLucC_ID' bằng ID của mục lục cần tìm cha
+
+	  UNION ALL
+
+	  -- Trường hợp đệ quy: Kết hợp mục lục với cha của nó
+	  SELECT f.id, f.parent_id, Level + 1
+	  FROM Folder f
+	  JOIN Tree tr ON f.id = tr.parent_id AND f.parent_id IS NOT NULL
+	)
+	SELECT parent_id FROM Tree
+END;
+GO
+
+CREATE PROC SelectAllChildFolder(@fid INT)
+AS
+BEGIN
+	WITH Tree AS (
+	  -- Trường hợp cơ bản: Chọn cha của mục lục cần tìm
+	  SELECT id, parent_id, 0 AS Level
+	  FROM Folder
+	  WHERE id = 14  -- Thay 'MucLucC_ID' bằng ID của mục lục cần tìm cha
+
+	  UNION ALL
+
+	  -- Trường hợp đệ quy: Kết hợp mục lục với cha của nó
+	  SELECT f.id, f.parent_id, Level + 1
+	  FROM Folder f
+	  JOIN Tree tr ON f.parent_id = tr.id
+	)
+	SELECT id FROM Tree WHERE parent_id IS NOT NULL
 END;
 GO

@@ -41,9 +41,11 @@ namespace DigitalDocumentary.DLL
         }
         public int Add(UserAccessDTO ua)
         {
-            string sql =    $"INSERT INTO {UserAccessDTO.Table} (display, read_limit, read_full, download, page_read, page_download)" +
-                            $"VALUES ({ua.Display}, {ua.TrialRead}, {ua.CanRead}, {ua.CanDownload}, {ua.NumberPageRead}, {ua.NumberPageDownload})";
-            return db.NonQuery(sql);
+            //string sql =    $"INSERT INTO {UserAccessDTO.Table} (display, read_limit, read_full, download, page_read, page_download)" +
+            //                $"VALUES ({ua.Display}, {ua.TrialRead}, {ua.CanRead}, {ua.CanDownload}, {ua.NumberPageRead}, {ua.NumberPageDownload})";
+            string[] keys = { "@id", "@page_read", "@page_download", "@display", "@read_limit", "@read_full", "@download" };
+            object[] values = { ua.Id, ua.NumberPageRead, ua.NumberPageDownload, ua.Display, ua.TrialRead, ua.CanRead, ua.CanDownload };
+            return db.NonQueryBySP("InsertUserAccess", keys, values);
         }
         //public int Update(UserAccessDTO ua)
         //{
@@ -54,7 +56,7 @@ namespace DigitalDocumentary.DLL
         {
             //UpdateUserAccess(@id CHAR(10), @page_read INT, @page_download INT, @display BIT, @read_limit BIT, @read_full BIT, @download BIT)
             string[] keys = { "@id", "@page_read", "@page_download", "@display", "@read_limit", "@read_full", "@download" };
-            object[] values = { ua.Id, ua.TrialRead, ua.CanDownload, ua.Display, ua.CanRead, ua.NumberPageRead, ua.NumberPageDownload };
+            object[] values = { ua.Id, ua.NumberPageRead, ua.NumberPageDownload, ua.Display, ua.TrialRead, ua.CanRead, ua.CanDownload };//ua.TrialRead, ua.CanDownload, ua.Display, ua.CanRead, ua.NumberPageRead, ua.NumberPageDownload };
             return db.NonQueryBySP("UpdateUserAccess", keys, values);
         }
         public int Delete(UserAccessDTO ua)

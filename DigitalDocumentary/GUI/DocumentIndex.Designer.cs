@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentIndex));
             this.btn_IcTable = new System.Windows.Forms.Button();
             this.btnAsk = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -153,12 +154,13 @@
             // 
             // btnAddIndex
             // 
-            this.btnAddIndex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddIndex.Image = global::DigitalDocumentary.Properties.Resources.add;
-            this.btnAddIndex.Location = new System.Drawing.Point(12, 9);
+            this.btnAddIndex.BackColor = System.Drawing.Color.White;
+            this.btnAddIndex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddIndex.Image = ((System.Drawing.Image)(resources.GetObject("btnAddIndex.Image")));
+            this.btnAddIndex.Location = new System.Drawing.Point(12, 15);
             this.btnAddIndex.Name = "btnAddIndex";
-            this.btnAddIndex.Size = new System.Drawing.Size(58, 42);
-            this.btnAddIndex.TabIndex = 1;
+            this.btnAddIndex.Size = new System.Drawing.Size(41, 42);
+            this.btnAddIndex.TabIndex = 2;
             this.btnAddIndex.UseVisualStyleBackColor = false;
             this.btnAddIndex.Click += new System.EventHandler(this.btnAddIndex_Click);
             // 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -63,33 +64,62 @@ namespace DigitalDocumentary.GUI
         }
         private void treeViewFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            pnFolDoc.Visible = true;
-            pnFolDoc.Dock = DockStyle.Bottom;
-            panel6.Visible = false;
             isDocOrFolder = false;
+            TreeNode current = (TreeNode)e.Node;
+            if(current.Level == 0 && current.Name.Equals("TLS"))
+            {
+                panel6.Visible = true;
+                pnFolDoc.Visible = false;
+            }
+            else
+            {
+                pnFolDoc.Visible = true;
+                pnFolDoc.Dock = DockStyle.Bottom;
+                panel6.Visible = false;
+            }
+
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(treeViewFolders.SelectedNode.Name);
-            Folder a = new Folder(id);
-            a.ShowDialog();
-            InitLoadFolder();
+            try
+            {
+                int id = SelectedFolder;
+                Folder a = new Folder(id);
+                a.ShowDialog();
+                InitLoadFolder();
+            }catch(Exception ex)
+            {
+                
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(treeViewFolders.SelectedNode.Name);
-            if (MessageBox.Show("Bạn có chắc muốn xóa bản ghi này?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            try
             {
-                if (FolderBLL.Delete(id))
+                int id = SelectedFolder;
+                if (MessageBox.Show("Bạn có chắc muốn xóa bản ghi này?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    MessageBox.Show("Successfully");
+                    if (FolderBLL.Delete(id))
+                    {
+                        MessageBox.Show("Successfully");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failure!");
+                    }
                 }
-                else
+                InitLoadFolder();
+            }catch(SqlException ex)
+            {
+                if(ex.Number == 547)
                 {
-                    MessageBox.Show("Failure!");
+                    Notification.Notify("Thư mục không rỗng để thực hiện!");
                 }
             }
-            InitLoadFolder();
+            catch
+            {
+
+            }
         }
         private void btnAddDoc_Click(object sender, EventArgs e)
         {
@@ -125,10 +155,26 @@ namespace DigitalDocumentary.GUI
         }
         private void btnPublic_Click(object sender, EventArgs e)
         {
-            int x = int.Parse(treeViewFolders.SelectedNode.Name);
-            if(MessageBox.Show("Bạn có chắc chắn ban hành tất cả các tài liệu trong thư mục này?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            int x = SelectedFolder;
+            if(Notification.ConfirmPublicAllDocs() == DialogResult.OK)
             {
-                FolderBLL.PublicDoc(x);
+                if (FolderBLL.PublicDoc(x))
+                {
+                    Notification.Success();
+                    LoadDocument(documentBLL.Load());
+                }
+            }
+        }
+        private void btnPrivateDocument_Click(object sender, EventArgs e)
+        {
+            int x = SelectedFolder;
+            if (Notification.ConfirmUnPublicAllDocs() == DialogResult.OK)
+            {
+                if (FolderBLL.PrivateDoc(x))
+                {
+                    Notification.Success();
+                    LoadDocument(documentBLL.Load());
+                }
             }
         }
         private void btnMvDocToNewFolder_Click(object sender, EventArgs e)
@@ -136,13 +182,13 @@ namespace DigitalDocumentary.GUI
             List<int> ids = IdDocumentSelected();
             if(ids.Count == 0 && isDocOrFolder)
             {
-                MessageBox.Show("You need choose at least one document to move another folder!");
+                MessageBox.Show("Cần chọn ít nhất một tài liệu hoặc một thư mục để di chuyển!");
                 return;
             }
             else if(isDocOrFolder == false)
             {
-                ids = new List<int>();
-                ids.Add(int.Parse(treeViewFolders.SelectedNode.Name));
+                ids.Clear();
+                ids.Add(SelectedFolder);
             }
             MoveDocOrFolder mvDoc = new MoveDocOrFolder(ids, isDocOrFolder);
             mvDoc.ShowDialog();
@@ -226,7 +272,7 @@ namespace DigitalDocumentary.GUI
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnPolicy_Click(object sender, EventArgs e)
         {
             Policy policy = new Policy();
             policy.ShowDialog();
@@ -330,16 +376,50 @@ namespace DigitalDocumentary.GUI
 
         private void btnDeleteDocInFolder_Click(object sender, EventArgs e)
         {
-            if(Notification.ConfirmDelete("Bạn có muốn xóa tất cả tài liệu của thư mục này?") == DialogResult.OK)
+            try
             {
-                int id = int.Parse(treeViewFolders.SelectedNode.Name);
-                if (documentBLL.DeleteByFolder(id))
+                int id = SelectedFolder;
+                if (Notification.ConfirmDelete("Bạn có muốn xóa tất cả tài liệu của thư mục này?") == DialogResult.OK)
                 {
-                    Notification.Success();
-                    LoadDocument(documentBLL.Load());
-                    InitLoadFolder();
+                    if (documentBLL.DeleteByFolder(id))
+                    {
+                        Notification.Success();
+                        LoadDocument(documentBLL.Load());
+                        InitLoadFolder();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private int SelectedFolder
+        {
+            get
+            {
+                try
+                {
+                    return int.Parse(treeViewFolders.SelectedNode.Name);
+
+                }
+                catch (NullReferenceException)
+                {
+                    Notification.Notify("Bạn chưa chọn thư mục!");
+                    throw;
+                }
+                catch
+                {
+                    Notification.Notify("Không thể chọn thư mục!");
+                    throw;
                 }
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

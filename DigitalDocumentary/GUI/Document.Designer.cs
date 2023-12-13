@@ -30,7 +30,7 @@ namespace DigitalDocumentary.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Document));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -48,6 +48,7 @@ namespace DigitalDocumentary.GUI
             this.btnAsk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnFolDoc = new System.Windows.Forms.Panel();
+            this.btnDocIndex = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnEditDoc = new System.Windows.Forms.Button();
             this.btnEditFolder = new System.Windows.Forms.Button();
@@ -56,7 +57,7 @@ namespace DigitalDocumentary.GUI
             this.btnDeleteDocInFolder = new System.Windows.Forms.Button();
             this.btnDelFolder = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnPrivateDocument = new System.Windows.Forms.Button();
             this.btnPublic = new System.Windows.Forms.Button();
             this.btnAddDoc = new System.Windows.Forms.Button();
             this.btn = new System.Windows.Forms.Button();
@@ -78,9 +79,8 @@ namespace DigitalDocumentary.GUI
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAddFolder = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.btnDocIndex = new System.Windows.Forms.Button();
+            this.btnPolicy = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -172,8 +172,8 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.AllowUserToDeleteRows = false;
             this.dataGridViewDocuments.AllowUserToResizeColumns = false;
             this.dataGridViewDocuments.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewDocuments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewDocuments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewDocuments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -294,7 +294,7 @@ namespace DigitalDocumentary.GUI
             this.pnFolDoc.Controls.Add(this.btnDeleteDocInFolder);
             this.pnFolDoc.Controls.Add(this.btnDelFolder);
             this.pnFolDoc.Controls.Add(this.button8);
-            this.pnFolDoc.Controls.Add(this.button9);
+            this.pnFolDoc.Controls.Add(this.btnPrivateDocument);
             this.pnFolDoc.Controls.Add(this.btnPublic);
             this.pnFolDoc.Controls.Add(this.btnAddDoc);
             this.pnFolDoc.Controls.Add(this.btn);
@@ -303,6 +303,18 @@ namespace DigitalDocumentary.GUI
             this.pnFolDoc.Name = "pnFolDoc";
             this.pnFolDoc.Size = new System.Drawing.Size(1093, 69);
             this.pnFolDoc.TabIndex = 4;
+            // 
+            // btnDocIndex
+            // 
+            this.btnDocIndex.BackColor = System.Drawing.Color.White;
+            this.btnDocIndex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDocIndex.Image = ((System.Drawing.Image)(resources.GetObject("btnDocIndex.Image")));
+            this.btnDocIndex.Location = new System.Drawing.Point(441, 9);
+            this.btnDocIndex.Name = "btnDocIndex";
+            this.btnDocIndex.Size = new System.Drawing.Size(41, 42);
+            this.btnDocIndex.TabIndex = 2;
+            this.btnDocIndex.UseVisualStyleBackColor = false;
+            this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
             // 
             // button3
             // 
@@ -400,16 +412,17 @@ namespace DigitalDocumentary.GUI
             this.button8.TabIndex = 1;
             this.button8.UseVisualStyleBackColor = false;
             // 
-            // button9
+            // btnPrivateDocument
             // 
-            this.button9.BackColor = System.Drawing.Color.White;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(640, 9);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(41, 42);
-            this.button9.TabIndex = 1;
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnPrivateDocument.BackColor = System.Drawing.Color.White;
+            this.btnPrivateDocument.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrivateDocument.Image = ((System.Drawing.Image)(resources.GetObject("btnPrivateDocument.Image")));
+            this.btnPrivateDocument.Location = new System.Drawing.Point(640, 9);
+            this.btnPrivateDocument.Name = "btnPrivateDocument";
+            this.btnPrivateDocument.Size = new System.Drawing.Size(41, 42);
+            this.btnPrivateDocument.TabIndex = 1;
+            this.btnPrivateDocument.UseVisualStyleBackColor = false;
+            this.btnPrivateDocument.Click += new System.EventHandler(this.btnPrivateDocument_Click);
             // 
             // btnPublic
             // 
@@ -635,8 +648,8 @@ namespace DigitalDocumentary.GUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel6.Controls.Add(this.btnAddFolder);
-            this.panel6.Controls.Add(this.button11);
             this.panel6.Controls.Add(this.button4);
+            this.panel6.Controls.Add(this.btnPolicy);
             this.panel6.Location = new System.Drawing.Point(1, 266);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1093, 69);
@@ -654,17 +667,6 @@ namespace DigitalDocumentary.GUI
             this.btnAddFolder.UseVisualStyleBackColor = false;
             this.btnAddFolder.Click += new System.EventHandler(this.btnAddFolder_Click);
             // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.White;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
-            this.button11.Location = new System.Drawing.Point(105, 9);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(41, 42);
-            this.button11.TabIndex = 1;
-            this.button11.UseVisualStyleBackColor = false;
-            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.White;
@@ -676,17 +678,18 @@ namespace DigitalDocumentary.GUI
             this.button4.TabIndex = 1;
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // btnDocIndex
+            // btnPolicy
             // 
-            this.btnDocIndex.BackColor = System.Drawing.Color.White;
-            this.btnDocIndex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDocIndex.Image = ((System.Drawing.Image)(resources.GetObject("btnDocIndex.Image")));
-            this.btnDocIndex.Location = new System.Drawing.Point(441, 9);
-            this.btnDocIndex.Name = "btnDocIndex";
-            this.btnDocIndex.Size = new System.Drawing.Size(41, 42);
-            this.btnDocIndex.TabIndex = 2;
-            this.btnDocIndex.UseVisualStyleBackColor = false;
-            this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
+            this.btnPolicy.BackColor = System.Drawing.Color.White;
+            this.btnPolicy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPolicy.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPolicy.Image = ((System.Drawing.Image)(resources.GetObject("btnPolicy.Image")));
+            this.btnPolicy.Location = new System.Drawing.Point(105, 9);
+            this.btnPolicy.Name = "btnPolicy";
+            this.btnPolicy.Size = new System.Drawing.Size(41, 42);
+            this.btnPolicy.TabIndex = 11;
+            this.btnPolicy.UseVisualStyleBackColor = false;
+            this.btnPolicy.Click += new System.EventHandler(this.btnPolicy_Click);
             // 
             // Document
             // 
@@ -763,13 +766,13 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnMvDocToNewFolder;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnPrivateDocument;
         private System.Windows.Forms.Button btnPublic;
         private System.Windows.Forms.Button btnAddFolder;
-        private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnEditDoc;
         private System.Windows.Forms.Button btnDeleteDocInFolder;
         private System.Windows.Forms.Button btnDocIndex;
+        private System.Windows.Forms.Button btnPolicy;
     }
 }

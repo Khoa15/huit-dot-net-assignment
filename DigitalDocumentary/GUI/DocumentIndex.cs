@@ -39,7 +39,7 @@ namespace DigitalDocumentary.GUI
 
         private void btnAddIndex_Click(object sender, EventArgs e)
         {
-// No description
+            // No description
         }
     }
 }

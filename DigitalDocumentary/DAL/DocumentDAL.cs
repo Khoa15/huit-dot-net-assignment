@@ -139,17 +139,20 @@ namespace DigitalDocumentary.DLL
         private DocumentDTO SetData(DataRow row)
         {
             DocumentDTO document = new DocumentDTO();
-                document.Id = int.Parse(row["id"].ToString());
-                document.Title = row["title"].ToString();
-                document.Description = row["description"].ToString();
-                document.File_path = row["file_path"].ToString();
-                document.Link_to_image = row["link_to_image"].ToString();
-                document.ItemType = row["ItemTypeID"].ToString();
-                document.Updated_by = row["updated_by"].ToString();
-                document.Created_at = Convert.ToDateTime(row["created_date"].ToString());
-                document.Updated_at = Convert.ToDateTime(row["updated_date"].ToString());
+            document.Id = int.Parse(row["id"].ToString());
+            document.Title = row["title"].ToString();
+            document.Description = row["description"].ToString();
+            document.File_path = row["file_path"].ToString();
+            document.Link_to_image = row["link_to_image"].ToString();
+            document.ItemType = new ItemTypeDTO();
+            document.ItemType.ItemTypeId = row["ItemTypeID"].ToString();
+            document.ItemType.TypeName = row["TypeName"].ToString();
+            document.Updated_by = row["updated_by"].ToString();
+            document.Created_at = Convert.ToDateTime(row["created_date"].ToString());
+            document.Updated_at = Convert.ToDateTime(row["updated_date"].ToString());
+            document.Status = Convert.ToBoolean(row["document_status"].ToString());
 
-                document.Author = row["author"].ToString();
+            document.Author = row["author"].ToString();
             return document;
         }
     }

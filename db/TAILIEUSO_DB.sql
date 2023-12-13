@@ -234,16 +234,16 @@ GO
 -- INSERT dữ liệu vào bảng Document
 INSERT INTO Document (folder_id, title, ItemTypeID, file_path, link_to_image, description, updated_by, author)
 VALUES 
-(1, N'Cho tôi xin một vé đi tuổi thơ', 'b',         'C:\Documents\ChoToiXinMotVeDiTuoiTho.pdf', NULL, 'Tên sách nói lên tất cả, cuốn sách của tác giả Nguyễn Nhật Ánh sẽ đưa bạn trở lại tuổi thơ ngọt ngào nhất của mình.', 'Khoa', 'Nguyễn Nhật Ánh'),
-(1, N'Kính vạn hoa', 'b',                           'C:\Documents\KinhVanHoa.pdf', NULL, 'Cuốn tiểu thuyết của tác giả Nguyễn Nhật Ánh là một câu chuyện tình nhẹ nhàng, ấm áp và đầy cảm hứng.', 'Khoa', 'Nguyễn Nhật Ánh'),
-(2, N'Thánh Gióng', 'b',                            'C:\Documents\ThanhGiong.pdf', NULL, 'Thanh Giong là một trong những nhân vật lịch sử nổi tiếng của Việt Nam. Nhân vật này được khen là anh hùng mang lại nhiều lợi ích cơ bản cho dân tộc Việt Nam.', 'Khoa', 'Nguyễn Nhật Ánh'),
-(2, N'Đọc hiểu lớp 2', 'b',                         'C:\Documents\DocHieuLop2.pdf', NULL, 'Cuốn sách các bài tập đọc hiểu cho học sinh lớp 2 giúp các em nắm vững kỹ năng đọc hiểu và rèn luyện tư duy.', 'Khoa', 'Không có tác giả'),
-(3, N'Chiến lược dài hạn trong kinh doanh', 'b',    'C:\Documents\ChienluocDaihan.pdf', NULL, 'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về chiến lược dài hạn trong kinh doanh và giúp bạn xây dựng và triển khai một chiến lược hiệu quả.', 'Khoa', NULL),
-(3, N'Làm giàu không khó', 'b',                     'C:\Documents\LamGiauKhongKho.pdf', NULL, 'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về cách làm giàu thông qua kinh doanh và đầu tư.', 'Khoa', NULL),
-(4, N'Tôi là số 4', 'b',                            'C:\Documents\ToiLaSo4.pdf', NULL, 'Cuốn tiểu thuyết dành cho lứa tuổi thiếu niên với cốt truyện hấp dẫn, cuốn hút.', 'Khoa', NULL),
-(4, N'Harry Potter và Hòn đá Phù thủy', 'b',        'C:\Documents\HarryPotterVaHonDaPhuThuy.pdf', NULL, 'Cuốn tiểu thuyết nổi tiếng dành cho lứa tuổi thiếu niên với những phép thuật, bí mật và những cuộc phiêu lưu ly kỳ.', 'Khoa', NULL),
-(5, N'Sách giáo khoa lớp 1', 'b',                   'C:\Documents\SachGiaoKhoaLop1.pdf', NULL, 'Cuốn sách giáo khoa dành cho học sinh lớp 1 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa', NULL),
-(5, N'Sách giáo khoa lớp 2', 'b',                   'C:\Documents\SachGiaoKhoaLop2.pdf', NULL, 'Cuốn sách giáo khoa dành cho học sinh lớp 2 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa', NULL);
+(1, N'Cho tôi xin một vé đi tuổi thơ', 'b',         'C:\Documents\ChoToiXinMotVeDiTuoiTho.pdf', NULL, N'Tên sách nói lên tất cả, cuốn sách của tác giả Nguyễn Nhật Ánh sẽ đưa bạn trở lại tuổi thơ ngọt ngào nhất của mình.', 'Khoa', N'Nguyễn Nhật Ánh'),
+(1, N'Kính vạn hoa', 'b',                           'C:\Documents\KinhVanHoa.pdf', NULL, N'Cuốn tiểu thuyết của tác giả Nguyễn Nhật Ánh là một câu chuyện tình nhẹ nhàng, ấm áp và đầy cảm hứng.', 'Khoa', N'Nguyễn Nhật Ánh'),
+(2, N'Thánh Gióng', 'b',                            'C:\Documents\ThanhGiong.pdf', NULL, N'Thanh Giong là một trong những nhân vật lịch sử nổi tiếng của Việt Nam. Nhân vật này được khen là anh hùng mang lại nhiều lợi ích cơ bản cho dân tộc Việt Nam.', 'Khoa', N'Nguyễn Nhật Ánh'),
+(2, N'Đọc hiểu lớp 2', 'b',                         'C:\Documents\DocHieuLop2.pdf', NULL, N'Cuốn sách các bài tập đọc hiểu cho học sinh lớp 2 giúp các em nắm vững kỹ năng đọc hiểu và rèn luyện tư duy.', 'Khoa', N'Không có tác giả'),
+(3, N'Chiến lược dài hạn trong kinh doanh', 'b',    'C:\Documents\ChienluocDaihan.pdf', NULL, N'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về chiến lược dài hạn trong kinh doanh và giúp bạn xây dựng và triển khai một chiến lược hiệu quả.', 'Khoa', NULL),
+(3, N'Làm giàu không khó', 'b',                     'C:\Documents\LamGiauKhongKho.pdf', NULL, N'Cuốn sách này sẽ giúp bạn hiểu rõ hơn về cách làm giàu thông qua kinh doanh và đầu tư.', 'Khoa', NULL),
+(4, N'Tôi là số 4', 'b',                            'C:\Documents\ToiLaSo4.pdf', NULL, N'Cuốn tiểu thuyết dành cho lứa tuổi thiếu niên với cốt truyện hấp dẫn, cuốn hút.', 'Khoa', NULL),
+(4, N'Harry Potter và Hòn đá Phù thủy', 'b',        'C:\Documents\HarryPotterVaHonDaPhuThuy.pdf', NULL, N'Cuốn tiểu thuyết nổi tiếng dành cho lứa tuổi thiếu niên với những phép thuật, bí mật và những cuộc phiêu lưu ly kỳ.', 'Khoa', NULL),
+(5, N'Sách giáo khoa lớp 1', 'b',                   'C:\Documents\SachGiaoKhoaLop1.pdf', NULL, N'Cuốn sách giáo khoa dành cho học sinh lớp 1 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa', NULL),
+(5, N'Sách giáo khoa lớp 2', 'b',                   'C:\Documents\SachGiaoKhoaLop2.pdf', NULL, N'Cuốn sách giáo khoa dành cho học sinh lớp 2 với đầy đủ các kiến thức về Tiếng Việt, Toán, Tự nhiên và Xã hội.', 'Khoa', NULL);
 
 GO
 

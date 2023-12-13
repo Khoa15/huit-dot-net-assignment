@@ -22,6 +22,10 @@ namespace DigitalDocumentary.BLL
         {
             return userAccessDll.Get(id);
         }
+        public int Add(UserAccessDTO userAccess)
+        {
+            return userAccessDll.Add(userAccess);
+        }
         public int Update(UserAccessDTO userAccess)
         {
             return userAccessDll.Update(userAccess);

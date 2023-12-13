@@ -60,7 +60,7 @@ namespace DigitalDocumentary.GUI
         private void btnMove_Click(object sender, EventArgs e)
         {
             int? desId = null;
-            if(treeViewFolders.SelectedNode.Index != 0)
+            if(!(treeViewFolders.SelectedNode.Index == 0 && treeViewFolders.SelectedNode.Level == 0))
             {
                 desId = int.Parse(treeViewFolders.SelectedNode.Name);
             }

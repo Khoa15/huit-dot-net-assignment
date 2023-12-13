@@ -1,4 +1,4 @@
-USE TaiLieuSo
+﻿USE TaiLieuSo
 GO
 CREATE PROC SelectAllDocumentIndexByDocumentId (@docId INT)
 AS
@@ -98,17 +98,33 @@ BEGIN
 	ON Document.ItemTypeID = ItemTypes.ItemTypeID
 END;
 GO
+
 CREATE PROC PublicDocumentByIdFolder (@fid INT)
 AS
 BEGIN
-	UPDATE Document SET document_status = 1 WHERE folder_id = @fid
+	CREATE TABLE #ParentFolders (id INT);
+
+    INSERT INTO #ParentFolders
+    EXEC SelectAllChildFolder @fid;
+	
+	UPDATE Document SET document_status = 1 WHERE folder_id = @fid OR folder_id IN (SELECT id FROM #ParentFolders)
+
+	DROP TABLE #ParentFolders;
 END;
 GO
 
 CREATE PROC PrivateDocumentByIdFolder (@fid INT)
 AS
 BEGIN
-	UPDATE Document SET document_status = 0 WHERE folder_id = @fid
+	CREATE TABLE #ParentFolders (id INT);
+
+    INSERT INTO #ParentFolders
+    EXEC SelectAllChildFolder @fid;
+	
+	UPDATE Document SET document_status = 0 WHERE folder_id = @fid OR folder_id IN (SELECT id FROM #ParentFolders)
+
+	DROP TABLE #ParentFolders;
+
 END;
 GO
 

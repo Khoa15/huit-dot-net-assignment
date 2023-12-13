@@ -29,3 +29,20 @@ BEGIN
 	DELETE UserAccess Where patron_type_id=@id
 END;
 GO
+
+CREATE PROC InsertUserAccess
+(
+	@id CHAR(10),
+    @page_read INT,
+    @page_download INT,
+    @display BIT,
+    @read_limit BIT,
+    @read_full BIT,
+    @download BIT
+)
+AS
+BEGIN
+    INSERT INTO UserAccess (patron_type_id , display, read_limit, read_full, download, page_read, page_download)
+    VALUES (@id, @display, @read_limit, @read_full, @download, @page_read, @page_download);
+END;
+GO

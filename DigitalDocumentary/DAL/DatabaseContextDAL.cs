@@ -27,11 +27,17 @@ namespace DigitalDocumentary.DLL
         }
         public int NonQuery(string query)
         {
-            db.Conn.Open();
-            SqlCommand cmd = new SqlCommand(query, db.Conn);
-            int result = cmd.ExecuteNonQuery();
-            db.Conn.Close();
-            return result;
+            try
+            {
+                db.Conn.Open();
+                SqlCommand cmd = new SqlCommand(query, db.Conn);
+                int result = cmd.ExecuteNonQuery();
+                db.Conn.Close();
+                return result;
+            }catch(SqlException ex)
+            {
+                throw ex;
+            }
         }
 
         public int NonQueryBySP(string nameStoredProcedure, string[] param, object[] value)
@@ -54,7 +60,12 @@ namespace DigitalDocumentary.DLL
                 int result = command.ExecuteNonQuery();
                 db.Conn.Close();
                 return result;
-            }catch(Exception ex)
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch(Exception ex)
             {
                 return 0;
             }

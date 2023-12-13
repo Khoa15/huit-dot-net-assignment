@@ -52,24 +52,33 @@
     <Compile Include="BLL\FolderBLL.cs" />
     <Compile Include="BLL\Helper.cs" />
     <Compile Include="BLL\ItemTypeBLL.cs" />
+    <Compile Include="BLL\PatronTypesBLL.cs" />
     <Compile Include="BLL\UserAccessBLL.cs" />
     <Compile Include="DAL\DatabaseContextDAL.cs" />
     <Compile Include="DAL\DocumentDAL.cs" />
     <Compile Include="DAL\DocumentIndexDAL.cs" />
     <Compile Include="DAL\FolderDAL.cs" />
     <Compile Include="DAL\ItemTypeDAL.cs" />
+    <Compile Include="DAL\PatronTypeDAL.cs" />
     <Compile Include="DAL\UserAccessDAL.cs" />
     <Compile Include="DTO\DatabaseContextDTO.cs" />
     <Compile Include="DTO\DocumentDTO.cs" />
     <Compile Include="DTO\DocumentIndexDTO.cs" />
     <Compile Include="DTO\FolderDTO.cs" />
     <Compile Include="DTO\ItemTypeDTO.cs" />
+    <Compile Include="DTO\PatronTypeDTO.cs" />
     <Compile Include="DTO\UserAccessDTO.cs" />
     <Compile Include="GUI\AddDocument.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\AddDocument.Designer.cs">
       <DependentUpon>AddDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddDocumentIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddDocumentIndex.Designer.cs">
+      <DependentUpon>AddDocumentIndex.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Document.cs">
       <SubType>Form</SubType>

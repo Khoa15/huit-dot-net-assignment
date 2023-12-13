@@ -49,14 +49,17 @@ namespace DigitalDocumentary.DTO
         public string File_path { get => file_path; set => file_path = value; }
         public string Link_to_image { get => link_to_image; set => link_to_image = value; }
         public ItemTypeDTO ItemType { get => itemType; set => itemType = value; }
-        internal string Author { get => author; set => author = value; }
+        public string Author { get => author; set => author = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
         internal FolderDTO Folder { get => folder; set => folder = value; }
         public bool Status { get => status; set => status = value; }
         public int bStatus { get => Convert.ToInt16(status); }
         public string Updated_by { get => updated_by; set => updated_by = value; }
-
+        public string Type
+        {
+            get => ItemType.TypeName;
+        }
         public string GetStatus
         {
             get
@@ -72,11 +75,6 @@ namespace DigitalDocumentary.DTO
                 }
                 return sts;
             }
-        }
-
-        public string Type
-        {
-            get => itemType.TypeName;
         }
         public string GetFormattedCreatedAt()
         {

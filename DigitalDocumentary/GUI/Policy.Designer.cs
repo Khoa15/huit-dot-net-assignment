@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Policy));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -37,8 +38,8 @@
             this.btn_IcTable = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnAsk = new System.Windows.Forms.Button();
-            this.btnAddPolicy = new System.Windows.Forms.Button();
             this.pnBottom = new System.Windows.Forms.Panel();
+            this.btnAddPolicy = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocPolicy)).BeginInit();
@@ -90,6 +91,7 @@
             this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Áp dụng cho tài liệu số";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // dataGridViewDocPolicy
             // 
@@ -155,16 +157,6 @@
             this.btnAsk.TabIndex = 0;
             this.btnAsk.UseVisualStyleBackColor = true;
             // 
-            // btnAddPolicy
-            // 
-            this.btnAddPolicy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddPolicy.Image = global::DigitalDocumentary.Properties.Resources.add;
-            this.btnAddPolicy.Location = new System.Drawing.Point(12, 9);
-            this.btnAddPolicy.Name = "btnAddPolicy";
-            this.btnAddPolicy.Size = new System.Drawing.Size(58, 42);
-            this.btnAddPolicy.TabIndex = 1;
-            this.btnAddPolicy.UseVisualStyleBackColor = false;
-            // 
             // pnBottom
             // 
             this.pnBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -174,6 +166,18 @@
             this.pnBottom.Name = "pnBottom";
             this.pnBottom.Size = new System.Drawing.Size(1093, 69);
             this.pnBottom.TabIndex = 8;
+            // 
+            // btnAddPolicy
+            // 
+            this.btnAddPolicy.BackColor = System.Drawing.Color.White;
+            this.btnAddPolicy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPolicy.Image = ((System.Drawing.Image)(resources.GetObject("btnAddPolicy.Image")));
+            this.btnAddPolicy.Location = new System.Drawing.Point(12, 15);
+            this.btnAddPolicy.Name = "btnAddPolicy";
+            this.btnAddPolicy.Size = new System.Drawing.Size(41, 42);
+            this.btnAddPolicy.TabIndex = 2;
+            this.btnAddPolicy.UseVisualStyleBackColor = false;
+            this.btnAddPolicy.Click += new System.EventHandler(this.btnAddPolicy_Click);
             // 
             // Policy
             // 
@@ -207,7 +211,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnAsk;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnAddPolicy;
         private System.Windows.Forms.Panel pnBottom;
+        private System.Windows.Forms.Button btnAddPolicy;
     }
 }
