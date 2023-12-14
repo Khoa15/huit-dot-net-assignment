@@ -41,7 +41,7 @@ namespace DigitalDocumentary.GUI
                 new DataGridViewTextBoxColumn{DataPropertyName = "Id", Visible = false},
             };
             dataGridViewDocPolicy.Columns.AddRange(columns);
-            DataGridViewComboBoxColumn combobox = new DataGridViewComboBoxColumn { Name = "listperson", HeaderText = "asdf", DisplayMember = "Name", ValueMember="Id", DataPropertyName = "Id" };
+            DataGridViewComboBoxColumn combobox = new DataGridViewComboBoxColumn { Name = "listperson", HeaderText = "Độc Giả", DisplayMember = "Name", ValueMember="Id", DataPropertyName = "Id" };
             combobox.DataSource = patronTypesBll.Load();
             dataGridViewDocPolicy.Columns.Insert(1, combobox);
             dataGridViewDocPolicy.DataSource = userAccessBLL.Load();

@@ -30,7 +30,7 @@ namespace DigitalDocumentary.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Document));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -138,7 +138,7 @@ namespace DigitalDocumentary.GUI
             this.cbBoxFilterSearch.FormattingEnabled = true;
             this.cbBoxFilterSearch.Location = new System.Drawing.Point(8, 3);
             this.cbBoxFilterSearch.Name = "cbBoxFilterSearch";
-            this.cbBoxFilterSearch.Size = new System.Drawing.Size(119, 27);
+            this.cbBoxFilterSearch.Size = new System.Drawing.Size(119, 37);
             this.cbBoxFilterSearch.TabIndex = 1;
             // 
             // txtBoxSearch
@@ -149,7 +149,7 @@ namespace DigitalDocumentary.GUI
             this.txtBoxSearch.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtBoxSearch.Location = new System.Drawing.Point(133, 3);
             this.txtBoxSearch.Name = "txtBoxSearch";
-            this.txtBoxSearch.Size = new System.Drawing.Size(530, 27);
+            this.txtBoxSearch.Size = new System.Drawing.Size(530, 36);
             this.txtBoxSearch.TabIndex = 2;
             // 
             // btnSearch
@@ -172,8 +172,8 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.AllowUserToDeleteRows = false;
             this.dataGridViewDocuments.AllowUserToResizeColumns = false;
             this.dataGridViewDocuments.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewDocuments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewDocuments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewDocuments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -182,6 +182,7 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.Location = new System.Drawing.Point(8, 81);
             this.dataGridViewDocuments.MultiSelect = false;
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
+            this.dataGridViewDocuments.ReadOnly = true;
             this.dataGridViewDocuments.RowHeadersVisible = false;
             this.dataGridViewDocuments.RowHeadersWidth = 62;
             this.dataGridViewDocuments.RowTemplate.Height = 30;
@@ -199,7 +200,7 @@ namespace DigitalDocumentary.GUI
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
             this.label2.Location = new System.Drawing.Point(4, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(223, 19);
+            this.label2.Size = new System.Drawing.Size(327, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Tìm được tất cả ... kết quả";
             // 
@@ -276,7 +277,7 @@ namespace DigitalDocumentary.GUI
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(56, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 19);
+            this.label1.Size = new System.Drawing.Size(277, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ TÀI LIỆU SỐ";
             // 
@@ -639,6 +640,7 @@ namespace DigitalDocumentary.GUI
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
@@ -693,7 +695,7 @@ namespace DigitalDocumentary.GUI
             // 
             // Document
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1093, 610);

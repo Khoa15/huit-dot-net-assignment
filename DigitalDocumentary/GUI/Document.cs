@@ -59,8 +59,14 @@ namespace DigitalDocumentary.GUI
         {
             int selection = cbBoxFilterSearch.SelectedIndex;
             string keyword = txtBoxSearch.Text;
-
-            LoadDocument(documentBLL.Find(selection, keyword));
+            if(keyword.Length == 0)
+            {
+                LoadDocument(documentBLL.Load());
+            }
+            else
+            {
+                LoadDocument(documentBLL.Find(selection, keyword));
+            }
         }
         private void treeViewFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -134,10 +140,23 @@ namespace DigitalDocumentary.GUI
                 return;
             }
             List<int> ids = IdDocumentSelected();
-            if (documentBLL.Delete(ids))
+            try
             {
-                MessageBox.Show("Deleted!");
-                LoadDocument(documentBLL.Load());
+                if (documentBLL.Delete(ids))
+                {
+                    Notification.Success();
+                    LoadDocument(documentBLL.Load());
+                    InitLoadFolder();
+                }
+            }catch(SqlException ex)
+            {
+                if(ex.Number == 547)
+                {
+                    Notification.Notify("Không thể xóa!");
+                }
+            }catch(Exception ex)
+            {
+                Notification.Notify("Có lỗi đã xảy ra!");
             }
         }
         private void btnDocIndex_Click(object sender, EventArgs e)

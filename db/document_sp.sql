@@ -84,10 +84,19 @@ GO
 CREATE PROC DeleteDocument (@documentID INT)
 AS
 BEGIN
-    DELETE FROM Document WHERE id = @documentID;
+	BEGIN TRANSACTION
+	BEGIN TRY
+		DELETE FROM DocumentIndex WHERE document_id = @documentID;
+		DELETE FROM Document WHERE id = @documentID;
+
+		COMMIT
+	END TRY
+	BEGIN CATCH
+		ROLLBACK
+	END CATCH
+
 END;
 GO
-
 
 -- Newest - 01/12/2023 - BY KHOA // Using
 CREATE PROC SelectAllDocuments

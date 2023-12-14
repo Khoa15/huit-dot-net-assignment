@@ -2,6 +2,7 @@
 using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -99,6 +100,10 @@ namespace DigitalDocumentary.BLL
                     }
                 }
                 return true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

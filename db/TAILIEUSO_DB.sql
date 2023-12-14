@@ -64,7 +64,7 @@ CREATE TABLE Document (
 	updated_date DATE DEFAULT(GETDATE()),---
     CONSTRAINT CHK_Document_CreatedDate CHECK (created_date <= GETDATE()),
 	CONSTRAINT PK_Document PRIMARY KEY (id),
-    CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(id),
+    CONSTRAINT FK_Document_Folder FOREIGN KEY (folder_id) REFERENCES Folder(id) ON DELETE CASCADE,
 );
 GO
 	

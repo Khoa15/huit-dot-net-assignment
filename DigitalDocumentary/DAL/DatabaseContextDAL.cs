@@ -82,14 +82,19 @@ namespace DigitalDocumentary.DLL
                 command.Connection = db.Conn;
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = nameStoredProcedure;
-                if(param != null || param.Length != 0)
+                if (param != null || param.Length != 0)
                 {
                     command.Parameters.AddWithValue(param, value);
                 }
                 int result = command.ExecuteNonQuery();
                 db.Conn.Close();
                 return result;
-            }catch(Exception ex)
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
             {
                 return 0;
             }
