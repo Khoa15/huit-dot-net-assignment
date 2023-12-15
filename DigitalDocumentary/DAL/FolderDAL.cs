@@ -99,6 +99,7 @@ namespace DigitalDocumentary.DLL
         }
         public int Delete(int id)
         {
+            //db.NonQueryBySP()
             string sql = $"DELETE FROM {FolderDTO.Table} WHERE id = {id}";
             return db.NonQuery(sql);
         }

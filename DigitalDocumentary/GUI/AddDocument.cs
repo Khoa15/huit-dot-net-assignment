@@ -41,7 +41,9 @@ namespace DigitalDocumentary.GUI
                 picBoxAvatar.ImageLocation = doc.Link_to_image;
                 txtBoxFilePath.Text = doc.File_path;
                 txtBoxAuthor.Text = doc.Author;
+                //cbBoxTypeDoc
                 this.isEdit = true;
+                cbBoxTypeDoc.SelectedItem = doc.ItemType.TypeName;
             }
             else
             {
@@ -60,6 +62,7 @@ namespace DigitalDocumentary.GUI
                 cbBoxTypeDoc.Items.Add(item.TypeName);
             });
             cbBoxTypeDoc.SelectedIndex = 0;
+
         }
 
         private void panel11_Paint(object sender, PaintEventArgs e)

@@ -77,7 +77,8 @@ namespace DigitalDocumentary.GUI
             {
                 panel6.Visible = true;
                 pnFolDoc.Visible = false;
-                LoadDocument(documentBLL.ReLoad());
+                LoadDocument(documentBLL.Load());
+                InitLoadFolder();
             }
             else
             {

@@ -61,8 +61,9 @@ namespace DigitalDocumentary.DLL
         }
         public int Delete(UserAccessDTO ua)
         {
-            string sql = $"DELETE FROM {UserAccessDTO.Table} WHERE user_type_id = {ua.Id}";
-            return db.NonQuery(sql);
+            return db.NonQueryBySP("DeleteUserAccess", "@id", ua.Id);
+            //string sql = $"DELETE FROM {UserAccessDTO.Table} WHERE user_type_id = {ua.Id}";
+            //return db.NonQuery(sql);
         }
         public int Delete(string id)
         {
