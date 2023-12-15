@@ -31,6 +31,10 @@ namespace DigitalDocumentary.GUI
             treeViewFolders.Nodes.Add("TLS", "TÀI LIỆU SỐ");
             TreeNode root = treeViewFolders.Nodes[0];
             List<FolderDTO> folders = folderBLL.Load();
+            if(isDocOrFolder == false)
+            {
+                folders.Remove(folders.Find(f => f.Id.Equals(ids.First())));
+            }
             LoadFolder(folders, root, null);
         }
 
@@ -75,12 +79,12 @@ namespace DigitalDocumentary.GUI
             }
             if (result)
             {
-                MessageBox.Show("Successfully!");
+                Notification.Success();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Failed!");
+                Notification.Fail();
             }
         }
     }

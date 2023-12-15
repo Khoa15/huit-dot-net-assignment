@@ -65,7 +65,7 @@ BEGIN
 	  -- Trường hợp cơ bản: Chọn cha của mục lục cần tìm
 	  SELECT id, parent_id, 0 AS Level
 	  FROM Folder
-	  WHERE id = 14  -- Thay 'MucLucC_ID' bằng ID của mục lục cần tìm cha
+	  WHERE id = @fid  -- Thay 'MucLucC_ID' bằng ID của mục lục cần tìm cha
 
 	  UNION ALL
 

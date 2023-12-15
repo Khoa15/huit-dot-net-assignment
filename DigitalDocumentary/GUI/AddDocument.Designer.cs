@@ -724,7 +724,7 @@
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddDocument";
-            this.Text = "AddDocument";
+            this.Text = "Document";
             this.pnMain.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

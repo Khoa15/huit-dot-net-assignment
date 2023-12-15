@@ -14,25 +14,34 @@ namespace DigitalDocumentary.BLL
     internal class DocumentBLL
     {
         static DocumentDAL docDll = new DocumentDAL();
+        List<DocumentDTO> docs;
         public DocumentBLL()
         {
+            docs = new List<DocumentDTO>();
+        }
+        public List<DocumentDTO> ReLoad()
+        {
+            return docs;
         }
         public List<DocumentDTO> Load()
         {
-            return docDll.Load();
+            docs = docDll.Load();
+            return docs;
         }
         public DocumentDTO Load(int id)
         {
             return docDll.Get(id);
         }
-        //public DocumentDTO GetById(int id)
-        //{
-        //    return docDll.Get(id);
-        //}
+        public List<DocumentDTO> LoadByFolderId(int id)
+        {
+            return docDll.LoadByFolderId(id);
+        }
+        public List<DocumentDTO> LoadByStatus(bool status)
+        {
+            return docDll.LoadByStatus(Convert.ToInt16(status));
+        }
         public int Add(DocumentDTO document)
         {
-            // Move file, image to this project's path
-            //MoveFile(document.Link_to_image);
             Helper.MoveFile(document.Link_to_image);
             return docDll.Add(document);
         }
@@ -63,6 +72,28 @@ namespace DigitalDocumentary.BLL
         public static int UpdateStatus(bool status, int[] ids)
         {
             return docDll.UpdateStatus(status, ids);
+        }
+        public bool Public(List<int> ids)
+        {
+            try
+            {
+                return UpdateStatus(true, ids.ToArray()) > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool Private(List<int> ids)
+        {
+            try
+            {
+                return UpdateStatus(false, ids.ToArray()) > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         public int Delete(int id)
         {
@@ -216,6 +247,14 @@ namespace DigitalDocumentary.BLL
         public bool DeleteByFolder(int id)
         {
             return DocumentDAL.DeleteByFolder(id) > 0;
+        }
+        public bool DeleteByStatus(bool status)
+        {
+            return DocumentDAL.DeleteByStatus(status) > 0;
+        }
+        public bool DeleteAllDocuments()
+        {
+            return DocumentDAL.DeleteAllDocuments() > 0;
         }
     }
 }

@@ -59,7 +59,7 @@
             // 
             this.btnAsk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAsk.Image = global::DigitalDocumentary.Properties.Resources.question;
-            this.btnAsk.Location = new System.Drawing.Point(977, 6);
+            this.btnAsk.Location = new System.Drawing.Point(710, 6);
             this.btnAsk.Name = "btnAsk";
             this.btnAsk.Size = new System.Drawing.Size(29, 29);
             this.btnAsk.TabIndex = 0;
@@ -69,7 +69,7 @@
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.Image = global::DigitalDocumentary.Properties.Resources.exit1;
-            this.btnExit.Location = new System.Drawing.Point(1011, 6);
+            this.btnExit.Location = new System.Drawing.Point(744, 6);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(29, 29);
             this.btnExit.TabIndex = 2;
@@ -96,7 +96,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(12, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1068, 585);
+            this.panel1.Size = new System.Drawing.Size(801, 413);
             this.panel1.TabIndex = 5;
             // 
             // panel3
@@ -108,7 +108,7 @@
             this.panel3.Controls.Add(this.dataGridViewDocIndex);
             this.panel3.Location = new System.Drawing.Point(3, 46);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1062, 536);
+            this.panel3.Size = new System.Drawing.Size(795, 364);
             this.panel3.TabIndex = 1;
             // 
             // dataGridViewDocIndex
@@ -117,14 +117,21 @@
             this.dataGridViewDocIndex.AllowUserToDeleteRows = false;
             this.dataGridViewDocIndex.AllowUserToResizeColumns = false;
             this.dataGridViewDocIndex.AllowUserToResizeRows = false;
-            this.dataGridViewDocIndex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewDocIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewDocIndex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDocIndex.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewDocIndex.Location = new System.Drawing.Point(13, 10);
+            this.dataGridViewDocIndex.MultiSelect = false;
             this.dataGridViewDocIndex.Name = "dataGridViewDocIndex";
+            this.dataGridViewDocIndex.ReadOnly = true;
+            this.dataGridViewDocIndex.RowHeadersVisible = false;
             this.dataGridViewDocIndex.RowHeadersWidth = 62;
-            this.dataGridViewDocIndex.Size = new System.Drawing.Size(1046, 523);
+            this.dataGridViewDocIndex.Size = new System.Drawing.Size(771, 303);
             this.dataGridViewDocIndex.TabIndex = 0;
+            this.dataGridViewDocIndex.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocIndex_CellContentClick);
+            this.dataGridViewDocIndex.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocIndex_CellDoubleClick);
             // 
             // panel2
             // 
@@ -139,7 +146,7 @@
             this.panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1062, 46);
+            this.panel2.Size = new System.Drawing.Size(795, 46);
             this.panel2.TabIndex = 0;
             // 
             // pnBottom
@@ -147,9 +154,9 @@
             this.pnBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pnBottom.Controls.Add(this.btnAddIndex);
             this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBottom.Location = new System.Drawing.Point(0, 541);
+            this.pnBottom.Location = new System.Drawing.Point(0, 369);
             this.pnBottom.Name = "pnBottom";
-            this.pnBottom.Size = new System.Drawing.Size(1093, 69);
+            this.pnBottom.Size = new System.Drawing.Size(826, 69);
             this.pnBottom.TabIndex = 6;
             // 
             // btnAddIndex
@@ -168,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 610);
+            this.ClientSize = new System.Drawing.Size(826, 438);
             this.Controls.Add(this.pnBottom);
             this.Controls.Add(this.panel1);
             this.Name = "DocumentIndex";

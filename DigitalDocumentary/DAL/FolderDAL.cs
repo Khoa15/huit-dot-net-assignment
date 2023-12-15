@@ -19,10 +19,31 @@ namespace DigitalDocumentary.DLL
 
         public FolderDAL()
         {
+            //FolderDTO root = new FolderDTO()
+            //{
+            //    Id = 0,
+            //    NameId = "TLS",
+            //    Name = "TÀI LIỆU SỐ",
+            //};
+            //folders.Add(root);
+            //folders.Add(new FolderDTO()
+            //{
+            //    Id = -1,
+            //    NameId = "isPublic",
+            //    Name = "Đã ban hành",
+            //    Parent = root,
+            //});
+            //folders.Add(new FolderDTO()
+            //{
+            //    Id = -2,
+            //    NameId = "unPublic",
+            //    Name = "Chưa ban hành",
+            //    Parent = root,
+            //});
         }
         public List<FolderDTO> Load(string where=null)
         {
-            Folders.Clear();
+            folders.Clear();
             DataSet set = db.Select("SelectAllFolder");
             foreach (DataRow rd in set.Tables[0].Rows)
             {

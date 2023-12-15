@@ -76,11 +76,11 @@ namespace DigitalDocumentary.GUI
             this.button10 = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnPolicy = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -138,7 +138,7 @@ namespace DigitalDocumentary.GUI
             this.cbBoxFilterSearch.FormattingEnabled = true;
             this.cbBoxFilterSearch.Location = new System.Drawing.Point(8, 3);
             this.cbBoxFilterSearch.Name = "cbBoxFilterSearch";
-            this.cbBoxFilterSearch.Size = new System.Drawing.Size(119, 37);
+            this.cbBoxFilterSearch.Size = new System.Drawing.Size(119, 27);
             this.cbBoxFilterSearch.TabIndex = 1;
             // 
             // txtBoxSearch
@@ -149,7 +149,7 @@ namespace DigitalDocumentary.GUI
             this.txtBoxSearch.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtBoxSearch.Location = new System.Drawing.Point(133, 3);
             this.txtBoxSearch.Name = "txtBoxSearch";
-            this.txtBoxSearch.Size = new System.Drawing.Size(530, 36);
+            this.txtBoxSearch.Size = new System.Drawing.Size(530, 27);
             this.txtBoxSearch.TabIndex = 2;
             // 
             // btnSearch
@@ -182,13 +182,13 @@ namespace DigitalDocumentary.GUI
             this.dataGridViewDocuments.Location = new System.Drawing.Point(8, 81);
             this.dataGridViewDocuments.MultiSelect = false;
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
-            this.dataGridViewDocuments.ReadOnly = true;
             this.dataGridViewDocuments.RowHeadersVisible = false;
             this.dataGridViewDocuments.RowHeadersWidth = 62;
             this.dataGridViewDocuments.RowTemplate.Height = 30;
-            this.dataGridViewDocuments.Size = new System.Drawing.Size(726, 398);
+            this.dataGridViewDocuments.Size = new System.Drawing.Size(726, 391);
             this.dataGridViewDocuments.TabIndex = 3;
             this.dataGridViewDocuments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocuments_CellContentClick);
+            this.dataGridViewDocuments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewDocuments_CellFormatting);
             this.dataGridViewDocuments.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDocuments_ColumnHeaderMouseClick);
             this.dataGridViewDocuments.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDocuments_RowHeaderMouseClick);
             this.dataGridViewDocuments.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewDocuments_MouseClick);
@@ -200,7 +200,7 @@ namespace DigitalDocumentary.GUI
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
             this.label2.Location = new System.Drawing.Point(4, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 29);
+            this.label2.Size = new System.Drawing.Size(223, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Tìm được tất cả ... kết quả";
             // 
@@ -277,7 +277,7 @@ namespace DigitalDocumentary.GUI
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(56, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 29);
+            this.label1.Size = new System.Drawing.Size(187, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ TÀI LIỆU SỐ";
             // 
@@ -314,6 +314,7 @@ namespace DigitalDocumentary.GUI
             this.btnDocIndex.Name = "btnDocIndex";
             this.btnDocIndex.Size = new System.Drawing.Size(41, 42);
             this.btnDocIndex.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnDocIndex, "Mục lục");
             this.btnDocIndex.UseVisualStyleBackColor = false;
             this.btnDocIndex.Click += new System.EventHandler(this.btnDocIndex_Click);
             // 
@@ -338,6 +339,7 @@ namespace DigitalDocumentary.GUI
             this.btnEditDoc.Name = "btnEditDoc";
             this.btnEditDoc.Size = new System.Drawing.Size(41, 42);
             this.btnEditDoc.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.btnEditDoc, "Sửa tài liệu");
             this.btnEditDoc.UseVisualStyleBackColor = false;
             this.btnEditDoc.Click += new System.EventHandler(this.btnEditDoc_Click);
             // 
@@ -351,6 +353,7 @@ namespace DigitalDocumentary.GUI
             this.btnEditFolder.Name = "btnEditFolder";
             this.btnEditFolder.Size = new System.Drawing.Size(41, 42);
             this.btnEditFolder.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.btnEditFolder, "Sửa thư mục");
             this.btnEditFolder.UseVisualStyleBackColor = false;
             this.btnEditFolder.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -363,6 +366,7 @@ namespace DigitalDocumentary.GUI
             this.btnMvDocToNewFolder.Name = "btnMvDocToNewFolder";
             this.btnMvDocToNewFolder.Size = new System.Drawing.Size(41, 42);
             this.btnMvDocToNewFolder.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnMvDocToNewFolder, "Di chuyển");
             this.btnMvDocToNewFolder.UseVisualStyleBackColor = false;
             this.btnMvDocToNewFolder.Click += new System.EventHandler(this.btnMvDocToNewFolder_Click);
             // 
@@ -375,6 +379,7 @@ namespace DigitalDocumentary.GUI
             this.btnDeleteDoc.Name = "btnDeleteDoc";
             this.btnDeleteDoc.Size = new System.Drawing.Size(41, 42);
             this.btnDeleteDoc.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnDeleteDoc, "Xóa tài liệu");
             this.btnDeleteDoc.UseVisualStyleBackColor = false;
             this.btnDeleteDoc.Click += new System.EventHandler(this.btnDeleteDoc_Click);
             // 
@@ -387,6 +392,7 @@ namespace DigitalDocumentary.GUI
             this.btnDeleteDocInFolder.Name = "btnDeleteDocInFolder";
             this.btnDeleteDocInFolder.Size = new System.Drawing.Size(41, 42);
             this.btnDeleteDocInFolder.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnDeleteDocInFolder, "Xóa tài liệu trong thư mục");
             this.btnDeleteDocInFolder.UseVisualStyleBackColor = false;
             this.btnDeleteDocInFolder.Click += new System.EventHandler(this.btnDeleteDocInFolder_Click);
             // 
@@ -399,6 +405,7 @@ namespace DigitalDocumentary.GUI
             this.btnDelFolder.Name = "btnDelFolder";
             this.btnDelFolder.Size = new System.Drawing.Size(41, 42);
             this.btnDelFolder.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnDelFolder, "Xóa thư mục");
             this.btnDelFolder.UseVisualStyleBackColor = false;
             this.btnDelFolder.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -446,6 +453,7 @@ namespace DigitalDocumentary.GUI
             this.btnAddDoc.Name = "btnAddDoc";
             this.btnAddDoc.Size = new System.Drawing.Size(41, 42);
             this.btnAddDoc.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnAddDoc, "Thêm tài liệu");
             this.btnAddDoc.UseVisualStyleBackColor = false;
             this.btnAddDoc.Click += new System.EventHandler(this.btnAddDoc_Click);
             // 
@@ -458,6 +466,7 @@ namespace DigitalDocumentary.GUI
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(41, 42);
             this.btn.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btn, "Thêm thư mục");
             this.btn.UseVisualStyleBackColor = false;
             this.btn.Click += new System.EventHandler(this.btnAddFolder_Click);
             // 
@@ -638,12 +647,6 @@ namespace DigitalDocumentary.GUI
             this.btnAdd.TabIndex = 1;
             this.btnAdd.UseVisualStyleBackColor = false;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -666,6 +669,7 @@ namespace DigitalDocumentary.GUI
             this.btnAddFolder.Name = "btnAddFolder";
             this.btnAddFolder.Size = new System.Drawing.Size(41, 42);
             this.btnAddFolder.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnAddFolder, "Thêm thư mục");
             this.btnAddFolder.UseVisualStyleBackColor = false;
             this.btnAddFolder.Click += new System.EventHandler(this.btnAddFolder_Click);
             // 
@@ -690,12 +694,13 @@ namespace DigitalDocumentary.GUI
             this.btnPolicy.Name = "btnPolicy";
             this.btnPolicy.Size = new System.Drawing.Size(41, 42);
             this.btnPolicy.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.btnPolicy, "Biên tập chính sách");
             this.btnPolicy.UseVisualStyleBackColor = false;
             this.btnPolicy.Click += new System.EventHandler(this.btnPolicy_Click);
             // 
             // Document
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1093, 610);
@@ -723,6 +728,9 @@ namespace DigitalDocumentary.GUI
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
+            toolTip1.SetToolTip(btnPrivateDocument, "Hủy ban hành");
+            toolTip1.SetToolTip(btnPublic, "Ban hành");
+
         }
 
         #endregion
@@ -744,7 +752,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.TextBox txtBoxSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel pnMain;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button button21;
@@ -776,5 +783,6 @@ namespace DigitalDocumentary.GUI
         private System.Windows.Forms.Button btnDeleteDocInFolder;
         private System.Windows.Forms.Button btnDocIndex;
         private System.Windows.Forms.Button btnPolicy;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

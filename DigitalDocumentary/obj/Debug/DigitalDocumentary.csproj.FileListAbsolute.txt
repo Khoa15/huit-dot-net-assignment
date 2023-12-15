@@ -39,22 +39,6 @@ C:\Users\nguye\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.MoveDocOrFolder.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.panelRoot.resources
 C:\Users\Khoa\OneDrive - Ho Chi Minh city University of Food Industry\HUIT(HUFI)\HK5_2023_2024\.NET\assignment\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Policy.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.AssemblyReference.cache
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.AddDocument.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Document.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.DocumentIndex.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Folder.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.panelRoot.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.MoveDocOrFolder.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Policy.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.Properties.Resources.resources
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.GenerateResource.cache
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CoreCompileInputs.cache
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe.config
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.pdb
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
-D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb
 C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe.config
 C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe
 C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\bin\Debug\DigitalDocumentary.pdb
@@ -72,3 +56,19 @@ C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\obj\D
 C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CoreCompileInputs.cache
 C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
 C:\Users\nguye\Documents\School\huit-dot-net-assignment\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe.config
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.exe
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\bin\Debug\DigitalDocumentary.pdb
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.AssemblyReference.cache
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.AddDocument.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Document.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.DocumentIndex.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Folder.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.MoveDocOrFolder.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.Policy.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.Properties.Resources.resources
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.GenerateResource.cache
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.csproj.CoreCompileInputs.cache
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.exe
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.pdb
+D:\Programming\Learning\digitalDocumentary\DigitalDocumentary\obj\Debug\DigitalDocumentary.GUI.AddDocumentIndex.resources

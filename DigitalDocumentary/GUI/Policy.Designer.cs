@@ -107,7 +107,7 @@
             this.dataGridViewDocPolicy.MultiSelect = false;
             this.dataGridViewDocPolicy.Name = "dataGridViewDocPolicy";
             this.dataGridViewDocPolicy.RowHeadersWidth = 62;
-            this.dataGridViewDocPolicy.Size = new System.Drawing.Size(971, 436);
+            this.dataGridViewDocPolicy.Size = new System.Drawing.Size(1005, 436);
             this.dataGridViewDocPolicy.TabIndex = 0;
             this.dataGridViewDocPolicy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocPolicy_CellContentClick);
             // 

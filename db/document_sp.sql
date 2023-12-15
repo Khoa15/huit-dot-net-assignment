@@ -7,21 +7,12 @@ BEGIN
 END;
 GO
 
-CREATE PROC SelectDocumentsByFolderID (@folderID INT)
-AS
-BEGIN
-    SELECT * FROM Document WHERE folder_id = @folderID;
-END;
-GO
-
-
 CREATE PROC SelectDocumentsByTitle (@title NVARCHAR(255))
 AS
 BEGIN
     SELECT * FROM Document WHERE title LIKE '%@title%';
 END;
 GO
-
 
 CREATE PROC SelectDocumentIndexByDocument (@docID INT)
 AS
@@ -102,9 +93,61 @@ GO
 CREATE PROC SelectAllDocuments
 AS
 BEGIN
-	SELECT TOP(1000) Document.*, ItemTypes.* FROM Document
+	SELECT Document.*, ItemTypes.*, Folder.id AS fid FROM Document
 	LEFT JOIN ItemTypes
 	ON Document.ItemTypeID = ItemTypes.ItemTypeID
+	LEFT JOIN Folder
+	ON Folder.id = Document.folder_id
+END;
+GO
+
+CREATE PROC SelectDocument(@docId INT)
+AS
+BEGIN
+	SELECT Document.*, ItemTypes.*, Folder.id AS fid FROM Document
+	LEFT JOIN ItemTypes
+	ON Document.ItemTypeID = ItemTypes.ItemTypeID
+	LEFT JOIN Folder
+	ON Folder.id = Document.folder_id
+	WHERE Document.id = @docId
+END;
+GO
+
+CREATE PROC SelectDocumentsByFolderId (@fid INT)
+AS
+BEGIN
+	SELECT Document.*, ItemTypes.*, Folder.id AS fid FROM Document
+	LEFT JOIN ItemTypes
+	ON Document.ItemTypeID = ItemTypes.ItemTypeID
+	LEFT JOIN Folder
+	ON Folder.id = Document.folder_id
+	WHERE folder_id = @fid
+END;
+GO
+
+CREATE PROC SelectDocumentByStatus (@status BIT)
+AS
+BEGIN
+	SELECT Document.*, ItemTypes.*, Folder.id AS fid FROM Document
+	LEFT JOIN ItemTypes
+	ON Document.ItemTypeID = ItemTypes.ItemTypeID
+	LEFT JOIN Folder
+	ON Folder.id = Document.folder_id
+	WHERE document_status = @status
+END;
+GO
+
+CREATE PROC PublicDocumentById(@docId INT)
+AS
+BEGIN
+	UPDATE Document SET document_status = 1 WHERE id = @docId
+END;
+GO
+
+CREATE PROC PrivateDocumentByid(@docId INT)
+AS
+BEGIN
+	UPDATE Document SET document_status = 0 WHERE id = @docId
 END;
 GO
 
@@ -144,20 +187,12 @@ BEGIN
 END;
 GO
 
-CREATE PROC SelectDocument(@docId INT)
-AS
-BEGIN
-	SELECT * FROM Document
-	LEFT JOIN ItemTypes
-	ON Document.ItemTypeID = ItemTypes.ItemTypeID
-	WHERE Document.id = @docId
-END;
-GO
 
 CREATE PROC UpdateDocument(
 	@docId INT,
 	@title NVARCHAR(255),
 	@itemTypeID CHAR(10),
+	@author NVARCHAR(255),
 	@file_path VARCHAR(255),
 	@link_to_image VARCHAR(255),
 	@description NTEXT,
@@ -169,6 +204,7 @@ BEGIN
 	UPDATE Document SET
 		ItemTypeID= @itemTypeID,
 		file_path= @file_path,
+		author = @author,
 		title =  @title,
 		link_to_image= @link_to_image,
 		description =  @description,
@@ -180,8 +216,10 @@ END;
 GO
 
 CREATE PROC InsertDocument(
+	@fid INT,
 	@itemTypeID CHAR(10),
 	@file_path VARCHAR(255),
+	@author NVARCHAR(255),
 	@title NVARCHAR(255),
 	@link_to_image VARCHAR(255),
 	@description NTEXT,
@@ -191,9 +229,11 @@ CREATE PROC InsertDocument(
 AS
 BEGIN
 	INSERT INTO Document
-		(ItemTypeID, file_path, title, link_to_image, description, document_status, updated_by)
+		(folder_id, author, ItemTypeID, file_path, title, link_to_image, description, document_status, updated_by)
 	VALUES
 		(
+			@fid,
+			@author,
 			@itemTypeID,
 			@file_path,
 			@title,
@@ -202,5 +242,52 @@ BEGIN
 			@status,
 			@updated_by
 		)
+END;
+GO
+
+CREATE PROC PublicAllDocument
+AS
+BEGIN
+	UPDATE Document SET document_status = 1
+END;
+GO
+
+CREATE PROC PrivateAllDocument
+AS
+BEGIN
+	UPDATE Document SET document_status = 0
+END;
+GO
+
+CREATE PROC DeleteDocumentsByStatus (@status BIT)
+AS
+BEGIN
+	BEGIN TRANSACTION
+	BEGIN TRY
+		DELETE FROM DocumentIndex WHERE document_id IN (SELECT id FROM Document WHERE document_status = @status)
+
+		DELETE FROM Document WHERE document_status = @status
+
+		COMMIT
+	END TRY
+	BEGIN CATCH
+		ROLLBACK
+	END CATCH
+END;
+GO
+
+CREATE PROC DeleteAllDocuments 
+AS
+BEGIN
+	BEGIN TRANSACTION
+	BEGIN TRY
+		DELETE FROM DocumentIndex
+		DELETE FROM Document
+
+		COMMIT
+	END TRY
+	BEGIN CATCH
+		ROLLBACK
+	END CATCH
 END;
 GO

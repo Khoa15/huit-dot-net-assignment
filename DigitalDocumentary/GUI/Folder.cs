@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,12 +22,14 @@ namespace DigitalDocumentary.GUI
         public Folder()
         {
             InitializeComponent();
+            label1.Text = "THÊM THƯ MỤC";
         }
         public Folder(int id)
         {
             InitializeComponent();
             LoadFolder(id);
             isEdit = true;
+            label1.Text = "CẬP NHẬT THƯ MỤC";
         }
         private void LoadFolder(int id)
         {
@@ -61,11 +64,11 @@ namespace DigitalDocumentary.GUI
                 fol.Status = ckBoxFolderStatus.Checked;
                 if (folderBll.Update(fol))
                 {
-                    MessageBox.Show("Updated Successfully!");
+                    Notification.Success();
                 }
                 else
                 {
-                    MessageBox.Show("Failure!");
+                    Notification.Fail();
                 }
             }
             else
@@ -78,14 +81,24 @@ namespace DigitalDocumentary.GUI
                     CreatedBy = "admin",
                     Parent = null,
                 };
-                if (folderBll.Add(fol))
+                try
                 {
-                    MessageBox.Show("Added Successfully!");
-                }
-                else
+                    if (folderBll.Add(fol))
+                    {
+                        Notification.Success();
+                    }
+                    else
+                    {
+                        Notification.Fail();
+                    }
+                }catch(SqlException ex)
                 {
-                    MessageBox.Show("Failure!");
+                    if (ex.Number == 2627)
+                    {
+                        Notification.Notify("Hãy đổi \"Mã thư mục\"");
+                    }
                 }
+                catch(Exception ex) { }
             }
         }
     }

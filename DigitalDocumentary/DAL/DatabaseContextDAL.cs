@@ -1,4 +1,5 @@
 ﻿using DigitalDocumentary.DTO;
+using DigitalDocumentary.GUI;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -39,7 +40,32 @@ namespace DigitalDocumentary.DLL
                 throw ex;
             }
         }
-
+        public int NonQueryBySP(string nameStoredProcedure)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = db.Conn;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = nameStoredProcedure;
+                db.Conn.Open();
+                int result = command.ExecuteNonQuery();
+                db.Conn.Close();
+                return result;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+            finally
+            {
+                if (db.Conn.State == ConnectionState.Open) db.Conn.Close();
+            }
+        }
         public int NonQueryBySP(string nameStoredProcedure, string[] param, object[] value)
         {
             try

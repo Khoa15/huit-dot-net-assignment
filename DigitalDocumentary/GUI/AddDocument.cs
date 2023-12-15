@@ -19,23 +19,39 @@ namespace DigitalDocumentary.GUI
     {
         ItemTypeBLL itemTypeBLL = new ItemTypeBLL();
         DocumentBLL documentBll = new DocumentBLL();
+        FolderDTO folder;
         DocumentDTO doc;
         bool isEdit = false;
         public AddDocument()
         {
             InitializeComponent();
             LoadDocumentType();
+            label1.Text = "THÊM TÀI LIỆU";
         }
-        public AddDocument(int id)
+        public AddDocument(int id, bool isEdit)
         {
             InitializeComponent();
             LoadDocumentType();
-            doc = documentBll.Load(id);
-            txtBoxTitle.Text = doc.Title;
-            txtBoxDescription.Text = doc.Description;
-            picBoxAvatar.ImageLocation = doc.Link_to_image;
-            txtBoxFilePath.Text = doc.File_path;
-            isEdit = true;
+            label1.Text = "CẬP NHẬT TÀI LIỆU";
+            if (isEdit)
+            {
+                doc = documentBll.Load(id);
+                txtBoxTitle.Text = doc.Title;
+                txtBoxDescription.Text = doc.Description;
+                picBoxAvatar.ImageLocation = doc.Link_to_image;
+                txtBoxFilePath.Text = doc.File_path;
+                txtBoxAuthor.Text = doc.Author;
+                this.isEdit = true;
+            }
+            else
+            {
+                if(id > 0)
+                {
+                    folder = FolderBLL.Get(id);
+                    txtBoxFolder.Text = folder.Name;
+
+                }
+            }
         }
         private void LoadDocumentType()
         {
@@ -102,13 +118,14 @@ namespace DigitalDocumentary.GUI
                 doc.ItemType = TypeId;
                 doc.Status = clicked.Tag.ToString().Equals("save");
                 doc.Updated_by = "admin";
+                doc.Folder = folder;
                 if (documentBll.Update(doc) > 0)
                 {
-                    MessageBox.Show("Updated successfully!");
+                    Notification.Success();
                 }
                 else
                 {
-                    MessageBox.Show("Failure!");
+                    Notification.Fail();
                 }
             }
             else
@@ -123,15 +140,16 @@ namespace DigitalDocumentary.GUI
                     ItemType = TypeId,
                     Status = clicked.Tag.ToString().Equals("save"),
                     Updated_by = "admin",
+                    Folder = folder
                 };
 
                 if (documentBll.Add(doc) > 0)
-                {
-                    MessageBox.Show("Added successfully!");
+                { 
+                    Notification.Success();
                 }
                 else
                 {
-                    MessageBox.Show("Failure!");
+                    Notification.Fail();
                 }
 
             }

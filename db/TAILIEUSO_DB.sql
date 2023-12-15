@@ -1,4 +1,8 @@
 ﻿use master;
+GO
+ALTER DATABASE TaiLieuSo SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO  
+DROP DATABASE TaiLieuSo
 go
 
 create database TaiLieuSo;
@@ -334,138 +338,138 @@ go
 
 
 
--- Hàm trả về tất cả các tài liệu trong thư mục có ID đã cho
-CREATE FUNCTION GetDocumentsByFolderID (@folderID INT)
-RETURNS TABLE
-AS
-RETURN
-(
-    SELECT *
-    FROM Document
-    WHERE folder_id = @folderID
-);
-GO
+---- Hàm trả về tất cả các tài liệu trong thư mục có ID đã cho
+--CREATE FUNCTION GetDocumentsByFolderID (@folderID INT)
+--RETURNS TABLE
+--AS
+--RETURN
+--(
+--    SELECT *
+--    FROM Document
+--    WHERE folder_id = @folderID
+--);
+--GO
 
--- Hàm trả về ngày tạo của tài liệu mới nhất
-CREATE FUNCTION GetLatestDocumentCreatedDate()
-RETURNS DATE
-AS
-BEGIN
-    DECLARE @latestDate DATE;
-    SELECT @latestDate = MAX(created_date)
-    FROM Document
-    WHERE document_status = 1;
-    RETURN @latestDate;
-END;
-GO
+---- Hàm trả về ngày tạo của tài liệu mới nhất
+--CREATE FUNCTION GetLatestDocumentCreatedDate()
+--RETURNS DATE
+--AS
+--BEGIN
+--    DECLARE @latestDate DATE;
+--    SELECT @latestDate = MAX(created_date)
+--    FROM Document
+--    WHERE document_status = 1;
+--    RETURN @latestDate;
+--END;
+--GO
 
--- Hàm trả về ngày tạo của tài liệu cũ nhất
-CREATE FUNCTION GetOldestDocumentCreatedDate()
-RETURNS DATE
-AS
-BEGIN
-    DECLARE @oldestDate DATE;
-    SELECT @oldestDate = MIN(created_date)
-    FROM Document
-    WHERE document_status = 1;
-    RETURN @oldestDate;
-END;
-GO
+---- Hàm trả về ngày tạo của tài liệu cũ nhất
+--CREATE FUNCTION GetOldestDocumentCreatedDate()
+--RETURNS DATE
+--AS
+--BEGIN
+--    DECLARE @oldestDate DATE;
+--    SELECT @oldestDate = MIN(created_date)
+--    FROM Document
+--    WHERE document_status = 1;
+--    RETURN @oldestDate;
+--END;
+--GO
 
--- Hàm trả về số lượng tài liệu có trạng thái đã phê duyệt
-CREATE FUNCTION CountApprovedDocuments()
-RETURNS INT
-AS
-BEGIN
-    DECLARE @count INT;
-    SELECT @count = COUNT(*)
-    FROM Document
-    WHERE document_status = 1;
-    RETURN @count;
-END;
-GO
+---- Hàm trả về số lượng tài liệu có trạng thái đã phê duyệt
+--CREATE FUNCTION CountApprovedDocuments()
+--RETURNS INT
+--AS
+--BEGIN
+--    DECLARE @count INT;
+--    SELECT @count = COUNT(*)
+--    FROM Document
+--    WHERE document_status = 1;
+--    RETURN @count;
+--END;
+--GO
 
--- Hàm trả về tất cả các tài liệu được tạo trong khoảng thời gian từ ngày 1 tháng 1 năm 2023 đến ngày 31 tháng 12 năm 2023
-CREATE FUNCTION GetDocumentsInDateRange (@startDate DATE, @endDate DATE)
-RETURNS TABLE
-AS
-RETURN
-(
-    SELECT *
-    FROM Document
-    WHERE created_date BETWEEN @startDate AND @endDate
-);
-GO
+---- Hàm trả về tất cả các tài liệu được tạo trong khoảng thời gian từ ngày 1 tháng 1 năm 2023 đến ngày 31 tháng 12 năm 2023
+--CREATE FUNCTION GetDocumentsInDateRange (@startDate DATE, @endDate DATE)
+--RETURNS TABLE
+--AS
+--RETURN
+--(
+--    SELECT *
+--    FROM Document
+--    WHERE created_date BETWEEN @startDate AND @endDate
+--);
+--GO
 
--- Hàm trả về ngày có tài liệu được duyệt nhiều nhất
-CREATE FUNCTION GetDateWithMostApprovedDocuments()
-RETURNS DATE
-AS
-BEGIN
-    DECLARE @maxDate DATE;
-    DECLARE @maxCount INT;
-    SELECT @maxDate = MAX(created_date), @maxCount = COUNT(*)
-    FROM Document
-    WHERE document_status = 1;
-    RETURN @maxDate;
-END;
-GO
+---- Hàm trả về ngày có tài liệu được duyệt nhiều nhất
+--CREATE FUNCTION GetDateWithMostApprovedDocuments()
+--RETURNS DATE
+--AS
+--BEGIN
+--    DECLARE @maxDate DATE;
+--    DECLARE @maxCount INT;
+--    SELECT @maxDate = MAX(created_date), @maxCount = COUNT(*)
+--    FROM Document
+--    WHERE document_status = 1;
+--    RETURN @maxDate;
+--END;
+--GO
 
--- Hàm trả về ngày có tài liệu được duyệt ít nhất
-CREATE FUNCTION GetDateWithLeastApprovedDocuments()
-RETURNS DATE
-AS
-BEGIN
-    DECLARE @minDate DATE;
-    DECLARE @minCount INT;
-    SELECT @minDate = MIN(created_date), @minCount = COUNT(*)
-    FROM Document
-    WHERE document_status = 1;
-    RETURN @minDate;
-END;
-GO
+---- Hàm trả về ngày có tài liệu được duyệt ít nhất
+--CREATE FUNCTION GetDateWithLeastApprovedDocuments()
+--RETURNS DATE
+--AS
+--BEGIN
+--    DECLARE @minDate DATE;
+--    DECLARE @minCount INT;
+--    SELECT @minDate = MIN(created_date), @minCount = COUNT(*)
+--    FROM Document
+--    WHERE document_status = 1;
+--    RETURN @minDate;
+--END;
+--GO
 
--- Hàm trả về số lượng tài liệu được duyệt trong một ngày
-CREATE FUNCTION GetNumberOfApprovedDocumentsByDate (@date DATE)
-RETURNS INT
-AS
-BEGIN
-    DECLARE @count INT;
-    SELECT @count = COUNT(*)
-    FROM Document
-    WHERE created_date = @date
-    AND document_status = 1;
-    RETURN @count;
-END;
-GO
+---- Hàm trả về số lượng tài liệu được duyệt trong một ngày
+--CREATE FUNCTION GetNumberOfApprovedDocumentsByDate (@date DATE)
+--RETURNS INT
+--AS
+--BEGIN
+--    DECLARE @count INT;
+--    SELECT @count = COUNT(*)
+--    FROM Document
+--    WHERE created_date = @date
+--    AND document_status = 1;
+--    RETURN @count;
+--END;
+--GO
 
--- Hàm trả về số lượng tài liệu được tạo trong một ngày
-CREATE FUNCTION GetNumberOfDocumentsCreatedByDate (@date DATE)
-RETURNS INT
-AS
-BEGIN
-    DECLARE @count INT;
-    SELECT @count = COUNT(*)
-    FROM Document
-    WHERE created_date = @date;
-    RETURN @count;
-END;
-GO
+---- Hàm trả về số lượng tài liệu được tạo trong một ngày
+--CREATE FUNCTION GetNumberOfDocumentsCreatedByDate (@date DATE)
+--RETURNS INT
+--AS
+--BEGIN
+--    DECLARE @count INT;
+--    SELECT @count = COUNT(*)
+--    FROM Document
+--    WHERE created_date = @date;
+--    RETURN @count;
+--END;
+--GO
 
--- Hàm trả về ngày có tài liệu được duyệt nhiều nhất trong một thư mục
-CREATE FUNCTION GetDateWithMostApprovedDocumentsInFolder (@folderID INT)
-RETURNS DATE
-AS
-BEGIN
-    DECLARE @maxDate DATE;
-    DECLARE @maxCount INT;
-    SELECT @maxDate = MAX(created_date), @maxCount = COUNT(*)
-    FROM Document
-    WHERE folder_id = @folderID
-    AND document_status = 1;
-    RETURN @maxDate;
-END;
-GO
+---- Hàm trả về ngày có tài liệu được duyệt nhiều nhất trong một thư mục
+--CREATE FUNCTION GetDateWithMostApprovedDocumentsInFolder (@folderID INT)
+--RETURNS DATE
+--AS
+--BEGIN
+--    DECLARE @maxDate DATE;
+--    DECLARE @maxCount INT;
+--    SELECT @maxDate = MAX(created_date), @maxCount = COUNT(*)
+--    FROM Document
+--    WHERE folder_id = @folderID
+--    AND document_status = 1;
+--    RETURN @maxDate;
+--END;
+--GO
 
 
 
@@ -525,9 +529,9 @@ RETURNS INT
 AS
 BEGIN
     DECLARE @count INT;
-    SELECT @count = COUNT(*)
-    FROM Document
-    WHERE folder_id = @folder_id;
+    SELECT @count = COUNT(*) FROM Document
+		WHERE
+			folder_id = @folder_id;
     RETURN @count;
 END;
 GO
@@ -537,9 +541,9 @@ RETURNS INT
 AS
 BEGIN
 	DECLARE @count INT
-	SELECT @count = COUNT(*)
-	FROM Document
-	WHERE document_status = 1
+	SELECT @count = COUNT(*) FROM Document
+		WHERE
+			document_status = 1
 	RETURN @count
 END;
 GO

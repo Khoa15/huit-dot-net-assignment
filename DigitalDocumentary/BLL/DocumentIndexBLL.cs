@@ -17,5 +17,19 @@ namespace DigitalDocumentary.BLL
         {
             return docIndexDLL.Load(id);
         }
+        public DocumentIndexDTO Load(int id, int docIndexId)
+        {
+            return docIndexDLL.Load(id, docIndexId);
+        }
+
+        public bool Add(DocumentIndexDTO docI)
+        {
+            return docIndexDLL.Add(docI) > 0;
+        }
+
+        public bool Remove(int id)
+        {
+            return docIndexDLL.Remove(id) > 0;
+        }
     }
 }

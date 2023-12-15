@@ -13,27 +13,23 @@ namespace DigitalDocumentary.BLL
         static FolderDAL folderDll = new FolderDAL();
         public FolderBLL()
         {
+
         }
 
         public List<FolderDTO> Load()
         {
-            List<FolderDTO> listFolder = folderDll.Load();
-            foreach(FolderDTO fol in listFolder)
-            {
-                if(fol.Parent != null)
-                {
-                    listFolder.Find(f => f.Id == fol.Parent.Id);
-                }
-            }
-            return listFolder;
+            return folderDll.Load();
         }
         public FolderDTO Load(int id)
         {
-            //return folderDll.LoadById(id);
             if(folderDll.Folders.Count == 0)
             {
                 return folderDll.LoadById(id);
             }
+            return folderDll.Folders.Find(f => f.Id == id);
+        }
+        public static FolderDTO Get(int id)
+        {
             return folderDll.Folders.Find(f => f.Id == id);
         }
         public bool Add(FolderDTO folder)
@@ -93,6 +89,11 @@ namespace DigitalDocumentary.BLL
         public bool MoveFolder(int id, int? desId)
         {
             return folderDll.MoveFolder(id, desId) > 0;
+        }
+
+        public FolderDTO Find(int id)
+        {
+            return folderDll.Folders.Find(f => f.Id == id);
         }
 
         ///Function

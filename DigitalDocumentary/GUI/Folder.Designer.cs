@@ -257,7 +257,7 @@ namespace DigitalDocumentary.GUI
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Folder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CP_ThuMuc";
+            this.Text = "Thư Mục";
             this.Load += new System.EventHandler(this.CP_ThuMuc_Load);
             this.panel6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

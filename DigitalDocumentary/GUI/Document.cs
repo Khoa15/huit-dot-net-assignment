@@ -1,4 +1,5 @@
 ﻿using DigitalDocumentary.BLL;
+using DigitalDocumentary.DLL;
 using DigitalDocumentary.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace DigitalDocumentary.GUI
 {
     public partial class Document : Form
     {
-        FolderBLL f = new FolderBLL();
+        FolderBLL folderBLL = new FolderBLL();
         DocumentBLL documentBLL = new DocumentBLL();
         bool isDocOrFolder = false;
         public Document()
@@ -76,14 +77,31 @@ namespace DigitalDocumentary.GUI
             {
                 panel6.Visible = true;
                 pnFolDoc.Visible = false;
+                LoadDocument(documentBLL.ReLoad());
             }
             else
             {
                 pnFolDoc.Visible = true;
                 pnFolDoc.Dock = DockStyle.Bottom;
                 panel6.Visible = false;
+                LoadDocumentByFolder(current);
             }
-
+        }
+        private void LoadDocumentByFolder(TreeNode current)
+        {
+            if (current.Name.Equals("unPublic"))
+            {
+                LoadDocument(documentBLL.LoadByStatus(false));
+            }
+            else if (current.Name.Equals("isPublic"))
+            {
+                LoadDocument(documentBLL.LoadByStatus(true));
+            }
+            else
+            {
+                int id = int.Parse(current.Name);
+                LoadDocument(documentBLL.LoadByFolderId(id));
+            }
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -129,13 +147,23 @@ namespace DigitalDocumentary.GUI
         }
         private void btnAddDoc_Click(object sender, EventArgs e)
         {
-            AddDocument addDocument = new AddDocument();
-            addDocument.ShowDialog();
-            LoadDocument(documentBLL.Load());
+            try
+            {
+                int id = SelectedFolder;
+                if(id == -99)
+                {
+                    throw new Exception();
+                }
+                folderBLL.Find(SelectedFolder);
+                AddDocument addDocument = new AddDocument(SelectedFolder, false);
+                addDocument.ShowDialog();
+                LoadDocumentByFolder(treeViewFolders.SelectedNode);
+                InitLoadFolder();
+            }catch(Exception ex) { }
         }
         private void btnDeleteDoc_Click(object sender, EventArgs e)
         {
-            if(Notification.ConfirmDelete() == DialogResult.No)
+            if(Notification.ConfirmDelete() == DialogResult.Cancel)
             {
                 return;
             }
@@ -161,40 +189,75 @@ namespace DigitalDocumentary.GUI
         }
         private void btnDocIndex_Click(object sender, EventArgs e)
         {
-            int id = 0;
-            for(int i = 0; i < dataGridViewDocuments.Rows.Count; i++)
-            {
-                if (Convert.ToBoolean(dataGridViewDocuments.Rows[i].Cells[0].Value))
-                {
-                    id = Convert.ToInt32(dataGridViewDocuments.Rows[i].Cells[1].Value);
-                }
-            }
+            int id = IdDocumentSelected().First();
             DocumentIndex index = new DocumentIndex(id);
             index.ShowDialog();
         }
         private void btnPublic_Click(object sender, EventArgs e)
         {
-            int x = SelectedFolder;
-            if(Notification.ConfirmPublicAllDocs() == DialogResult.OK)
+            try
             {
-                if (FolderBLL.PublicDoc(x))
+                if (isDocOrFolder)
                 {
-                    Notification.Success();
-                    LoadDocument(documentBLL.Load());
+                    //Public Doc is selected
+                    List<int> ids = IdDocumentSelected();
+                    if (documentBLL.Public(ids))
+                    {
+                        Notification.Success();
+                    }
+                    else
+                    {
+                        Notification.Fail();
+                    }
                 }
+                else
+                {
+                    int x = SelectedFolder;
+                    if(Notification.ConfirmPublicAllDocs() == DialogResult.OK)
+                    {
+                        if (FolderBLL.PublicDoc(x))
+                        {
+                            Notification.Success();
+                        }
+                    }
+                }
+                LoadDocument(documentBLL.Load());
+                InitLoadFolder();
             }
+            catch (Exception ex) { }
         }
         private void btnPrivateDocument_Click(object sender, EventArgs e)
         {
-            int x = SelectedFolder;
-            if (Notification.ConfirmUnPublicAllDocs() == DialogResult.OK)
+            try
             {
-                if (FolderBLL.PrivateDoc(x))
+                if (isDocOrFolder)
                 {
-                    Notification.Success();
-                    LoadDocument(documentBLL.Load());
+                    //Private Doc is selected
+                    List<int> ids = IdDocumentSelected();
+                    if (documentBLL.Private(ids))
+                    {
+                        Notification.Success();
+                    }
+                    else
+                    {
+                        Notification.Fail();
+                    }
                 }
+                else
+                {
+                    int x = SelectedFolder;
+                    if (Notification.ConfirmUnPublicAllDocs() == DialogResult.OK)
+                    {
+                        if (FolderBLL.PrivateDoc(x))
+                        {
+                            Notification.Success();
+                        }
+                    }
+                }
+                LoadDocument(documentBLL.Load());
+                InitLoadFolder();
             }
+            catch(Exception ex) { }
         }
         private void btnMvDocToNewFolder_Click(object sender, EventArgs e)
         {
@@ -219,12 +282,12 @@ namespace DigitalDocumentary.GUI
         }
         private void InitLoadFolder()
         {
+            List<FolderDTO> folders = folderBLL.Load();
             treeViewFolders.Nodes.Clear();
             treeViewFolders.Nodes.Add("TLS", "TÀI LIỆU SỐ");
             TreeNode root = treeViewFolders.Nodes[0];
-            root.Nodes.Add("isPublic", "Đã ban hành - " + f.CountDocIsPublic());
-            root.Nodes.Add("unPublic", "Chưa ban hành - " + f.CountDocUnPublic());
-            List<FolderDTO> folders = f.Load();
+            root.Nodes.Add("isPublic", "Đã ban hành" + " - " + folderBLL.CountDocIsPublic());
+            root.Nodes.Add("unPublic", "Chưa ban hành" + " - " + folderBLL.CountDocUnPublic());
             LoadFolder(folders, root, null);
         }
         private void LoadFolder(List<FolderDTO> folders, TreeNode root, FolderDTO folder = null)
@@ -250,6 +313,8 @@ namespace DigitalDocumentary.GUI
         }
         private void LoadDocument(List<DocumentDTO> docs)
         {
+            dataGridViewDocuments.DataSource = null;
+            dataGridViewDocuments.Columns.Clear();
             if(dataGridViewDocuments.Rows.Count > 0)
             {
                 dataGridViewDocuments.CancelEdit();
@@ -266,10 +331,23 @@ namespace DigitalDocumentary.GUI
                 new DataGridViewTextBoxColumn { Name = "Type", DataPropertyName = "Type", HeaderText = "Loại tài liệu", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
                 new DataGridViewTextBoxColumn { Name = "Updated_by", DataPropertyName = "Updated_by", HeaderText = "Người cập nhật", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
                 new DataGridViewTextBoxColumn { Name = "Updated_date", DataPropertyName = "Updated_at", HeaderText = "Ngày cập nhật", ReadOnly = true,AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
-                new DataGridViewTextBoxColumn { Name = "Status", DataPropertyName = "GetStatus", HeaderText = "Tình trạng", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
+                new DataGridViewTextBoxColumn { Name = "Status", DataPropertyName = "GetStatus", HeaderText = "Tình trạng", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells },
             };
 
             dataGridViewDocuments.Columns.AddRange(columns);
+
+            //for(int i = 0; i <  dataGridViewDocuments.Rows.Count; i++)
+            //{
+            //    DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)dataGridViewDocuments.Rows[i].Cells[7];
+            //    if (cell.Value.Equals("Chưa ban hành"))
+            //    {
+            //        cell.ReadOnly = false;
+            //        cell.Style.BackColor = Color.Red;
+            //        cell.Style.ForeColor = Color.Blue;
+            //        cell.Value = "Haskdfkasldf";
+            //    }
+            //}
+            //dataGridViewDocuments.Refresh();
         }
         private void LoadSelectionFilter()
         {
@@ -360,11 +438,10 @@ namespace DigitalDocumentary.GUI
             List<int> id = IdDocumentSelected();
             if(id.Count!=1)
             {
-                //
                 return;
             }
 
-            AddDocument updateDoc = new AddDocument(id.First());
+            AddDocument updateDoc = new AddDocument(id.First(), true);
             updateDoc.ShowDialog();
             LoadDocument(documentBLL.Load());
         }
@@ -398,13 +475,30 @@ namespace DigitalDocumentary.GUI
             try
             {
                 int id = SelectedFolder;
+                
                 if (Notification.ConfirmDelete("Bạn có muốn xóa tất cả tài liệu của thư mục này?") == DialogResult.OK)
                 {
-                    if (documentBLL.DeleteByFolder(id))
+                    if (id > 0)
                     {
-                        Notification.Success();
-                        LoadDocument(documentBLL.Load());
-                        InitLoadFolder();
+                        if (documentBLL.DeleteByFolder(id))
+                        {
+                            Notification.Success();
+                            LoadDocument(documentBLL.Load());
+                            InitLoadFolder();
+                        }
+                    }
+                    else
+                    {
+                        if (documentBLL.DeleteByStatus(id != -2))
+                        {
+                            Notification.Success();
+                            LoadDocument(documentBLL.Load());
+                            InitLoadFolder();
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
             }
@@ -419,18 +513,27 @@ namespace DigitalDocumentary.GUI
             {
                 try
                 {
-                    return int.Parse(treeViewFolders.SelectedNode.Name);
-
+                    string name = treeViewFolders.SelectedNode.Name;
+                    switch (name)
+                    {
+                        case "unPublic":
+                            return -2;
+                        case "isPublic":
+                            return -1;
+                        default:
+                            return int.Parse(name);
+                    }
+                    //return int.Parse(name)l;
                 }
                 catch (NullReferenceException)
                 {
                     Notification.Notify("Bạn chưa chọn thư mục!");
-                    throw;
+                    return -99;
                 }
                 catch
                 {
                     Notification.Notify("Không thể chọn thư mục!");
-                    throw;
+                    return -99;
                 }
             }
         }
@@ -440,5 +543,21 @@ namespace DigitalDocumentary.GUI
 
         }
 
+        private void dataGridViewDocuments_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridViewDocuments.Columns[e.ColumnIndex].Name == "Status" && e.Value != null)
+            {
+                if (e.Value.Equals("Chưa ban hành"))
+                {
+                    e.CellStyle.BackColor = Color.OrangeRed;
+                    e.CellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.Blue;
+                    e.CellStyle.ForeColor = Color.White;
+                }
+            }
+        }
     }
 }

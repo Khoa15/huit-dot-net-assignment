@@ -26,13 +26,9 @@ namespace DigitalDocumentary.DLL
             Documents.Clear();
             DataSet ds = db.Select("SelectAllDocuments");
             
-            foreach(DataRow rd in ds.Tables[0].Rows)
+            foreach(DataRow row in ds.Tables[0].Rows)
             {
-                DocumentDTO document = SetData(rd);
-
-                // Foreign Key .... waiting
-
-                //
+                DocumentDTO document = SetData(row);
                 Documents.Add(document);
             }
             return Documents;
@@ -44,17 +40,43 @@ namespace DigitalDocumentary.DLL
             document = SetData(result.Tables[0].Rows[0]);
             return document;
         }
+        public List<DocumentDTO> LoadByFolderId(int id)
+        {
+            Documents.Clear();
+            DataSet ds = db.Select("SelectDocumentsByFolderId", "@fid", id);
+            foreach(DataRow row in ds.Tables[0].Rows)
+            {
+                DocumentDTO document = SetData(row);
+                Documents.Add(document);
+            }
+            return Documents;
+        }
+        public List<DocumentDTO> LoadByStatus(int status)
+        {
+            Documents.Clear();
+            DataSet ds = db.Select("SelectDocumentByStatus", "@status", status);
+            foreach(DataRow row in ds.Tables[0].Rows)
+            {
+                DocumentDTO document = SetData(row);
+                Documents.Add(document);
+            }
+            return Documents;
+        }
         public int Add(DocumentDTO doc)
         {
             object link_to_image = DBNull.Value;
+            object fid = DBNull.Value;
             if (doc.Link_to_image != null)
             {
                 link_to_image = doc.Link_to_image;
             }
-            //string sql = $"INSERT INTO {DocumentDTO.Table} (folder_id, author_id, title, description, type, file_path, link_to_image, document_status) VALUES ({doc.Folder.Id}, NULL, N'{doc.Title}', N'{doc.Description}', N'{doc.Type}', '{doc.File_path}', '{doc.Link_to_image}', {doc.iStatus})";
+            if(doc.Folder != null)
+            {
+                fid = doc.Folder.Id;
+            }
 
-            string[] keys = {  "@itemTypeID", "@file_path", "@title", "@link_to_image", "@description", "@status", "@updated_by" };
-            object[] values = {doc.ItemType.ItemTypeId, doc.File_path, doc.Title, link_to_image, doc.Description, doc.bStatus, doc.Updated_by};
+            string[] keys = { "@fid", "@itemTypeID", "@author", "@file_path", "@title", "@link_to_image", "@description", "@status", "@updated_by" };
+            object[] values = { fid, doc.ItemType.ItemTypeId, doc.Author, doc.File_path, doc.Title, link_to_image, doc.Description, doc.bStatus, doc.Updated_by};
             return db.NonQueryBySP("InsertDocument", keys, values);
         }
         public int Update(DocumentDTO doc)
@@ -64,9 +86,8 @@ namespace DigitalDocumentary.DLL
             {
                 link_to_image = doc.Link_to_image;
             }
-            //string sql = $"UPDATE {DocumentDTO.Table} SET folder_id = {doc.Folder.Id}, author_id = {doc.Author.Id}, title = '{doc.Title}', description='{doc.Description}', type='{doc.Type}', file_path='{doc.File_path}', link_to_image='{doc.Link_to_image}', document_status={doc.iStatus}  WHERE document_id = {doc.Id}";
-            string[] keys = {"@docId", "@itemTypeID", "@file_path", "@title", "@link_to_image", "@description", "@status", "@updated_by" };
-            object[] values = { doc.Id, doc.ItemType.ItemTypeId, doc.File_path, doc.Title, link_to_image, doc.Description, doc.bStatus, doc.Updated_by};
+            string[] keys = {"@docId", "@itemTypeID", "@file_path", "@author", "@title", "@link_to_image", "@description", "@status", "@updated_by" };
+            object[] values = { doc.Id, doc.ItemType.ItemTypeId, doc.File_path, doc.Author, doc.Title, link_to_image, doc.Description, doc.bStatus, doc.Updated_by};
             return db.NonQueryBySP("UpdateDocument", keys,values);
         }
         public int UpdateStatus(DocumentDTO doc)
@@ -85,8 +106,28 @@ namespace DigitalDocumentary.DLL
         }
         public int UpdateStatus(bool status, int[] ids)
         {
-            string sql = $"UPDATE {DocumentDTO.Table} SET document_status = ${status} Where id IN ({string.Join(", ", ids)})";
-            return db.NonQuery(sql);
+            //string sql = $"UPDATE {DocumentDTO.Table} SET document_status = ${status} Where id IN ({string.Join(", ", ids)})";
+            if(status == true)
+            {
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    if (db.NonQueryBySP("PublicDocumentById", "@docId", ids[i]) == 0)
+                    {
+                        return 0;
+                    }
+                }
+            }
+            else
+            {
+                for(int i = 0; i < ids.Length; i++)
+                {
+                    if(db.NonQueryBySP("PrivateDocumentByid", "@docId", ids[i]) == 0)
+                    {
+                        return 0;
+                    }
+                }
+            }
+            return 1;
         }
         //public int Delete(DocumentDTO doc)
         //{
@@ -100,6 +141,14 @@ namespace DigitalDocumentary.DLL
         public static int DeleteByFolder(int id)
         {
             return db.NonQueryBySP("DeleteDocumentsInFolder", "@folderID", id);
+        }
+        public static int DeleteByStatus(bool status)
+        {
+            return db.NonQueryBySP("DeleteDocumentsByStatus", "@status", Convert.ToInt16(status));
+        }
+        public static int DeleteAllDocuments()
+        {
+            return db.NonQueryBySP("DeleteAllDocuments");
         }
 
         public List<DocumentDTO> FindByTitle(string title)
@@ -116,10 +165,21 @@ namespace DigitalDocumentary.DLL
 
         public static bool PublicAllDocumentByIdFolder(int fid)
         {
+
+            if (fid == -2)
+            {
+                // Update public all docs
+                return db.NonQueryBySP("PublicAllDocument") > 0;
+            }
             return db.NonQueryBySP("PublicDocumentByIdFolder", "@fid", fid) > 0;
         }
         public static bool PrivateAllDocumentByIdFolder(int fid)
         {
+            if (fid == -1)
+            {
+                return db.NonQueryBySP("PrivateAllDocument") > 0;
+                // Update private all docs
+            }
             return db.NonQueryBySP("PrivateDocumentByIdFolder", "@fid", fid) > 0;
         }
 
@@ -144,15 +204,22 @@ namespace DigitalDocumentary.DLL
             document.Description = row["description"].ToString();
             document.File_path = row["file_path"].ToString();
             document.Link_to_image = row["link_to_image"].ToString();
-            document.ItemType = new ItemTypeDTO();
-            document.ItemType.ItemTypeId = row["ItemTypeID"].ToString();
-            document.ItemType.TypeName = row["TypeName"].ToString();
             document.Updated_by = row["updated_by"].ToString();
             document.Created_at = Convert.ToDateTime(row["created_date"].ToString());
             document.Updated_at = Convert.ToDateTime(row["updated_date"].ToString());
             document.Status = Convert.ToBoolean(row["document_status"].ToString());
-
             document.Author = row["author"].ToString();
+
+            document.ItemType = new ItemTypeDTO();
+            document.ItemType.ItemTypeId = row["ItemTypeID"].ToString();
+            document.ItemType.TypeName = row["TypeName"].ToString();
+
+            if (row["fid"] != DBNull.Value)
+            {
+                document.Folder = new FolderDTO();
+                document.Folder.Id = int.Parse(row["fid"].ToString());
+
+            }
             return document;
         }
     }
