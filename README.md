@@ -1,4 +1,7 @@
 "# huit-dot-net-assignment" 
-2001215879 - Nguyễn Trọng Đăng Khoa
-=======
-#2033216553-NguyenThiThanhThao
+==========
+# Contributors:
+- Nguyen Trong Dang Khoa
+- Nguyen Thi Thanh Thao
+- Le Tri Cuong
+- Tran Minh Hoa
